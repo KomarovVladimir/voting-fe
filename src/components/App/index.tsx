@@ -1,5 +1,12 @@
-export const App = () => {
-    return <div className="App">App</div>;
-};
+import { StrictMode } from "react";
+import { BrowserRouter } from "react-router-dom";
 
-export default App;
+import { AppRoutes } from "../../routes/AppRoutes";
+
+export const App = () => (
+    <StrictMode>
+        <BrowserRouter>
+            <AppRoutes />
+        </BrowserRouter>
+    </StrictMode>
+);
