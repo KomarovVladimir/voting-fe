@@ -5,12 +5,12 @@ import { PrivateRoutes } from "./PrivateRoutes";
 
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
-import { Home } from "../pages/Home";
+import { AdminPanel } from "../pages/AdminPanel";
 
 export const AppRoutes = () => (
     <Routes>
         <Route path="/" element={<PublicRoutes />}>
-            <Route index element={<Home />} />
+            <Route index element={<AdminPanel />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
         </Route>
