@@ -10,7 +10,7 @@ import { Home } from "../pages/Home";
 export const AppRoutes = () => (
     <Routes>
         <Route path="/" element={<PublicRoutes />}>
-            <Route path="home" element={<Home />} />
+            <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
         </Route>
