@@ -12,17 +12,19 @@ import {
     Toolbar,
     Typography,
 } from "@mui/material";
-
 import Person2Icon from "@mui/icons-material/Person2";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import PeopleIcon from "@mui/icons-material/People";
 import { Outlet } from "react-router";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
-type DashboardProps = {};
+type DashboardProps = {
+    title: string;
+};
 
-export const Dashboard = () => (
+export const Dashboard = ({ title }: DashboardProps) => (
     <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar
@@ -34,7 +36,7 @@ export const Dashboard = () => (
         >
             <Toolbar>
                 <Typography variant="h6" noWrap component="div">
-                    Title
+                    {title}
                 </Typography>
             </Toolbar>
         </AppBar>
@@ -55,7 +57,10 @@ export const Dashboard = () => (
             <List>
                 {["Restaurants", "Users"].map((text, index) => (
                     <ListItem key={text} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton
+                            component={Link}
+                            to={text.toLocaleLowerCase()}
+                        >
                             <ListItemIcon>
                                 {index % 2 === 0 ? (
                                     <RestaurantIcon />
@@ -72,7 +77,10 @@ export const Dashboard = () => (
             <List>
                 {["Profile"].map((text) => (
                     <ListItem key={text} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton
+                            component={Link}
+                            to={text.toLocaleLowerCase()}
+                        >
                             <ListItemIcon>
                                 <Person2Icon />
                             </ListItemIcon>
