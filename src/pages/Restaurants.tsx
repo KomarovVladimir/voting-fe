@@ -1,1 +1,3 @@
-export const Restaurants = () => <div>Restaurants</div>;
+import { RestaurantCard } from "components";
+
+export const Restaurants = () => <RestaurantCard />;
