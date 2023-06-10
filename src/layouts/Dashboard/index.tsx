@@ -4,27 +4,20 @@ import {
     CssBaseline,
     Divider,
     Drawer,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
     Toolbar,
     Typography,
 } from "@mui/material";
-import Person2Icon from "@mui/icons-material/Person2";
-import RestaurantIcon from "@mui/icons-material/Restaurant";
-import PeopleIcon from "@mui/icons-material/People";
+
 import { Outlet } from "react-router";
-import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
 type DashboardProps = {
     title: string;
+    drawerMenu?: JSX.Element;
 };
 
-export const Dashboard = ({ title }: DashboardProps) => (
+export const Dashboard = ({ title, drawerMenu }: DashboardProps) => (
     <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar
@@ -54,41 +47,7 @@ export const Dashboard = ({ title }: DashboardProps) => (
         >
             <Toolbar />
             <Divider />
-            <List>
-                {["Restaurants", "Users"].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton
-                            component={Link}
-                            to={text.toLocaleLowerCase()}
-                        >
-                            <ListItemIcon>
-                                {index % 2 === 0 ? (
-                                    <RestaurantIcon />
-                                ) : (
-                                    <PeopleIcon />
-                                )}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                {["Profile"].map((text) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton
-                            component={Link}
-                            to={text.toLocaleLowerCase()}
-                        >
-                            <ListItemIcon>
-                                <Person2Icon />
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
+            {drawerMenu}
         </Drawer>
         <Box
             component="main"

@@ -1,7 +1,15 @@
 import { Route, Routes } from "react-router";
 
-import { Login, Register, Home, Restaurants, Users, Profile } from "pages";
-import { PublicRoutes, Dashboard } from "layouts";
+import {
+    AdminPanel,
+    Login,
+    Register,
+    Home,
+    Restaurants,
+    Users,
+    Profile,
+} from "pages";
+import { PublicRoutes } from "layouts";
 
 export const AppRoutes = () => (
     <Routes>
@@ -10,7 +18,7 @@ export const AppRoutes = () => (
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
         </Route>
-        <Route path="admin" element={<Dashboard title="Admin panel" />}>
+        <Route path="admin" element={<AdminPanel />}>
             <Route path="restaurants" element={<Restaurants />} />
             <Route path="users" element={<Users />} />
             <Route path="profile" element={<Profile />} />
