@@ -13,6 +13,9 @@ export const PublicRoutes = () => (
             <li>
                 <Link to="register">Register</Link>
             </li>
+            <li>
+                <Link to="admin">Admin</Link>
+            </li>
         </ul>
 
         <Outlet />
