@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "miragejs": "^0.1.47",
     "redux-devtools-extension": "^2.13.9"
   }
 }

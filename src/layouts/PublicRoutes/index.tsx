@@ -1,8 +1,9 @@
+import { Container } from "@mui/material";
 import { Outlet } from "react-router";
 import { Link } from "react-router-dom";
 
 export const PublicRoutes = () => (
-    <div>
+    <Container maxWidth="xs">
         <ul>
             <li>
                 <Link to="/">Home</Link>
@@ -19,5 +20,5 @@ export const PublicRoutes = () => (
         </ul>
 
         <Outlet />
-    </div>
+    </Container>
 );
