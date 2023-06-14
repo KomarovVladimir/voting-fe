@@ -1,1 +1,3 @@
-export const Register = () => <div>Register</div>;
+import { RegistrationForm } from "components";
+
+export const Register = () => <RegistrationForm />;
