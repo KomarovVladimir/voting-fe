@@ -10,18 +10,19 @@ import {
     Profile,
 } from "pages";
 import { PublicRoutes } from "layouts";
+import { navigation } from "data/navigation";
 
 export const AppRoutes = () => (
     <Routes>
-        <Route path="/" element={<PublicRoutes />}>
+        <Route path={navigation.public} element={<PublicRoutes />}>
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+            <Route path={navigation.login} element={<Login />} />
+            <Route path={navigation.register} element={<Register />} />
         </Route>
-        <Route path="admin" element={<AdminPanel />}>
-            <Route path="restaurants" element={<Restaurants />} />
-            <Route path="users" element={<Users />} />
-            <Route path="profile" element={<Profile />} />
+        <Route path={navigation.admin} element={<AdminPanel />}>
+            <Route path={navigation.restaurants} element={<Restaurants />} />
+            <Route path={navigation.users} element={<Users />} />
+            <Route path={navigation.profile} element={<Profile />} />
         </Route>
     </Routes>
 );
