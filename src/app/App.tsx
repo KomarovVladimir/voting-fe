@@ -6,13 +6,18 @@ import { AppRoutes } from "routes";
 import "server";
 
 import { store } from "./store";
+import { AuthProvider } from "context/AuthProvider";
 
-export const App = () => (
-    <StrictMode>
-        <Provider store={store}>
-            <BrowserRouter>
-                <AppRoutes />
-            </BrowserRouter>
-        </Provider>
-    </StrictMode>
-);
+export const App = () => {
+    return (
+        <StrictMode>
+            <AuthProvider>
+                <Provider store={store}>
+                    <BrowserRouter>
+                        <AppRoutes />
+                    </BrowserRouter>
+                </Provider>
+            </AuthProvider>
+        </StrictMode>
+    );
+};
