@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAuthRequestMutation } from "services/authApi";
+import { useAuthRequestMutation } from "api/authApi";
 
 const testAuthData = { email: "admin@email.com", password: "admin" };
 
