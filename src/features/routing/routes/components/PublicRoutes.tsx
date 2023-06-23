@@ -1,12 +1,11 @@
 import { Container } from "@mui/material";
+import { useAuth } from "features/auth/useAuth";
 import { Navigate, Outlet } from "react-router";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
 
-import { AuthContext } from "features/auth/context/AuthContext";
+import { Link } from "react-router-dom";
 
 export const PublicRoutes = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
 
     if (user) {
         return <Navigate to="authorized/admin" />;
@@ -25,7 +24,7 @@ export const PublicRoutes = () => {
                     <Link to="register">Register</Link>
                 </li>
                 <li>
-                    <Link to="protected/admin">Admin</Link>
+                    <Link to="authorized/admin">Admin</Link>
                 </li>
             </ul>
 
