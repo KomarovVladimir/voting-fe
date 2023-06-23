@@ -1,24 +1,13 @@
 import { useEffect, useState } from "react";
 
-type localStorageData =
-    | string
-    | number
-    | boolean
-    | Record<string, any>
-    | any[]
-    | null;
-
-export const useLocalStorage = (
-    key: string,
-    initialValue: localStorageData
-) => {
+export const useLocalStorage = (key: string, initialValue?: string) => {
     const [value, setValue] = useState<string | null>(
-        JSON.parse(localStorage.getItem(key) as string) ?? initialValue
+        (localStorage.getItem(key) as string) ?? initialValue
     );
 
     useEffect(() => {
         if (value) {
-            localStorage.setItem(key, JSON.stringify(value));
+            localStorage.setItem(key, value);
         }
     }, [key, value]);
 

@@ -9,7 +9,7 @@ createServer({
 
     seeds(server) {
         server.create("user", {
-            name: "Admin",
+            role: "Admin",
             email: "admin@email.com",
             password: "admin",
         });
@@ -25,8 +25,8 @@ createServer({
 
             return user
                 ? {
-                      encodedToken: "token",
-                      name: user.name,
+                      token: "token",
+                      role: user.role,
                       email: user.email,
                   }
                 : {};
@@ -38,8 +38,8 @@ createServer({
 
             return user
                 ? {
-                      encodedToken: "token",
-                      name: user.name,
+                      token: "token",
+                      role: user.role,
                       email: user.email,
                   }
                 : new Response(404);

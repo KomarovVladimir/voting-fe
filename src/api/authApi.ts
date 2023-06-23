@@ -1,17 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+import { User } from "shared/types/User.type";
+
 //TODO: Replace with an actual base url
 const tempUrl = "http://localhost:3000";
-
-type User = {
-    name: "string";
-    email: "string";
-};
-
-type AuthState = {
-    user: User | null;
-    token: string | null;
-};
 
 type AuthPayload = {
     email: string;
@@ -24,7 +16,7 @@ export const authApi = createApi({
     }),
     tagTypes: ["Auth"],
     endpoints: (builder) => ({
-        authRequest: builder.mutation<AuthState, AuthPayload>({
+        authRequest: builder.mutation<User, AuthPayload>({
             query: (payload) => ({
                 url: "/api/users/login",
                 method: "POST",
