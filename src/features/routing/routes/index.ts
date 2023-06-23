@@ -1,2 +1,2 @@
-export * from "./AppRoutes";
-export * from "./PrivateRoutes";
+export * from "./components/AppRoutes";
+export * from "./components/PrivateRoutes";

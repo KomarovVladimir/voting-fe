@@ -7,18 +7,18 @@ import { useLocalStorage } from "utils/useLocalStorage";
 const testAuthData = { email: "admin@email.com", password: "admin" };
 
 export const useLoginForm = () => {
-    const { user, setUser } = useContext(AuthContext);
+    const { setUser } = useContext(AuthContext);
     const [authRequest, result] = useAuthRequestMutation();
     const { value, setValue } = useLocalStorage("user");
-
-    useEffect(() => {
-        authRequest(testAuthData);
-    }, [authRequest]);
 
     useEffect(() => {
         setValue(JSON.stringify(result.data));
         setUser(value ? JSON.parse(value) : null);
     }, [result.data, setUser, setValue, value]);
 
-    return { authRequest, result };
+    const handleLogin = () => {
+        authRequest(testAuthData);
+    };
+
+    return { handleLogin, result };
 };

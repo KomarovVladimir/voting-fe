@@ -12,12 +12,10 @@ import { Link } from "react-router-dom";
 
 import { useLoginForm } from "./useLoginForm";
 
-export const LoginForm = () => {
-    const { authRequest, result } = useLoginForm();
+const testAuthData = { email: "admin@email.com", password: "admin" };
 
-    const handleLogin = () => {
-        // authRe quest();
-    };
+export const LoginForm = () => {
+    const { handleLogin, result } = useLoginForm();
 
     return (
         <Paper>
@@ -31,7 +29,9 @@ export const LoginForm = () => {
                         <TextField label="Password" type="password" />
                         <FormHelperText>Password helper</FormHelperText>
                     </FormControl>
-                    <Button variant="contained">Log In</Button>
+                    <Button variant="contained" onClick={handleLogin}>
+                        Log In
+                    </Button>
                     <MuiLink component={Link} to="../register">
                         Don't have an account?
                     </MuiLink>
