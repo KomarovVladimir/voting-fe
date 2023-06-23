@@ -1,3 +1,3 @@
-import { Auth } from "features/auth/Auth";
+import { LoginForm } from "features/auth/components/LoginForm";
 
-export const Login = () => <Auth />;
+export const Login = () => <LoginForm />;

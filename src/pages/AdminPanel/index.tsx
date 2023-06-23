@@ -1,4 +1,4 @@
-import { Dashboard } from "layouts";
+import { Dashboard } from "shared/layouts";
 
 import { DrawerMenu } from "./DrawerMenu";
 

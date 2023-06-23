@@ -1,16 +1,8 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, useState } from "react";
 
 import { User } from "shared/types/User.type";
 
-type AuthState = {
-    user: User | null;
-    setUser: React.Dispatch<React.SetStateAction<User | null>>;
-};
-
-export const AuthContext = createContext<AuthState>({
-    user: null,
-    setUser: () => {},
-});
+import { AuthContext } from "./AuthContext";
 
 type AuthProviderProps = { children: ReactNode };
 

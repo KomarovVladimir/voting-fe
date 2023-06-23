@@ -1,16 +1,17 @@
 import { Route, Routes } from "react-router";
 
 import {
-    AdminPanel,
-    Login,
     Register,
-    Home,
+    AdminPanel,
     Restaurants,
     Users,
     Profile,
+    Home,
+    Login,
 } from "pages";
-import { PublicRoutes } from "layouts";
-import { navigation } from "data/navigation";
+import { PublicRoutes } from "shared/layouts";
+
+import { navigation } from "../constants";
 
 export const AppRoutes = () => (
     <Routes>

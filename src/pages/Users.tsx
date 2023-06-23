@@ -1,5 +1,6 @@
 import { Box, Grid } from "@mui/material";
-import { DataTable } from "components";
+
+import { DataTable } from "shared/components";
 
 export const Users = () => (
     <Box sx={{ flexGrow: 1 }}>

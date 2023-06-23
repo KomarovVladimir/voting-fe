@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react";
-import { useAuthRequestMutation } from "api/authApi";
 
+import { useAuthRequestMutation } from "services/api/authApi";
+import { AuthContext } from "features/auth/context/AuthContext";
 import { useLocalStorage } from "utils/useLocalStorage";
-import { AuthContext } from "context/AuthProvider";
 
 const testAuthData = { email: "admin@email.com", password: "admin" };
 
-export const useAuth = () => {
+export const useLoginForm = () => {
     const { user, setUser } = useContext(AuthContext);
     const [authRequest, result] = useAuthRequestMutation();
     const { value, setValue } = useLocalStorage("user");

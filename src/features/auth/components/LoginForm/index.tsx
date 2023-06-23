@@ -10,10 +10,14 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { useAuth } from "./useAuth";
+import { useLoginForm } from "./useLoginForm";
 
-export const Auth = () => {
-    const { authRequest, result } = useAuth();
+export const LoginForm = () => {
+    const { authRequest, result } = useLoginForm();
+
+    const handleLogin = () => {
+        // authRe quest();
+    };
 
     return (
         <Paper>

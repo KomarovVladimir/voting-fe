@@ -1,1 +1,2 @@
-export * from "./auth/Auth";
+export * from "./auth/components";
+export * from "./auth/context/AuthProvider";

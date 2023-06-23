@@ -2,11 +2,11 @@ import { StrictMode } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
-import { AppRoutes } from "routes";
-import "server";
+import "services/server";
 
 import { store } from "./store";
-import { AuthProvider } from "context/AuthProvider";
+import { AuthProvider } from "features/auth/context/AuthProvider";
+import { AppRoutes } from "features/routing/routes";
 
 export const App = () => {
     return (

@@ -5,7 +5,7 @@ const initialState = {
     userToken: null,
 };
 
-export const authSlice = createSlice({
+export const loginFormSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {},
