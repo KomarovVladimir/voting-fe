@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 import { useAuth } from "./useAuth";
 
-export const LoginForm = () => {
+export const Auth = () => {
     const { authRequest, result } = useAuth();
 
     return (
