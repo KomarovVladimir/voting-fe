@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { useLoginForm } from "./useLoginForm";
+import { useAuth } from "../../useAuth";
 
 const testAuthData = { email: "admin@email.com", password: "admin" };
 
 export const LoginForm = () => {
-    const { handleLogin, result } = useLoginForm();
+    const { handleLogin } = useAuth();
 
     return (
         <Paper>
@@ -29,7 +29,10 @@ export const LoginForm = () => {
                         <TextField label="Password" type="password" />
                         <FormHelperText>Password helper</FormHelperText>
                     </FormControl>
-                    <Button variant="contained" onClick={handleLogin}>
+                    <Button
+                        variant="contained"
+                        onClick={handleLogin(testAuthData)}
+                    >
                         Log In
                     </Button>
                     <MuiLink component={Link} to="../register">

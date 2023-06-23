@@ -5,7 +5,7 @@ import { User } from "shared/types/User.type";
 //TODO: Replace with an actual base url
 const tempUrl = "http://localhost:3000";
 
-type AuthPayload = {
+export type AuthData = {
     email: string;
     password: string;
 };
@@ -16,14 +16,22 @@ export const authApi = createApi({
     }),
     tagTypes: ["Auth"],
     endpoints: (builder) => ({
-        authRequest: builder.mutation<User, AuthPayload>({
+        loginRequest: builder.mutation<User, AuthData>({
             query: (payload) => ({
                 url: "/api/users/login",
                 method: "POST",
                 body: payload,
             }),
+            invalidatesTags: ["Auth"],
+        }),
+        logoutRequest: builder.mutation({
+            query: () => ({
+                url: "/api/users/logout",
+                method: "POST",
+            }),
+            invalidatesTags: ["Auth"],
         }),
     }),
 });
 
-export const { useAuthRequestMutation } = authApi;
+export const { useLoginRequestMutation, useLogoutRequestMutation } = authApi;
