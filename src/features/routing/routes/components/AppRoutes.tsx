@@ -2,12 +2,12 @@ import { Route, Routes } from "react-router";
 
 import {
     Register,
-    AdminPanel,
     Restaurants,
     Users,
     Profile,
     Home,
     Login,
+    Admin,
 } from "pages";
 
 import { PrivateRoutes } from "./PrivateRoutes";
@@ -23,7 +23,7 @@ export const AppRoutes = () => (
             <Route path={navigation.register} element={<Register />} />
         </Route>
         <Route path="authorized" element={<PrivateRoutes />}>
-            <Route path={navigation.admin} element={<AdminPanel />}>
+            <Route path={navigation.admin} element={<Admin />}>
                 <Route
                     path={navigation.restaurants}
                     element={<Restaurants />}

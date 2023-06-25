@@ -4,4 +4,4 @@ export * from "./Register";
 export * from "./Restaurants";
 export * from "./Users";
 export * from "./Profile";
-export * from "./AdminPanel";
+export * from "./Admin";
