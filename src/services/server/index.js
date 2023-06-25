@@ -43,7 +43,7 @@ createServer({
 
         this.get("/dishes");
 
-        this.post("/users/login", (schema, request) => {
+        this.post("/login", (schema, request) => {
             const email = JSON.parse(request.requestBody).email;
             const user = schema.users.findBy({ email });
 
@@ -56,7 +56,7 @@ createServer({
                 : {};
         });
 
-        this.post("/users/logout", (schema, request) => {
+        this.post("/logout", (schema, request) => {
             const email = JSON.parse(request.requestBody).email;
             schema.users.findBy({ email }).token = null;
 

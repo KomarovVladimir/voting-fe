@@ -2,23 +2,19 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { User } from "types/User.type";
 
-//TODO: Replace with an actual base url
-const tempUrl = "http://localhost:3000";
-
 export type AuthData = {
     email: string;
     password: string;
 };
 
 export const authApi = createApi({
-    baseQuery: fetchBaseQuery({
-        baseUrl: tempUrl,
-    }),
+    reducerPath: "authApi",
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
     tagTypes: ["Auth"],
     endpoints: (builder) => ({
         loginRequest: builder.mutation<User, AuthData>({
             query: (payload) => ({
-                url: "/api/users/login",
+                url: "/login",
                 method: "POST",
                 body: payload,
             }),
@@ -26,7 +22,7 @@ export const authApi = createApi({
         }),
         logoutRequest: builder.mutation({
             query: () => ({
-                url: "/api/users/logout",
+                url: "/logout",
                 method: "POST",
             }),
             invalidatesTags: ["Auth"],

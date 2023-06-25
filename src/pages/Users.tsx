@@ -1,12 +1,12 @@
 import { Box, Grid } from "@mui/material";
 
-import { DataTable } from "components";
+import { UsersTable } from "features/adminPanel";
 
 export const Users = () => (
     <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
             <Grid item xs={6}>
-                <DataTable />
+                <UsersTable />
             </Grid>
         </Grid>
     </Box>

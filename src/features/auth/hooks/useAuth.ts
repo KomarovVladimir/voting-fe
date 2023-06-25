@@ -7,7 +7,7 @@ import {
     AuthData,
     useLoginRequestMutation,
     useLogoutRequestMutation,
-} from "../services/authApi";
+} from "../api/authApi";
 
 export const useAuth = () => {
     const { user, setUser } = useContext(AuthContext);
