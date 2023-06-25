@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 
-import { User } from "shared/types/User.type";
+import { User } from "types/User.type";
 
 import { AuthContext } from "./AuthContext";
 

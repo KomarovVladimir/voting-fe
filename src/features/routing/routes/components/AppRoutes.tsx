@@ -2,12 +2,12 @@ import { Route, Routes } from "react-router";
 
 import {
     Register,
-    Restaurants,
-    Users,
-    Profile,
     Home,
     Login,
     Admin,
+    Profile,
+    Restaurants,
+    Users,
 } from "pages";
 
 import { PrivateRoutes } from "./PrivateRoutes";

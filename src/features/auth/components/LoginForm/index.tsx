@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { useAuth } from "../../useAuth";
+import { useAuth } from "../../hooks/useAuth";
 
 const testAuthData = { email: "admin@email.com", password: "admin" };
 

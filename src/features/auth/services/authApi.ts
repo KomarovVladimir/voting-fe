@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { User } from "shared/types/User.type";
+import { User } from "types/User.type";
 
 //TODO: Replace with an actual base url
 const tempUrl = "http://localhost:3000";

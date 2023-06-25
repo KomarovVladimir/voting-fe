@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { useAuth } from "features/auth/useAuth";
+import { useAuth } from "features/auth/hooks/useAuth";
 import { Navigate, Outlet } from "react-router";
 
 import { Link } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { User } from "shared/types/User.type";
+import { User } from "types/User.type";
 
 type AuthState = {
     user: User | null;

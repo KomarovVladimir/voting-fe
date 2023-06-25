@@ -2,12 +2,12 @@ import { useContext, useEffect } from "react";
 
 import { useLocalStorage } from "utils/useLocalStorage";
 
-import { AuthContext } from "./context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import {
     AuthData,
     useLoginRequestMutation,
     useLogoutRequestMutation,
-} from "./authApi";
+} from "../services/authApi";
 
 export const useAuth = () => {
     const { user, setUser } = useContext(AuthContext);

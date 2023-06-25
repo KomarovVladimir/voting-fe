@@ -1,3 +1,3 @@
-import { AdminPanel } from "features/adminPanel/AdminPanel";
+import { AdminPanel } from "features/adminPanel";
 
 export const Admin = () => <AdminPanel />;
