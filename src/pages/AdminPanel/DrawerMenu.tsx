@@ -11,6 +11,7 @@ import RestaurantIcon from "@mui/icons-material/Restaurant";
 import PeopleIcon from "@mui/icons-material/People";
 import { Link } from "react-router-dom";
 
+//TODO: Make the component shared
 export const DrawerMenu = () => (
     <>
         <List>
