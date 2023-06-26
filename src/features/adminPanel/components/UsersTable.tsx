@@ -12,8 +12,6 @@ const columns: GridColDef[] = [
 export const UsersTable = () => {
     const { data } = useGetUsersListQuery();
 
-    console.log(data);
-
     return (
         <DataGrid
             rows={data?.users || []}
