@@ -1,3 +1,4 @@
+import { faker } from "@faker-js/faker";
 import { createServer, Model, Response } from "miragejs";
 
 createServer({
@@ -14,23 +15,29 @@ createServer({
             role: "Admin",
             email: "admin@email.com",
             password: "admin",
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
         });
         server.create("user", {
-            role: "User 1",
+            role: "User",
             email: "user1@email.com",
             password: "user1",
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
         });
         server.create("user", {
-            role: "User 2",
+            role: "User",
             email: "user2@email.com",
             password: "user2",
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
         });
         server.create("restaurant", {
-            name: "Tokyo City",
+            firstName: "Tokyo City",
             address: "Невский пр. 71",
         });
         server.create("dish", {
-            name: "Стейк Рибай",
+            firstName: "Стейк Рибай",
             price: "870.00",
         });
     },

@@ -11,9 +11,9 @@ export const usersApi = createApi({
             query: (id) => ({ url: `/users/${id}` }),
             providesTags: (result, error, id) => [{ type: "User", id }],
         }),
-        getUsersList: build.query<User[], void>({
+        getUsersList: build.query<{ users: User[] }, void>({
             query: () => ({ url: `/users` }),
-            providesTags: (result, error, id) => [{ type: "User" }],
+            providesTags: () => [{ type: "User" }],
         }),
     }),
 });
