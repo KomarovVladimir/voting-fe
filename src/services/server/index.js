@@ -33,7 +33,7 @@ createServer({
             lastName: faker.person.lastName(),
         });
         server.create("restaurant", {
-            firstName: "Tokyo City",
+            name: "Tokyo City",
             address: "Невский пр. 71",
         });
         server.create("dish", {
