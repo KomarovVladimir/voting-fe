@@ -44,6 +44,7 @@ createServer({
 
     routes() {
         this.namespace = "/api";
+
         this.get("/users");
         this.get("/users/:id");
         this.delete("users/:id", (schema, request) =>
@@ -54,11 +55,11 @@ createServer({
 
             return schema.users.create(attrs);
         });
-        this.update("/users", (schema, request) => {
-            let attrs = JSON.parse(request.requestBody);
+        // this.update("/users", (schema, request) => {
+        //     let attrs = JSON.parse(request.requestBody);
 
-            return schema.users.update(attrs);
-        });
+        //     return schema.users.update(attrs);
+        // });
 
         this.get("/restaurants");
         this.get("/restaurants/:id");
@@ -70,11 +71,11 @@ createServer({
 
             return schema.restaurants.create(attrs);
         });
-        this.update("/restaurants", (schema, request) => {
-            let attrs = JSON.parse(request.requestBody);
+        // this.update("/restaurants", (schema, request) => {
+        //     let attrs = JSON.parse(request.requestBody);
 
-            return schema.restaurants.update(attrs);
-        });
+        //     return schema.restaurants.update(attrs);
+        // });
 
         this.get("/dishes");
         this.get("/dishes/:id");
@@ -86,11 +87,11 @@ createServer({
 
             return schema.dishes.create(attrs);
         });
-        this.update("/dishes", (schema, request) => {
-            let attrs = JSON.parse(request.requestBody);
+        // this.update("/dishes", (schema, request) => {
+        //     let attrs = JSON.parse(request.requestBody);
 
-            return schema.dishes.update(attrs);
-        });
+        //     return schema.dishes.update(attrs);
+        // });
 
         this.post("/login", (schema, request) => {
             const email = JSON.parse(request.requestBody).email;
