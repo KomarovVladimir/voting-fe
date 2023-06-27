@@ -1,3 +1,3 @@
-import { RestaurantCard } from "components";
+import { RestaurantsTable } from "features/adminPanel";
 
-export const Restaurants = () => <RestaurantCard />;
+export const Restaurants = () => <RestaurantsTable />;
