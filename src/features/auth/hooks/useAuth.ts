@@ -17,9 +17,7 @@ export const useAuth = () => {
     const [logoutRequest] = useLogoutRequestMutation();
 
     useEffect(() => {
-        if (value) {
-            setUser(JSON.parse(value));
-        }
+        setUser(value ? JSON.parse(value) : null);
     }, [setUser, value]);
 
     const handleLogin = (data: AuthData) => () => {
