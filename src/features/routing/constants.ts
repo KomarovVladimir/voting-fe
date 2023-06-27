@@ -1,5 +1,6 @@
 export const navigation = {
-    public: "/",
+    baseRoute: "/",
+    authorized: "authorized",
     home: "home",
     login: "login",
     register: "register",

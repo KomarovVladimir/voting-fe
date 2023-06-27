@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 
 import {
     Register,
@@ -17,12 +17,12 @@ import { navigation } from "../../constants";
 
 export const AppRoutes = () => (
     <Routes>
-        <Route path={navigation.public} element={<PublicRoutes />}>
+        <Route path={navigation.baseRoute} element={<PublicRoutes />}>
             <Route index element={<Home />} />
             <Route path={navigation.login} element={<Login />} />
             <Route path={navigation.register} element={<Register />} />
         </Route>
-        <Route path="authorized" element={<PrivateRoutes />}>
+        <Route path={navigation.authorized} element={<PrivateRoutes />}>
             <Route path={navigation.admin} element={<Admin />}>
                 <Route
                     path={navigation.restaurants}
