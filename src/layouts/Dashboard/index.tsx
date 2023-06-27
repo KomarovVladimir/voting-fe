@@ -4,6 +4,7 @@ import {
     CssBaseline,
     Divider,
     Drawer,
+    Stack,
     Toolbar,
     Typography,
 } from "@mui/material";
@@ -15,9 +16,14 @@ const drawerWidth = 240;
 type DashboardProps = {
     title: string;
     drawerMenu?: JSX.Element;
+    toolbarRight?: JSX.Element;
 };
 
-export const Dashboard = ({ title, drawerMenu }: DashboardProps) => (
+export const Dashboard = ({
+    title,
+    drawerMenu,
+    toolbarRight,
+}: DashboardProps) => (
     <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar
@@ -28,9 +34,12 @@ export const Dashboard = ({ title, drawerMenu }: DashboardProps) => (
             }}
         >
             <Toolbar>
-                <Typography variant="h6" noWrap component="div">
-                    {title}
-                </Typography>
+                <Box display="flex" justifyContent="space-between" width="100%">
+                    <Typography variant="h6" noWrap component="div">
+                        {title}
+                    </Typography>
+                    {toolbarRight}
+                </Box>
             </Toolbar>
         </AppBar>
         <Drawer

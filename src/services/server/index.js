@@ -67,7 +67,7 @@ createServer({
             const email = JSON.parse(request.requestBody).email;
             schema.users.findBy({ email }).token = null;
 
-            return new Response();
+            return new Response(200);
         });
     },
 });

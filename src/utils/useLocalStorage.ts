@@ -12,7 +12,7 @@ export const useLocalStorage = (key: string, initialValue?: string) => {
     }, [key, value]);
 
     const removeItem = () => {
-        localStorage.removeItem("test");
+        localStorage.removeItem(key);
         setValue(null);
     };
 

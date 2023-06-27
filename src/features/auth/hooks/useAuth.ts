@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import { useLocalStorage } from "utils/useLocalStorage";
+import { User } from "types/User.type";
 
 import { AuthContext } from "../context/AuthContext";
 import {
@@ -31,7 +32,7 @@ export const useAuth = () => {
     };
 
     const handleLogout = () => {
-        logoutRequest({})
+        logoutRequest(user as User)
             .unwrap()
             .then(() => {
                 removeItem();
