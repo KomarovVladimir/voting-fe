@@ -45,10 +45,52 @@ createServer({
     routes() {
         this.namespace = "/api";
         this.get("/users");
+        this.get("/users/:id");
+        this.delete("users/:id", (schema, request) =>
+            schema.users.find(request.params.id).destroy()
+        );
+        this.post("/users", (schema, request) => {
+            let attrs = JSON.parse(request.requestBody);
+
+            return schema.users.create(attrs);
+        });
+        this.update("/users", (schema, request) => {
+            let attrs = JSON.parse(request.requestBody);
+
+            return schema.users.update(attrs);
+        });
 
         this.get("/restaurants");
+        this.get("/restaurants/:id");
+        this.delete("restaurants/:id", (schema, request) =>
+            schema.restaurants.find(request.params.id).destroy()
+        );
+        this.post("/restaurants", (schema, request) => {
+            let attrs = JSON.parse(request.requestBody);
+
+            return schema.restaurants.create(attrs);
+        });
+        this.update("/restaurants", (schema, request) => {
+            let attrs = JSON.parse(request.requestBody);
+
+            return schema.restaurants.update(attrs);
+        });
 
         this.get("/dishes");
+        this.get("/dishes/:id");
+        this.delete("dishes/:id", (schema, request) =>
+            schema.dishes.find(request.params.id).destroy()
+        );
+        this.post("/dishes", (schema, request) => {
+            let attrs = JSON.parse(request.requestBody);
+
+            return schema.dishes.create(attrs);
+        });
+        this.update("/dishes", (schema, request) => {
+            let attrs = JSON.parse(request.requestBody);
+
+            return schema.dishes.update(attrs);
+        });
 
         this.post("/login", (schema, request) => {
             const email = JSON.parse(request.requestBody).email;
