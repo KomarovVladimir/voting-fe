@@ -6,7 +6,7 @@ interface AdminPaneState {
     currentPage: string;
 }
 
-const initialState = { currentPage: pages.restaurants } as AdminPaneState;
+const initialState = { currentPage: pages.dashboard } as AdminPaneState;
 
 export const adminPanelSlice = createSlice({
     name: "adminPanel",

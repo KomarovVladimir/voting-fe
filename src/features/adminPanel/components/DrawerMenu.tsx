@@ -19,6 +19,8 @@ import { pages } from "../data/pages";
 export const DrawerMenu = () => {
     const dispatch = useDispatch();
 
+    const { restaurants, users, profile } = pages;
+
     const handleItemClick = (page: string) => () => {
         dispatch(setCurrentPage(page));
     };
@@ -26,40 +28,45 @@ export const DrawerMenu = () => {
     return (
         <>
             <List>
-                {["Restaurants", "Users"].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton
-                            component={Link}
-                            to={text.toLocaleLowerCase()}
-                            onClick={handleItemClick(pages.restaurants)}
-                        >
-                            <ListItemIcon>
-                                {index % 2 === 0 ? (
-                                    <RestaurantIcon />
-                                ) : (
-                                    <PeopleIcon />
-                                )}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                <ListItem disablePadding>
+                    <ListItemButton
+                        component={Link}
+                        to={restaurants.toLocaleLowerCase()}
+                        onClick={handleItemClick(restaurants)}
+                    >
+                        <ListItemIcon>
+                            <RestaurantIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={restaurants} />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton
+                        component={Link}
+                        to={users.toLocaleLowerCase()}
+                        onClick={handleItemClick(users)}
+                    >
+                        <ListItemIcon>
+                            <PeopleIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={users} />
+                    </ListItemButton>
+                </ListItem>
             </List>
             <Divider />
             <List>
-                {["Profile"].map((text) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton
-                            component={Link}
-                            to={text.toLocaleLowerCase()}
-                        >
-                            <ListItemIcon>
-                                <Person2Icon />
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                <ListItem disablePadding>
+                    <ListItemButton
+                        component={Link}
+                        to={profile.toLocaleLowerCase()}
+                        onClick={handleItemClick(profile)}
+                    >
+                        <ListItemIcon>
+                            <Person2Icon />
+                        </ListItemIcon>
+                        <ListItemText primary={profile} />
+                    </ListItemButton>
+                </ListItem>
             </List>
         </>
     );
