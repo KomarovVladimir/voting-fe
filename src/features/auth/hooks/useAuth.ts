@@ -9,6 +9,7 @@ import {
     useLoginRequestMutation,
     useLogoutRequestMutation,
 } from "../api/authApi";
+import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 
 export const useAuth = () => {
     const { user, setUser } = useContext(AuthContext);
@@ -23,8 +24,8 @@ export const useAuth = () => {
     const handleLogin = (data: AuthData) => {
         loginRequest(data)
             .unwrap()
-            .then((payload) => {
-                setValue(JSON.stringify(payload));
+            .then(({ data }) => {
+                setValue(JSON.stringify(data));
             })
             .catch((error) => console.error("An error occurred", error));
     };

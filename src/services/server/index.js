@@ -94,16 +94,26 @@ createServer({
         // });
 
         this.post("/login", (schema, request) => {
-            const email = JSON.parse(request.requestBody).email;
+            const { email, password } = JSON.parse(request.requestBody);
             const user = schema.users.findBy({ email });
 
-            return user
-                ? {
-                      token: "token",
-                      role: user.role,
-                      email: user.email,
-                  }
-                : {};
+            return user && user.password === password
+                ? new Response(
+                      200,
+                      {},
+                      {
+                          data: {
+                              token: "token",
+                              role: user.role,
+                              email: user.email,
+                          },
+                      }
+                  )
+                : new Response(
+                      401,
+                      {},
+                      { errors: ["Error: wrong login or password"] }
+                  );
         });
 
         this.post("/logout", (schema, request) => {
