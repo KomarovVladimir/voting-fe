@@ -9,37 +9,67 @@ import {
     Link as MuiLink,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Form, Field } from "react-final-form";
 
 import { useAuth } from "../../hooks/useAuth";
-
-const testAuthData = { email: "admin@email.com", password: "admin" };
+import { AuthData } from "../../api/authApi";
 
 export const LoginForm = () => {
     const { handleLogin } = useAuth();
 
+    const onSubmit = (values: AuthData) => {
+        handleLogin(values);
+    };
+
     return (
         <Paper>
-            <Box component="form">
-                <Stack direction="column" spacing={2} padding={3}>
-                    <FormControl>
-                        <TextField label="Email" type="email" />
-                        <FormHelperText>Email helper</FormHelperText>
-                    </FormControl>
-                    <FormControl>
-                        <TextField label="Password" type="password" />
-                        <FormHelperText>Password helper</FormHelperText>
-                    </FormControl>
-                    <Button
-                        variant="contained"
-                        onClick={handleLogin(testAuthData)}
-                    >
-                        Log In
-                    </Button>
-                    <MuiLink component={Link} to="../register">
-                        Don't have an account?
-                    </MuiLink>
-                </Stack>
-            </Box>
+            <Form
+                onSubmit={onSubmit}
+                // validate={validate}
+                initialValues={{ email: "admin@email.com", password: "admin" }}
+                render={({ handleSubmit }) => (
+                    <Box component="form" onSubmit={handleSubmit}>
+                        <Stack direction="column" spacing={2} padding={3}>
+                            <FormControl>
+                                <Field
+                                    name="email"
+                                    render={({
+                                        input: { value, onChange },
+                                    }) => (
+                                        <TextField
+                                            label="Email"
+                                            type="email"
+                                            {...{ value, onChange }}
+                                        />
+                                    )}
+                                />
+                                <FormHelperText>Email helper</FormHelperText>
+                            </FormControl>
+                            <FormControl>
+                                <Field
+                                    name="password"
+                                    render={({
+                                        input: { value, onChange },
+                                    }) => (
+                                        <TextField
+                                            label="Password"
+                                            type="password"
+                                            {...{ value, onChange }}
+                                        />
+                                    )}
+                                />
+                                <FormHelperText>Password helper</FormHelperText>
+                            </FormControl>
+                            <Button variant="contained" type="submit">
+                                Log In
+                            </Button>
+                            <MuiLink component={Link} to="../register">
+                                Don't have an account?
+                            </MuiLink>
+                        </Stack>
+                    </Box>
+                )}
+            />
         </Paper>
     );
 };

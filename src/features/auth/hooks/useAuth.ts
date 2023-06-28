@@ -20,7 +20,7 @@ export const useAuth = () => {
         setUser(value ? JSON.parse(value) : null);
     }, [setUser, value]);
 
-    const handleLogin = (data: AuthData) => () => {
+    const handleLogin = (data: AuthData) => {
         loginRequest(data)
             .unwrap()
             .then((payload) => {
