@@ -6,7 +6,7 @@ import "services/server";
 
 import { store } from "./store";
 import { AuthProvider } from "features/auth/context/AuthProvider";
-import { AppRoutes } from "features/routing/routes";
+import { AppRoutes } from "features/routing";
 
 export const App = () => {
     return (

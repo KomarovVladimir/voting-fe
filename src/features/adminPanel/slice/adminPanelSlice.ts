@@ -12,12 +12,13 @@ export const adminPanelSlice = createSlice({
     name: "adminPanel",
     initialState,
     reducers: {
+        reset: () => initialState,
         setCurrentPage(state, action: PayloadAction<string>) {
             state.currentPage = action.payload;
         },
     },
 });
 
-export const { setCurrentPage } = adminPanelSlice.actions;
+export const { reset, setCurrentPage } = adminPanelSlice.actions;
 
 export const adminPanelReducer = adminPanelSlice.reducer;

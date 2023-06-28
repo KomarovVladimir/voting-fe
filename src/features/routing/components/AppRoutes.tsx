@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 
 import {
     Register,
@@ -13,7 +13,7 @@ import {
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
 
-import { navigation } from "../../constants";
+import { navigation } from "../data/navigation";
 
 export const AppRoutes = () => (
     <Routes>
