@@ -1,4 +1,4 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 
 import { useGetUsersListQuery } from "../api/usersApi";
 
@@ -10,17 +10,28 @@ const columns: GridColDef[] = [
 ];
 
 export const UsersTable = () => {
-    const { data } = useGetUsersListQuery();
+    const { data: { users: rows } = {} } = useGetUsersListQuery();
+
+    const handleSelection = (ids: GridRowSelectionModel) => {
+        if (rows) {
+            const selectedIDs = new Set(ids);
+            const selectedRowData = rows.filter((row) =>
+                selectedIDs.has(row.id.toString())
+            );
+            console.log(selectedRowData);
+        }
+    };
 
     return (
         <DataGrid
-            rows={data?.users || []}
+            rows={rows || []}
             columns={columns}
             initialState={{
                 pagination: {
                     paginationModel: { page: 0, pageSize: 5 },
                 },
             }}
+            onRowSelectionModelChange={handleSelection}
             pageSizeOptions={[5, 10]}
             checkboxSelection
         />

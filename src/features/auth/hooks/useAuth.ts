@@ -9,7 +9,6 @@ import {
     useLoginRequestMutation,
     useLogoutRequestMutation,
 } from "../api/authApi";
-import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 
 export const useAuth = () => {
     const { user, setUser } = useContext(AuthContext);
