@@ -1,6 +1,7 @@
-import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
+import { GridColDef } from "@mui/x-data-grid";
 
 import { useGetUsersListQuery } from "../api/usersApi";
+import { DataTable } from "components";
 
 const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 70 },
@@ -9,32 +10,8 @@ const columns: GridColDef[] = [
     { field: "lastName", headerName: "Last name", width: 130 },
 ];
 
-//TODO: Make the table reusable
 export const UsersTable = () => {
-    const { data: { users: rows } = {} } = useGetUsersListQuery();
+    const { data: { users: rows = [] } = {} } = useGetUsersListQuery();
 
-    const handleSelection = (ids: GridRowSelectionModel) => {
-        if (rows) {
-            const selectedIDs = new Set(ids);
-            const selectedRowData = rows.filter((row) =>
-                selectedIDs.has(row.id.toString())
-            );
-            console.log(selectedRowData);
-        }
-    };
-
-    return (
-        <DataGrid
-            rows={rows || []}
-            columns={columns}
-            initialState={{
-                pagination: {
-                    paginationModel: { page: 0, pageSize: 5 },
-                },
-            }}
-            onRowSelectionModelChange={handleSelection}
-            pageSizeOptions={[5, 10]}
-            checkboxSelection
-        />
-    );
+    return <DataTable {...{ columns, rows }} />;
 };
