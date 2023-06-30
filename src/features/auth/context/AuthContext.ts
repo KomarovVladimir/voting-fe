@@ -1,10 +1,10 @@
 import { createContext } from "react";
 
-import { User } from "types/User.type";
+import { UserData } from "../types/UserData.type";
 
 type AuthState = {
-    user: User | null;
-    setUser: React.Dispatch<React.SetStateAction<User | null>>;
+    user: UserData | null;
+    setUser: React.Dispatch<React.SetStateAction<UserData | null>>;
 };
 
 export const AuthContext = createContext<AuthState>({

@@ -1,41 +1,48 @@
 import { useContext, useEffect } from "react";
 
 import { useLocalStorage } from "hooks/useLocalStorage";
-import { User } from "types/User.type";
 
-import { AuthContext } from "../context/AuthContext";
 import {
     AuthData,
     useLoginRequestMutation,
     useLogoutRequestMutation,
 } from "../api/authApi";
 
+import { useUser } from "./useUser";
+import { UserData } from "../types/UserData.type";
+
 export const useAuth = () => {
-    const { user, setUser } = useContext(AuthContext);
-    const { value, setValue, removeItem } = useLocalStorage("user");
+    const { user, addUser, removeUser } = useUser();
+    const { getItem } = useLocalStorage("user");
     const [loginRequest] = useLoginRequestMutation();
     const [logoutRequest] = useLogoutRequestMutation();
 
     useEffect(() => {
-        setUser(value ? JSON.parse(value) : null);
-    }, [setUser, value]);
+        const user = getItem();
+
+        if (user) {
+            addUser(user);
+        }
+    }, []);
 
     const handleLogin = (data: AuthData) => {
         loginRequest(data)
             .unwrap()
             .then(({ data }) => {
-                setValue(JSON.stringify(data));
+                addUser(data as UserData);
             })
             .catch((error) => console.error("An error occurred", error));
     };
 
     const handleLogout = () => {
-        logoutRequest(user as User)
-            .unwrap()
-            .then(() => {
-                removeItem();
-            })
-            .catch((error) => console.error("An error occurred", error));
+        if (user?.email) {
+            logoutRequest({ email: user?.email })
+                .unwrap()
+                .then(() => {
+                    removeUser();
+                })
+                .catch((error) => console.error("An error occurred", error));
+        }
     };
 
     const handleRegister = () => {};

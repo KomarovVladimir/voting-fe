@@ -1,8 +1,6 @@
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { User } from "types/User.type";
-
 export type AuthData = {
     email: string;
     password: string;
@@ -21,7 +19,7 @@ export const authApi = createApi({
             }),
             invalidatesTags: ["Auth"],
         }),
-        logoutRequest: builder.mutation<void, User>({
+        logoutRequest: builder.mutation<void, { email: string }>({
             query: (payload) => ({
                 url: "/logout",
                 method: "POST",

@@ -9,6 +9,7 @@ const columns: GridColDef[] = [
     { field: "lastName", headerName: "Last name", width: 130 },
 ];
 
+//TODO: Make the table reusable
 export const UsersTable = () => {
     const { data: { users: rows } = {} } = useGetUsersListQuery();
 
