@@ -11,7 +11,8 @@ const columns: GridColDef[] = [
 ];
 
 export const UsersTable = () => {
-    const { data: { users: rows = [] } = {} } = useGetUsersListQuery();
+    const { data: { users: rows = [] } = {}, isLoading } =
+        useGetUsersListQuery();
 
-    return <DataTable {...{ columns, rows }} />;
+    return <DataTable loading={isLoading} {...{ columns, rows }} />;
 };

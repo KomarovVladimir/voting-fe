@@ -13,7 +13,8 @@ const columns: GridColDef[] = [
 ];
 
 export const RestaurantsTable = () => {
-    const { data: { restaurants: rows = [] } = {} } = useGetRestaurantsQuery();
+    const { data: { restaurants: rows = [] } = {}, isLoading } =
+        useGetRestaurantsQuery();
 
-    return <DataTable {...{ columns, rows }} />;
+    return <DataTable loading={isLoading} {...{ columns, rows }} />;
 };

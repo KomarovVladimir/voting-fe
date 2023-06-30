@@ -33,7 +33,7 @@ export const DataTable = ({
             onRowSelectionModelChange={handleSelection}
             pageSizeOptions={[5, 10]}
             checkboxSelection
-            {...{ props }}
+            {...props}
         />
     );
 };
