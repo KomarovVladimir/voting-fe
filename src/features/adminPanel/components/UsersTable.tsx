@@ -2,6 +2,7 @@ import { GridColDef } from "@mui/x-data-grid";
 
 import { useGetUsersListQuery } from "../api/usersApi";
 import { DataTable } from "components";
+import { Box } from "@mui/material";
 
 const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 70 },
@@ -14,5 +15,9 @@ export const UsersTable = () => {
     const { data: { users: rows = [] } = {}, isLoading } =
         useGetUsersListQuery();
 
-    return <DataTable loading={isLoading} {...{ columns, rows }} />;
+    return (
+        <Box maxWidth={700} minWidth={450}>
+            <DataTable loading={isLoading} {...{ columns, rows }} />
+        </Box>
+    );
 };

@@ -14,7 +14,7 @@ import { UserData } from "../types/UserData.type";
 export const useAuth = () => {
     const { user, addUser, removeUser } = useUser();
     const { getItem } = useLocalStorage("user");
-    const [loginRequest] = useLoginRequestMutation();
+    const [loginRequest, loginResult] = useLoginRequestMutation();
     const [logoutRequest] = useLogoutRequestMutation();
 
     useEffect(() => {
@@ -47,5 +47,5 @@ export const useAuth = () => {
 
     const handleRegister = () => {};
 
-    return { user, handleLogin, handleRegister, handleLogout };
+    return { user, handleLogin, loginResult, handleRegister, handleLogout };
 };

@@ -4,7 +4,9 @@ import {
     GridRowSelectionModel,
 } from "@mui/x-data-grid";
 
-type DataTableProps = DataGridProps;
+type DataTableProps = {
+    clickable?: boolean;
+} & DataGridProps;
 
 export const DataTable = ({
     rows = [],
@@ -23,6 +25,14 @@ export const DataTable = ({
 
     return (
         <DataGrid
+            sx={{
+                ".MuiDataGrid-cell:focus": {
+                    outline: "none",
+                },
+                "& .MuiDataGrid-row:hover": {
+                    cursor: "pointer",
+                },
+            }}
             rows={rows}
             columns={columns}
             initialState={{
