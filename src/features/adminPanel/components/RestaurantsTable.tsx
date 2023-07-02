@@ -19,7 +19,7 @@ export const RestaurantsTable = () => {
 
     return (
         <Box maxWidth={750}>
-            <DataTable loading={isLoading} {...{ columns, rows }} />;
+            <DataTable loading={isLoading} {...{ columns, rows }} />
         </Box>
     );
 };
