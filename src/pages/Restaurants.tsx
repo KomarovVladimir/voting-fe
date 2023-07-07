@@ -1,3 +1,8 @@
-import { RestaurantsTable } from "features/adminPanel";
+import { Restaurant, RestaurantsTable } from "features/adminPanel";
 
-export const Restaurants = () => <RestaurantsTable />;
+export const Restaurants = () => (
+    <>
+        <Restaurant name="Restaurant name" />
+        {/* <RestaurantsTable />; */}
+    </>
+);

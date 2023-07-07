@@ -1,2 +1,2 @@
-export * from "./RestaurantCard";
 export * from "./DataTable";
+export * from "./DishCard";
