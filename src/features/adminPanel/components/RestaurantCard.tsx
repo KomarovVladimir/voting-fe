@@ -8,25 +8,25 @@ import {
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 
-type DishCardProps = {
-    header: string;
+type RestaurantCardProps = {
+    name: string;
     subHeader?: string;
     image?: string;
     description?: string;
     imageAlt?: string;
 };
 
-export const DishCard = ({
-    header,
+export const RestaurantCard = ({
+    name,
     subHeader,
     image,
     imageAlt,
     description,
-}: DishCardProps) => {
+}: RestaurantCardProps) => {
     return (
         <Card>
             <CardHeader
-                title={header}
+                title={name}
                 subheader={subHeader}
                 action={
                     <IconButton aria-label="settings">
@@ -34,12 +34,14 @@ export const DishCard = ({
                     </IconButton>
                 }
             />
-            <CardMedia
-                component="img"
-                height="194"
-                image={image}
-                alt={imageAlt}
-            />
+            {image && (
+                <CardMedia
+                    component="img"
+                    height="194"
+                    image={image}
+                    alt={imageAlt}
+                />
+            )}
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
                     {description}

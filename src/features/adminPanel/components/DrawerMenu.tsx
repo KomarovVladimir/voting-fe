@@ -9,6 +9,7 @@ import {
 import Person2Icon from "@mui/icons-material/Person2";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import PeopleIcon from "@mui/icons-material/People";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -19,7 +20,7 @@ import { pages } from "../data/pages";
 export const DrawerMenu = () => {
     const dispatch = useDispatch();
 
-    const { restaurants, users, profile } = pages;
+    const { voting, restaurants, users, profile } = pages;
 
     const handleItemClick = (page: string) => () => {
         dispatch(setCurrentPage(page));
@@ -27,6 +28,18 @@ export const DrawerMenu = () => {
 
     return (
         <>
+            <ListItem disablePadding>
+                <ListItemButton
+                    component={Link}
+                    to={voting.toLocaleLowerCase()}
+                    onClick={handleItemClick(voting)}
+                >
+                    <ListItemIcon>
+                        <ThumbUpIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={voting} />
+                </ListItemButton>
+            </ListItem>
             <List>
                 <ListItem disablePadding>
                     <ListItemButton
