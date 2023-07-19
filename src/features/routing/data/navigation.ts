@@ -3,6 +3,7 @@ export const navigation = {
     authorized: "authorized",
     home: "home",
     login: "login",
+    voting: "voting",
     register: "register",
     admin: "admin",
     restaurants: "restaurants",

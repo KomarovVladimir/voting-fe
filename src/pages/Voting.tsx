@@ -1,6 +1,6 @@
 import { RestaurantCard } from "features/adminPanel";
 
-export const Restaurants = () => (
+export const Voting = () => (
     <>
         <RestaurantCard name="Restaurant name" />
     </>

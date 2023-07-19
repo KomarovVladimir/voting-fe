@@ -8,6 +8,7 @@ import {
     Profile,
     Restaurants,
     Users,
+    Voting,
 } from "pages";
 
 import { PrivateRoutes } from "./PrivateRoutes";
@@ -24,6 +25,7 @@ export const AppRoutes = () => (
         </Route>
         <Route path={navigation.authorized} element={<PrivateRoutes />}>
             <Route path={navigation.admin} element={<Admin />}>
+                <Route path={navigation.voting} element={<Voting />} />
                 <Route
                     path={navigation.restaurants}
                     element={<Restaurants />}
