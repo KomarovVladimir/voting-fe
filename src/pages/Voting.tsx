@@ -1,7 +1,3 @@
-import { RestaurantCard } from "features/adminPanel";
+import { VotingEditor } from "features/adminPanel";
 
-export const Voting = () => (
-    <>
-        <RestaurantCard name="Restaurant name" />
-    </>
-);
+export const Voting = () => <VotingEditor />;

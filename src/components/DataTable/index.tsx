@@ -35,13 +35,7 @@ export const DataTable = ({
             }}
             rows={rows}
             columns={columns}
-            initialState={{
-                pagination: {
-                    paginationModel: { page: 0, pageSize: 5 },
-                },
-            }}
             onRowSelectionModelChange={handleSelection}
-            pageSizeOptions={[5, 10]}
             checkboxSelection
             {...props}
         />

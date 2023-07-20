@@ -6,11 +6,10 @@ import { DataTable } from "components";
 import { useGetRestaurantsQuery } from "../api/restaurantsApi";
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 100 },
-    { field: "name", headerName: "Name", width: 150 },
+    { field: "id", headerName: "ID", width: 30 },
+    { field: "name", headerName: "Name", width: 120 },
     { field: "address", headerName: "Address", width: 150 },
-    { field: "votes", headerName: "Votes", width: 100 },
-    { field: "numberOfDishes", headerName: "Number of dishes", width: 150 },
+    { field: "votes", headerName: "Votes", width: 30 },
 ];
 
 export const RestaurantsTable = () => {
@@ -18,7 +17,7 @@ export const RestaurantsTable = () => {
         useGetRestaurantsQuery();
 
     return (
-        <Box maxWidth={750}>
+        <Box>
             <DataTable loading={isLoading} {...{ columns, rows }} />
         </Box>
     );

@@ -36,6 +36,30 @@ createServer({
             name: "Tokyo City",
             address: "Невский пр. 71",
         });
+        server.create("restaurant", {
+            name: "Tokyo City",
+            address: "Невский пр. 71",
+        });
+        server.create("restaurant", {
+            name: "Tokyo City",
+            address: "Невский пр. 71",
+        });
+        server.create("restaurant", {
+            name: "Tokyo City",
+            address: "Невский пр. 71",
+        });
+        server.create("restaurant", {
+            name: "Tokyo City",
+            address: "Невский пр. 71",
+        });
+        server.create("restaurant", {
+            name: "Tokyo City",
+            address: "Невский пр. 71",
+        });
+        server.create("restaurant", {
+            name: "Tokyo City",
+            address: "Невский пр. 71",
+        });
         server.create("dish", {
             firstName: "Стейк Рибай",
             price: "870.00",
