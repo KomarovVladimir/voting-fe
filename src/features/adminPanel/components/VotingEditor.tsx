@@ -1,4 +1,6 @@
 import {
+    Box,
+    Button,
     Checkbox,
     IconButton,
     List,
@@ -6,6 +8,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    ListSubheader,
 } from "@mui/material";
 import CommentIcon from "@mui/icons-material/Comment";
 
@@ -34,44 +37,59 @@ export const VotingEditor = () => {
     };
 
     return (
-        <List
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-        >
-            {[0, 1, 2, 3].map((value) => {
-                const labelId = `checkbox-list-label-${value}`;
+        <Box height="100%">
+            <List
+                sx={{
+                    width: "100%",
+                    maxWidth: 360,
+                    bgcolor: "background.paper",
+                }}
+            >
+                <ListSubheader>
+                    <Button>Add</Button>
+                    <Button color="error">Delete</Button>
+                </ListSubheader>
+                {[
+                    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+                    17, 18, 19, 20,
+                ].map((value) => {
+                    const labelId = `checkbox-list-label-${value}`;
 
-                return (
-                    <ListItem
-                        key={value}
-                        secondaryAction={
-                            <IconButton edge="end" aria-label="comments">
-                                <CommentIcon />
-                            </IconButton>
-                        }
-                        disablePadding
-                    >
-                        <ListItemButton
-                            role={undefined}
-                            onClick={handleToggle(value)}
-                            dense
+                    return (
+                        <ListItem
+                            key={value}
+                            secondaryAction={
+                                <IconButton edge="end" aria-label="comments">
+                                    <CommentIcon />
+                                </IconButton>
+                            }
+                            disablePadding
                         >
-                            <ListItemIcon>
-                                <Checkbox
-                                    edge="start"
-                                    checked={checked.indexOf(value) !== -1}
-                                    tabIndex={-1}
-                                    disableRipple
-                                    inputProps={{ "aria-labelledby": labelId }}
+                            <ListItemButton
+                                role={undefined}
+                                onClick={handleToggle(value)}
+                                dense
+                            >
+                                <ListItemIcon>
+                                    <Checkbox
+                                        edge="start"
+                                        checked={checked.indexOf(value) !== -1}
+                                        tabIndex={-1}
+                                        disableRipple
+                                        inputProps={{
+                                            "aria-labelledby": labelId,
+                                        }}
+                                    />
+                                </ListItemIcon>
+                                <ListItemText
+                                    id={labelId}
+                                    primary={`Line item ${value + 1}`}
                                 />
-                            </ListItemIcon>
-                            <ListItemText
-                                id={labelId}
-                                primary={`Line item ${value + 1}`}
-                            />
-                        </ListItemButton>
-                    </ListItem>
-                );
-            })}
-        </List>
+                            </ListItemButton>
+                        </ListItem>
+                    );
+                })}
+            </List>
+        </Box>
     );
 };
