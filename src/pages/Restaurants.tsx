@@ -1,7 +1,7 @@
-import { RestaurantsTable } from "features/adminPanel";
+import { RestaurantsList } from "features/adminPanel";
 
 export const Restaurants = () => (
     <>
-        <RestaurantsTable />
+        <RestaurantsList />
     </>
 );

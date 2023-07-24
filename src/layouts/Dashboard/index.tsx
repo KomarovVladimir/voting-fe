@@ -4,7 +4,6 @@ import {
     CssBaseline,
     Divider,
     Drawer,
-    Stack,
     Toolbar,
     Typography,
 } from "@mui/material";
@@ -60,7 +59,7 @@ export const Dashboard = ({
         </Drawer>
         <Box
             component="main"
-            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+            sx={{ flexGrow: 1, bgcolor: "background.default" }}
         >
             <Toolbar />
             <Outlet />
