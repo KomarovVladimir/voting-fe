@@ -1,15 +1,6 @@
 import { Route, Routes } from "react-router";
 
-import {
-    Register,
-    Home,
-    Login,
-    Admin,
-    Profile,
-    Restaurants,
-    Users,
-    Voting,
-} from "pages";
+import { Register, Home, Login, Admin, Profile, Users, Voting } from "pages";
 
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
@@ -26,10 +17,6 @@ export const AppRoutes = () => (
         <Route path={navigation.authorized} element={<PrivateRoutes />}>
             <Route path={navigation.admin} element={<Admin />}>
                 <Route path={navigation.voting} element={<Voting />} />
-                <Route
-                    path={navigation.restaurants}
-                    element={<Restaurants />}
-                />
                 <Route path={navigation.users} element={<Users />} />
                 <Route path={navigation.profile} element={<Profile />} />
             </Route>
