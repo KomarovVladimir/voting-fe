@@ -20,7 +20,7 @@ import { pages } from "../data/pages";
 export const DrawerMenu = () => {
     const dispatch = useDispatch();
 
-    const { voting, users, profile } = pages;
+    const { voting, users, restaurants, profile } = pages;
 
     const handleItemClick = (page: string) => () => {
         dispatch(setCurrentPage(page));
@@ -28,19 +28,31 @@ export const DrawerMenu = () => {
 
     return (
         <>
-            <ListItem disablePadding>
-                <ListItemButton
-                    component={Link}
-                    to={voting.toLocaleLowerCase()}
-                    onClick={handleItemClick(voting)}
-                >
-                    <ListItemIcon>
-                        <ThumbUpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={voting} />
-                </ListItemButton>
-            </ListItem>
             <List>
+                <ListItem disablePadding>
+                    <ListItemButton
+                        component={Link}
+                        to={voting.toLocaleLowerCase()}
+                        onClick={handleItemClick(voting)}
+                    >
+                        <ListItemIcon>
+                            <ThumbUpIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={voting} />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton
+                        component={Link}
+                        to={restaurants.toLocaleLowerCase()}
+                        onClick={handleItemClick(restaurants)}
+                    >
+                        <ListItemIcon>
+                            <RestaurantIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={restaurants} />
+                    </ListItemButton>
+                </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton
                         component={Link}
