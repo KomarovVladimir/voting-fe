@@ -10,8 +10,8 @@ import {
     ListItemText,
     ListSubheader,
 } from "@mui/material";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import ClearIcon from "@mui/icons-material/Clear";
 
 import { useState } from "react";
 
@@ -47,10 +47,7 @@ export const RestaurantsList = () => {
                 <Button>Add</Button>
                 <Button color="error">Delete</Button>
             </ListSubheader>
-            {[
-                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-                18, 19, 20,
-            ].map((value) => {
+            {[0, 1, 2, 3].map((value) => {
                 const labelId = `checkbox-list-label-${value}`;
 
                 return (
@@ -58,11 +55,11 @@ export const RestaurantsList = () => {
                         key={value}
                         secondaryAction={
                             <>
-                                <IconButton edge="end" aria-label="comments">
-                                    <MenuBookIcon />
+                                <IconButton aria-label="menu">
+                                    <EditIcon />
                                 </IconButton>
-                                <IconButton edge="end" aria-label="comments">
-                                    <DeleteIcon />
+                                <IconButton edge="end" aria-label="remove">
+                                    <ClearIcon />
                                 </IconButton>
                             </>
                         }
