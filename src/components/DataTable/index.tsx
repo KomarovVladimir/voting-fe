@@ -33,11 +33,10 @@ export const DataTable = ({
                     cursor: "pointer",
                 },
             }}
-            rows={rows}
-            columns={columns}
             onRowSelectionModelChange={handleSelection}
             checkboxSelection
             {...props}
+            {...{ rows, columns }}
         />
     );
 };

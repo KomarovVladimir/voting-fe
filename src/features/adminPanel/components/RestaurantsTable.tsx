@@ -1,5 +1,7 @@
 import { GridColDef } from "@mui/x-data-grid";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import ClearIcon from "@mui/icons-material/Clear";
 
 import { DataTable } from "components";
 
@@ -10,7 +12,26 @@ const columns: GridColDef[] = [
     { field: "name", headerName: "Name", width: 120 },
     { field: "address", headerName: "Address", width: 150 },
     { field: "votes", headerName: "Votes", width: 30 },
+    {
+        field: "actions",
+        headerName: "",
+        disableColumnMenu: true,
+        sortable: false,
+        flex: 1,
+        renderCell: () => <Actions />,
+    },
 ];
+
+const Actions = () => (
+    <Box>
+        <IconButton aria-label="menu">
+            <EditIcon />
+        </IconButton>
+        <IconButton edge="end" aria-label="remove">
+            <ClearIcon />
+        </IconButton>
+    </Box>
+);
 
 export const RestaurantsTable = () => {
     const { data: { restaurants: rows = [] } = {}, isLoading } =
