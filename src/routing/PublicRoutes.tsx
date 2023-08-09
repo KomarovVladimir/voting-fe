@@ -8,7 +8,7 @@ export const PublicRoutes = () => {
     const { user } = useAuth();
 
     if (user) {
-        return <Navigate to="authorized/admin" />;
+        return <Navigate to="authorized/rooms" />;
     }
 
     return (
@@ -24,7 +24,7 @@ export const PublicRoutes = () => {
                     <Link to="register">Register</Link>
                 </li>
                 <li>
-                    <Link to="authorized/admin">Admin</Link>
+                    <Link to="authorized/rooms">Rooms</Link>
                 </li>
             </ul>
 
