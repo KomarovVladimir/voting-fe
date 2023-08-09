@@ -1,4 +1,6 @@
 import { Button, Grid, Paper, Stack, Typography, styled } from "@mui/material";
+import { useState } from "react";
+import { Dialog } from "components/Dialog";
 
 const Item = styled(Paper)(({ theme }) => ({
     display: "flex",
@@ -13,11 +15,26 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const Rooms = () => {
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <>
+            <Dialog title="Add a new room" onClose={handleClose} {...{ open }}>
+                12312
+            </Dialog>
             <Stack direction="row" gap={5} alignItems="center" mb={4}>
                 <Typography variant="h2">Rooms</Typography>
-                <Button variant="contained">+ New room</Button>
+                <Button variant="contained" onClick={handleOpen}>
+                    + New room
+                </Button>
             </Stack>
             <Grid container spacing={2}>
                 <Grid item xs={3}>
