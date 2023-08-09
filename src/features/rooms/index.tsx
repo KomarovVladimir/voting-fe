@@ -1,8 +1,12 @@
 import { Button, Grid, Paper, Stack, Typography, styled } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
+    ...theme.typography.h4,
+    height: 256,
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
