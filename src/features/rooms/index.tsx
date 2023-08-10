@@ -1,6 +1,7 @@
 import { Button, Grid, Paper, Stack, Typography, styled } from "@mui/material";
 import { useState } from "react";
-import { Dialog } from "components/Dialog";
+
+import { RoomCreationDialog } from "./components/RoomCreationDialog";
 
 const Item = styled(Paper)(({ theme }) => ({
     display: "flex",
@@ -27,9 +28,7 @@ export const Rooms = () => {
 
     return (
         <>
-            <Dialog title="Add a new room" onClose={handleClose} {...{ open }}>
-                12312
-            </Dialog>
+            <RoomCreationDialog onClose={handleClose} {...{ open }} />
             <Stack direction="row" gap={5} alignItems="center" mb={4}>
                 <Typography variant="h2">Rooms</Typography>
                 <Button variant="contained" onClick={handleOpen}>
