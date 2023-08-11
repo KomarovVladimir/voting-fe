@@ -1,5 +1,8 @@
 import { Button, Grid, Paper, Stack, Typography, styled } from "@mui/material";
+import { useSelector } from "react-redux";
 import { useState } from "react";
+
+import { RootState } from "app/store";
 
 import { RoomCreationDialog } from "./components/RoomCreationDialog";
 
@@ -16,6 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const Rooms = () => {
+    const rooms = useSelector(({ rooms }: RootState) => rooms);
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -36,12 +40,11 @@ export const Rooms = () => {
                 </Button>
             </Stack>
             <Grid container spacing={2}>
-                <Grid item xs={3}>
-                    <Item>Restaurants</Item>
-                </Grid>
-                <Grid item xs={3}>
-                    <Item>Movies</Item>
-                </Grid>
+                {Object.values(rooms).map((name) => (
+                    <Grid item xs={3}>
+                        <Item>{name}</Item>
+                    </Grid>
+                ))}
             </Grid>
         </>
     );

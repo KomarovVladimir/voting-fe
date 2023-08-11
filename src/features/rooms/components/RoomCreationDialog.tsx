@@ -1,9 +1,13 @@
 import { Box, TextField } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 import { Dialog, DialogProps } from "components/Dialog";
 
+import { addRoom } from "../slice/roomsSlice";
+
 export const RoomCreationDialog = ({ open, onClose }: DialogProps) => {
+    const dispatch = useDispatch();
     const [roomName, setRoomName] = useState("");
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,7 +15,7 @@ export const RoomCreationDialog = ({ open, onClose }: DialogProps) => {
     };
 
     const handleSubmit = () => {
-        console.log(roomName);
+        dispatch(addRoom(roomName));
         setRoomName("");
         onClose();
     };

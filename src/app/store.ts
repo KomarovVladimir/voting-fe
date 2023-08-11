@@ -3,11 +3,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authApi } from "features/auth/api/authApi";
 import { usersApi } from "features/adminPanel/api/usersApi";
 import { restaurantsApi } from "features/adminPanel/api/restaurantsApi";
-
 import { adminPanelReducer } from "features/adminPanel";
+import { roomsReducer } from "features/rooms/slice/roomsSlice";
 
 export const store = configureStore({
     reducer: {
+        rooms: roomsReducer,
         adminPanel: adminPanelReducer,
         [authApi.reducerPath]: authApi.reducer,
         [usersApi.reducerPath]: usersApi.reducer,
