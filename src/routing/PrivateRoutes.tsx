@@ -2,6 +2,8 @@ import { Navigate, Outlet } from "react-router";
 
 import { useAuth } from "features/auth/hooks/useAuth";
 
+import { TestingMenu } from "./TestingMenu";
+
 export const PrivateRoutes = () => {
     const { user } = useAuth();
 
@@ -9,5 +11,10 @@ export const PrivateRoutes = () => {
         return <Navigate to="/login" />;
     }
 
-    return <Outlet />;
+    return (
+        <>
+            <TestingMenu />
+            <Outlet />
+        </>
+    );
 };

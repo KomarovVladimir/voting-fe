@@ -13,7 +13,7 @@ export interface DialogProps {
     open: boolean;
     children?: React.ReactNode;
     onClose: () => void;
-    onSubmit?: () => void;
+    onSubmit: () => void;
 }
 
 export const Dialog = ({

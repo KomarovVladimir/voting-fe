@@ -4,7 +4,8 @@ import { useState } from "react";
 
 import { RootState } from "app/store";
 
-import { RoomCreationDialog } from "./components/RoomCreationDialog";
+import { ItemCreationDialog } from "components/ItemCreationDialog";
+import { addRoom } from "./slice/roomsSlice";
 
 const Item = styled(Paper)(({ theme }) => ({
     display: "flex",
@@ -32,7 +33,11 @@ export const Rooms = () => {
 
     return (
         <>
-            <RoomCreationDialog onClose={handleClose} {...{ open }} />
+            <ItemCreationDialog
+                submitAction={addRoom}
+                onClose={handleClose}
+                {...{ open }}
+            />
             <Stack direction="row" gap={5} alignItems="center" mb={4}>
                 <Typography variant="h2">Rooms</Typography>
                 <Button variant="contained" onClick={handleOpen}>

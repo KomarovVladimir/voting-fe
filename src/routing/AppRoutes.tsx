@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 
-import { Register, Home, Login, RoomsPage } from "pages";
+import { Register, Home, Login, RoomsPage, VotingPage } from "pages";
 
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
@@ -16,6 +16,7 @@ export const AppRoutes = () => (
         </Route>
         <Route path={navigation.authorized} element={<PrivateRoutes />}>
             <Route path={navigation.rooms} element={<RoomsPage />} />
+            <Route path={navigation.voting} element={<VotingPage />} />
         </Route>
     </Routes>
 );

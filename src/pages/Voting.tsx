@@ -1,9 +1,8 @@
 import { Box } from "@mui/material";
+import { Voting } from "features/voting";
 
-import { VotingEditor } from "features/adminPanel";
-
-export const Voting = () => (
+export const VotingPage = () => (
     <Box>
-        <VotingEditor />
+        <Voting />
     </Box>
 );

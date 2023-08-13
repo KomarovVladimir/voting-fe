@@ -3,11 +3,7 @@ export const navigation = {
     authorized: "authorized",
     home: "home",
     rooms: "rooms",
-    login: "login",
     voting: "voting",
+    login: "login",
     register: "register",
-    admin: "admin",
-    restaurants: "restaurants",
-    users: "users",
-    profile: "profile",
 };

@@ -1,14 +1,14 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
-interface IRooms {
+type Rooms = {
     [id: string]: string;
-}
+};
 
 //TODO: Remove the test data
 const initialState = {
     [nanoid()]: "Movies",
     [nanoid()]: "Restaurants",
-} as IRooms;
+} as Rooms;
 
 export const roomsSlice = createSlice({
     name: "rooms",

@@ -5,11 +5,13 @@ import { usersApi } from "features/adminPanel/api/usersApi";
 import { restaurantsApi } from "features/adminPanel/api/restaurantsApi";
 import { adminPanelReducer } from "features/adminPanel";
 import { roomsReducer } from "features/rooms/slice/roomsSlice";
+import { votingReducer } from "features/voting/slice/votingSlice";
 
 export const store = configureStore({
     reducer: {
-        rooms: roomsReducer,
         adminPanel: adminPanelReducer,
+        rooms: roomsReducer,
+        voting: votingReducer,
         [authApi.reducerPath]: authApi.reducer,
         [usersApi.reducerPath]: usersApi.reducer,
         [restaurantsApi.reducerPath]: restaurantsApi.reducer,
