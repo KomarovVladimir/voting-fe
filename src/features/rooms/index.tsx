@@ -1,32 +1,13 @@
-import {
-    Box,
-    Button,
-    Grid,
-    Paper,
-    Stack,
-    Typography,
-    styled,
-} from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import { RootState } from "app/store";
-
 import { ItemCreationDialog } from "components/ItemCreationDialog";
-import { addRoom } from "./slice/roomsSlice";
 import { AppBar } from "components";
 
-const Item = styled(Paper)(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.h4,
-    height: 256,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-}));
+import { createRoom } from "./slice/roomsSlice";
+import { RoomCard } from "./RoomCard";
 
 export const Rooms = () => {
     const rooms = useSelector(({ rooms }: RootState) => rooms);
@@ -54,14 +35,14 @@ export const Rooms = () => {
                 }
             />
             <ItemCreationDialog
-                submitAction={addRoom}
+                submitAction={createRoom}
                 onClose={handleClose}
                 {...{ open }}
             />
             <Grid container spacing={2}>
-                {Object.values(rooms).map((name) => (
+                {Object.values(rooms).map(({ name, status, endingDate }) => (
                     <Grid item xs={3}>
-                        <Item>{name}</Item>
+                        <RoomCard {...{ name, status, endingDate }} />
                     </Grid>
                 ))}
             </Grid>

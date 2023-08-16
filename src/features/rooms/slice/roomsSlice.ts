@@ -1,13 +1,16 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 type Rooms = {
-    [id: string]: string;
+    [id: string]: { name: string; status: string; endingDate?: string };
 };
 
 //TODO: Remove the test data
 const initialState = {
-    [nanoid()]: "Movies",
-    [nanoid()]: "Restaurants",
+    [nanoid()]: { name: "Movies", status: "Active", endingDate: "27.07.1996" },
+    [nanoid()]: {
+        name: "Restaurants",
+        status: "Active",
+    },
 } as Rooms;
 
 export const roomsSlice = createSlice({
@@ -15,8 +18,8 @@ export const roomsSlice = createSlice({
     initialState,
     reducers: {
         reset: () => initialState,
-        addRoom(state, action: PayloadAction<string>) {
-            state[nanoid()] = action.payload;
+        createRoom(state, action: PayloadAction<string>) {
+            state[nanoid()] = { name: action.payload, status: "Pending" };
         },
         removeRoom(state, action: PayloadAction<string>) {
             delete state[action.payload];
@@ -24,6 +27,6 @@ export const roomsSlice = createSlice({
     },
 });
 
-export const { removeRoom, addRoom } = roomsSlice.actions;
+export const { removeRoom, createRoom } = roomsSlice.actions;
 
 export const roomsReducer = roomsSlice.reducer;
