@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 import { RootState } from "app/store";
 import { ItemCreationDialog } from "components/ItemCreationDialog";
@@ -16,6 +17,9 @@ import { useState } from "react";
 import { addItem } from "./slice/votingSlice";
 
 export const Voting = () => {
+    const { votingId } = useParams();
+    console.log(votingId);
+
     const items = useSelector(({ voting }: RootState) => voting);
     const [open, setOpen] = useState(false);
 

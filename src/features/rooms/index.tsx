@@ -40,11 +40,13 @@ export const Rooms = () => {
                 {...{ open }}
             />
             <Grid container spacing={2}>
-                {Object.values(rooms).map(({ name, status, endingDate }) => (
-                    <Grid item xs={3}>
-                        <RoomCard {...{ name, status, endingDate }} />
-                    </Grid>
-                ))}
+                {Object.entries(rooms).map(
+                    ([id, { name, status, endingDate }]) => (
+                        <Grid item xs={3}>
+                            <RoomCard {...{ id, name, status, endingDate }} />
+                        </Grid>
+                    )
+                )}
             </Grid>
         </>
     );

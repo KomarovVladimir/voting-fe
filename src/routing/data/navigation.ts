@@ -3,7 +3,7 @@ export const navigation = {
     authorized: "authorized",
     home: "home",
     rooms: "rooms",
-    voting: "voting",
+    voting: "voting/:votingId",
     login: "login",
     register: "register",
 };
