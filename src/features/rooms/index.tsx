@@ -1,4 +1,12 @@
-import { Button, Grid, Paper, Stack, Typography, styled } from "@mui/material";
+import {
+    Box,
+    Button,
+    Grid,
+    Paper,
+    Stack,
+    Typography,
+    styled,
+} from "@mui/material";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
@@ -6,6 +14,7 @@ import { RootState } from "app/store";
 
 import { ItemCreationDialog } from "components/ItemCreationDialog";
 import { addRoom } from "./slice/roomsSlice";
+import { AppBar } from "components";
 
 const Item = styled(Paper)(({ theme }) => ({
     display: "flex",
@@ -33,17 +42,22 @@ export const Rooms = () => {
 
     return (
         <>
+            <AppBar
+                title="Rooms"
+                menu={
+                    <Box>
+                        <Button sx={{ color: "#fff" }} onClick={handleOpen}>
+                            + New Room
+                        </Button>
+                        <Button sx={{ color: "#fff" }}>Join</Button>
+                    </Box>
+                }
+            />
             <ItemCreationDialog
                 submitAction={addRoom}
                 onClose={handleClose}
                 {...{ open }}
             />
-            <Stack direction="row" gap={5} alignItems="center" mb={4}>
-                <Typography variant="h2">Rooms</Typography>
-                <Button variant="contained" onClick={handleOpen}>
-                    + New room
-                </Button>
-            </Stack>
             <Grid container spacing={2}>
                 {Object.values(rooms).map((name) => (
                     <Grid item xs={3}>

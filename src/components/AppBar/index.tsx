@@ -11,9 +11,9 @@ import { ReactNode, useState } from "react";
 
 import { useAuth } from "features/auth/hooks/useAuth";
 
-export type AppBarProps = { menu?: ReactNode };
+export type AppBarProps = { title: ReactNode; menu?: ReactNode };
 
-export const AppBar = ({ menu }: AppBarProps) => {
+export const AppBar = ({ title, menu }: AppBarProps) => {
     const { user, handleLogout } = useAuth();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -26,10 +26,10 @@ export const AppBar = ({ menu }: AppBarProps) => {
     };
 
     return (
-        <MuiAppBar position="static">
+        <MuiAppBar position="static" sx={{ mb: 4 }}>
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Page name
+                    {title}
                 </Typography>
                 {user && (
                     <>

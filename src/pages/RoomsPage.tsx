@@ -1,9 +1,3 @@
-import { AppBar } from "components";
-import { Rooms } from "features/rooms";
+import { Rooms } from "features";
 
-export const RoomsPage = () => (
-    <>
-        <AppBar />
-        <Rooms />
-    </>
-);
+export const RoomsPage = () => <Rooms />;
