@@ -3,8 +3,6 @@ import { Navigate, Outlet } from "react-router";
 
 import { useAuth } from "features/auth/hooks/useAuth";
 
-import { TestingMenu } from "./TestingMenu";
-
 export const PublicRoutes = () => {
     const { user } = useAuth();
 
@@ -14,8 +12,6 @@ export const PublicRoutes = () => {
 
     return (
         <Container maxWidth="xs">
-            <TestingMenu />
-
             <Outlet />
         </Container>
     );

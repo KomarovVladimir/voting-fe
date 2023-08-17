@@ -26,7 +26,10 @@ export const LoginForm = () => {
             <Form
                 onSubmit={onSubmit}
                 // validate={validate}
-                initialValues={{ email: "admin@email.com", password: "admin" }}
+                initialValues={{
+                    email: "test@email.com",
+                    password: "testpassword123123",
+                }}
                 render={({ handleSubmit }) => (
                     <Box component="form" onSubmit={handleSubmit}>
                         <Stack direction="column" spacing={2} padding={3}>

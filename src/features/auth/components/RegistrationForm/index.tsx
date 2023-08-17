@@ -35,7 +35,7 @@ export const RegistrationForm = () => (
                     <FormHelperText>Last name helper</FormHelperText>
                 </FormControl>
                 <Button variant="contained">Register</Button>
-                <MuiLink component={Link} to="../login">
+                <MuiLink component={Link} to="/">
                     I already have an account
                 </MuiLink>
             </Stack>

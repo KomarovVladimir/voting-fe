@@ -13,8 +13,8 @@ createServer({
     seeds(server) {
         server.create("user", {
             role: "Admin",
-            email: "admin@email.com",
-            password: "admin",
+            email: "test@email.com",
+            password: "testpassword123123",
             firstName: faker.person.firstName(),
             lastName: faker.person.lastName(),
         });
