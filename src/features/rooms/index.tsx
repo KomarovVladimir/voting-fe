@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import { RootState } from "app/store";
-import { ItemCreationDialog } from "components/ItemCreationDialog";
+import { ItemCreationDialog } from "features/rooms/RoomCreationDialog";
 import { AppBar } from "components";
 
 import { createRoom } from "./slice/roomsSlice";

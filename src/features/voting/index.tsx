@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 import { RootState } from "app/store";
-import { ItemCreationDialog } from "components/ItemCreationDialog";
+import { ItemCreationDialog } from "features/rooms/RoomCreationDialog";
 import { useState } from "react";
 import { addItem } from "./slice/votingSlice";
 
