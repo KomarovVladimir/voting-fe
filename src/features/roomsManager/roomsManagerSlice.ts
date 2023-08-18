@@ -13,7 +13,7 @@ const initialState = {
     },
 } as Rooms;
 
-export const roomsSlice = createSlice({
+export const roomsManagerSlice = createSlice({
     name: "rooms",
     initialState,
     reducers: {
@@ -27,6 +27,6 @@ export const roomsSlice = createSlice({
     },
 });
 
-export const { removeRoom, createRoom } = roomsSlice.actions;
+export const { removeRoom, createRoom } = roomsManagerSlice.actions;
 
-export const roomsReducer = roomsSlice.reducer;
+export const roomsManagerReducer = roomsManagerSlice.reducer;

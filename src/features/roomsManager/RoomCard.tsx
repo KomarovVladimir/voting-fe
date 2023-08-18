@@ -21,7 +21,7 @@ export const RoomCard = ({ id, name, status, endingDate }: RoomCardProps) => {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate(`/authorized/voting/${id}`);
+        navigate(`/authorized/Room/${id}`);
     };
 
     return (

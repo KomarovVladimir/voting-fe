@@ -1,3 +1,3 @@
-export * from "./auth/components";
-export * from "./auth/context/AuthProvider";
-export * from "./rooms";
+export * from "./auth";
+export * from "./roomsManager";
+export * from "./room";

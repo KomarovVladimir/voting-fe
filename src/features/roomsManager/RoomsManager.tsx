@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import { RootState } from "app/store";
-import { ItemCreationDialog } from "features/rooms/RoomCreationDialog";
 import { AppBar } from "components";
 
-import { createRoom } from "./slice/roomsSlice";
+import { ItemCreationDialog } from "./RoomCreationDialog";
+import { createRoom } from "./roomsManagerSlice";
 import { RoomCard } from "./RoomCard";
 
-export const Rooms = () => {
-    const rooms = useSelector(({ rooms }: RootState) => rooms);
+export const RoomsManager = () => {
+    const rooms = useSelector(({ roomsManager }: RootState) => roomsManager);
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {

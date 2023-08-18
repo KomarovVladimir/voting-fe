@@ -1,5 +1,4 @@
 import {
-    Box,
     Button,
     Grid,
     IconButton,
@@ -23,19 +22,16 @@ import { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { RootState } from "app/store";
-import { ItemCreationDialog } from "features/rooms/RoomCreationDialog";
 import { AppBar } from "components";
-
-import { addItem } from "./slice/votingSlice";
 
 const statuses = ["Active", "Pending", "Completed"];
 
-export const Voting = () => {
-    const { votingId } = useParams();
+export const Room = () => {
+    const { roomId } = useParams();
     const [status, setStatus] = useState("");
     const [open, setOpen] = useState(false);
 
-    const items = useSelector(({ voting }: RootState) => voting);
+    const items = useSelector(({ room }: RootState) => room);
 
     const handleOpen = () => {
         setOpen(true);
@@ -72,7 +68,7 @@ export const Voting = () => {
                             Rooms
                         </Typography>
                         <Typography variant="h6" component="span">
-                            Voting: {votingId}
+                            Room: {roomId}
                         </Typography>
                     </>
                 }

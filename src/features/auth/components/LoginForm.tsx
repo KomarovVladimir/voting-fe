@@ -11,8 +11,8 @@ import {
 import { Link } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 
-import { useAuth } from "../../hooks/useAuth";
-import { AuthData } from "../../api/authApi";
+import { useAuth } from "../hooks/useAuth";
+import { AuthData } from "../api/authApi";
 
 export const LoginForm = () => {
     const { handleLogin } = useAuth();

@@ -1,9 +1,9 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
-type VotingItemData = { name: string; votes: number };
+type RoomItemData = { name: string; votes: number };
 
-type Voting = {
-    [id: string]: VotingItemData;
+type Room = {
+    [id: string]: RoomItemData;
 };
 
 //TODO: Remove the test data
@@ -12,10 +12,10 @@ const initialState = {
     [nanoid()]: { name: "Item 2", votes: 12 },
     [nanoid()]: { name: "Item 3", votes: 12 },
     [nanoid()]: { name: "Item 4", votes: 12 },
-} as Voting;
+} as Room;
 
-export const VotingSlice = createSlice({
-    name: "Voting",
+export const roomSlice = createSlice({
+    name: "Room",
     initialState,
     reducers: {
         reset: () => initialState,
@@ -28,6 +28,6 @@ export const VotingSlice = createSlice({
     },
 });
 
-export const { addItem, removeItem } = VotingSlice.actions;
+export const { addItem, removeItem } = roomSlice.actions;
 
-export const votingReducer = VotingSlice.reducer;
+export const roomReducer = roomSlice.reducer;
