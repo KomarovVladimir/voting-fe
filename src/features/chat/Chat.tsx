@@ -74,9 +74,16 @@ export const Chat = () => {
                 onChange={handleChange}
                 InputProps={{
                     endAdornment: (
-                        <Button variant="contained" onClick={handleAddMessage}>
-                            Add Item
-                        </Button>
+                        <>
+                            {message && (
+                                <Button
+                                    variant="contained"
+                                    onClick={handleAddMessage}
+                                >
+                                    Add Item
+                                </Button>
+                            )}
+                        </>
                     ),
                 }}
             />
