@@ -38,8 +38,9 @@ export const Chat = () => {
         <>
             <Paper
                 sx={{
-                    height: "100%",
+                    height: "75vh",
                     padding: 2,
+                    overflowY: "auto",
                 }}
             >
                 <List dense>
