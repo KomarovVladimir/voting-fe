@@ -1,5 +1,6 @@
 import {
     Button,
+    Divider,
     Grid,
     IconButton,
     List,
@@ -12,7 +13,7 @@ import {
     Typography,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import DeleteIcon from "@mui/icons-material/Delete";
+import CloseIcon from "@mui/icons-material/Close";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -24,14 +25,26 @@ import { Link } from "react-router-dom";
 import { RootState } from "app/store";
 import { AppBar } from "components";
 
+import { addItem, removeItem } from "./roomSlice";
+import { useDispatch } from "react-redux";
+
 const statuses = ["Active", "Pending", "Completed"];
 
 export const Room = () => {
+    const dispatch = useDispatch();
     const { roomId } = useParams();
     const [status, setStatus] = useState("");
     const [open, setOpen] = useState(false);
 
     const items = useSelector(({ room }: RootState) => room);
+
+    const handleAddItem = () => {
+        dispatch(addItem("test"));
+    };
+
+    const handleRemoveItem = (id: string) => () => {
+        dispatch(removeItem(id));
+    };
 
     const handleOpen = () => {
         setOpen(true);
@@ -102,19 +115,31 @@ export const Room = () => {
             <Grid container spacing={2}>
                 <Grid item xs={6}>
                     <List dense>
-                        {Object.values(items).map(({ name, votes }) => (
-                            <ListItem
-                                secondaryAction={
-                                    <IconButton edge="end" aria-label="delete">
-                                        <DeleteIcon />
-                                    </IconButton>
-                                }
-                            >
-                                <ListItemText primary={name} />{" "}
-                                <ListItemText primary={votes} />
-                            </ListItem>
+                        {Object.entries(items).map(([id, { name, votes }]) => (
+                            <>
+                                <ListItem
+                                    secondaryAction={
+                                        <IconButton
+                                            edge="end"
+                                            aria-label="delete"
+                                            onClick={handleRemoveItem(id)}
+                                        >
+                                            <CloseIcon />
+                                        </IconButton>
+                                    }
+                                >
+                                    <ListItemText
+                                        primary={name}
+                                        secondary={votes}
+                                    />
+                                </ListItem>
+                                <Divider variant="inset" component="li" />
+                            </>
                         ))}
                     </List>
+                    <Button variant="contained" onClick={handleAddItem}>
+                        Add Item
+                    </Button>
                 </Grid>
                 <Grid item xs={6}>
                     <Paper

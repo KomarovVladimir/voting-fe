@@ -1,9 +1,7 @@
 export const navigation = {
     baseRoute: "/",
     authorized: "authorized",
-    home: "home",
-    rooms: "rooms",
+    roomsManager: "rooms",
     room: "room/:roomId",
-    login: "login",
     register: "register",
 };
