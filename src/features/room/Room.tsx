@@ -27,6 +27,7 @@ import { AppBar } from "components";
 
 import { addItem, removeItem } from "./roomSlice";
 import { Chat } from "features";
+import { ParticipantsDialog } from "./ParticipantsDialog";
 
 const statuses = ["Active", "Pending", "Completed"];
 
@@ -35,8 +36,17 @@ export const Room = () => {
     const { roomId } = useParams();
     const [status, setStatus] = useState("");
     const [open, setOpen] = useState(false);
+    const [participantsOpen, setParticipantsOpen] = useState(false);
 
-    const items = useSelector(({ room }: RootState) => room);
+    const { items } = useSelector(({ room }: RootState) => room);
+
+    const handleParticipantsOpen = () => {
+        setParticipantsOpen(true);
+    };
+
+    const handleParticipantsClose = () => {
+        setParticipantsOpen(false);
+    };
 
     const handleAddItem = () => {
         dispatch(addItem("test"));
@@ -59,6 +69,10 @@ export const Room = () => {
     };
     return (
         <>
+            <ParticipantsDialog
+                open={participantsOpen}
+                onClose={handleParticipantsClose}
+            />
             <Snackbar
                 message="Copied to clipboard"
                 anchorOrigin={{
@@ -95,13 +109,20 @@ export const Room = () => {
                             sx={{ minWidth: 120 }}
                         >
                             {statuses.map((item, index) => (
-                                <MenuItem value={index}>{item}</MenuItem>
+                                <MenuItem key={index} value={index}>
+                                    {item}
+                                </MenuItem>
                             ))}
                         </TextField>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker label="Ends at" />
                         </LocalizationProvider>
-                        <Button sx={{ color: "#fff" }}>N participants</Button>
+                        <Button
+                            sx={{ color: "#fff" }}
+                            onClick={handleParticipantsOpen}
+                        >
+                            N participants
+                        </Button>
                         <Button
                             onClick={handleOpen}
                             endIcon={<ContentCopyIcon />}
@@ -116,25 +137,23 @@ export const Room = () => {
                 <Grid item xs={6}>
                     <List dense>
                         {Object.entries(items).map(([id, { name, votes }]) => (
-                            <>
-                                <ListItem
-                                    secondaryAction={
-                                        <IconButton
-                                            edge="end"
-                                            aria-label="delete"
-                                            onClick={handleRemoveItem(id)}
-                                        >
-                                            <CloseIcon />
-                                        </IconButton>
-                                    }
-                                >
-                                    <ListItemText
-                                        primary={name}
-                                        secondary={votes}
-                                    />
-                                </ListItem>
-                                <Divider variant="inset" component="li" />
-                            </>
+                            <ListItem
+                                key={id}
+                                secondaryAction={
+                                    <IconButton
+                                        edge="end"
+                                        aria-label="delete"
+                                        onClick={handleRemoveItem(id)}
+                                    >
+                                        <CloseIcon />
+                                    </IconButton>
+                                }
+                            >
+                                <ListItemText
+                                    primary={name}
+                                    secondary={votes}
+                                />
+                            </ListItem>
                         ))}
                     </List>
                     <Button variant="contained" onClick={handleAddItem}>

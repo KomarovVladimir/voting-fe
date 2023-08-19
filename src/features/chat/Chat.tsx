@@ -46,24 +46,21 @@ export const Chat = () => {
                 <List dense>
                     {Object.entries(messages).map(
                         ([id, { userName, time, text }]) => (
-                            <>
-                                <ListItem
-                                    key={id}
-                                    sx={{
-                                        flexWrap: "wrap",
-                                        justifyContent: "start",
-                                    }}
-                                >
-                                    <ListItemText
-                                        primary={userName}
-                                        secondary={time}
-                                    />
-                                    <Typography variant="body2" display="block">
-                                        {text}
-                                    </Typography>
-                                </ListItem>
-                                <Divider variant="inset" component="li" />
-                            </>
+                            <ListItem
+                                key={id}
+                                sx={{
+                                    flexWrap: "wrap",
+                                    justifyContent: "start",
+                                }}
+                            >
+                                <ListItemText
+                                    primary={userName}
+                                    secondary={time}
+                                />
+                                <Typography variant="body2" display="block">
+                                    {text}
+                                </Typography>
+                            </ListItem>
                         )
                     )}
                 </List>
