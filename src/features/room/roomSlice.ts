@@ -25,6 +25,9 @@ export const roomSlice = createSlice({
         removeItem(state, action: PayloadAction<string>) {
             delete state[action.payload];
         },
+        addMessage(state, action: PayloadAction<string>) {
+            state[nanoid()] = { name: action.payload, votes: 0 };
+        },
     },
 });
 

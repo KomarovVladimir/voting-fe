@@ -7,7 +7,6 @@ import {
     ListItem,
     ListItemText,
     MenuItem,
-    Paper,
     Snackbar,
     TextField,
     Typography,
@@ -17,16 +16,17 @@ import CloseIcon from "@mui/icons-material/Close";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { ChangeEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { RootState } from "app/store";
 import { AppBar } from "components";
 
 import { addItem, removeItem } from "./roomSlice";
-import { useDispatch } from "react-redux";
+import { Chat } from "features";
 
 const statuses = ["Active", "Pending", "Completed"];
 
@@ -142,14 +142,7 @@ export const Room = () => {
                     </Button>
                 </Grid>
                 <Grid item xs={6}>
-                    <Paper
-                        sx={{
-                            height: "100%",
-                            padding: 2,
-                        }}
-                    >
-                        Chat window
-                    </Paper>
+                    <Chat />
                 </Grid>
             </Grid>
         </>
