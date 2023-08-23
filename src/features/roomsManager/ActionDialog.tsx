@@ -11,17 +11,13 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { FormEvent, useState } from "react";
 
-type ItemCreationDialogProps = {
+type ActionDialogProps = {
     open: boolean;
     onClose: () => void;
-    submitAction: ActionCreatorWithPayload<string>;
+    action: ActionCreatorWithPayload<string>;
 };
 
-export const ItemCreationDialog = ({
-    open,
-    submitAction,
-    onClose,
-}: ItemCreationDialogProps) => {
+export const ActionDialog = ({ open, action, onClose }: ActionDialogProps) => {
     const dispatch = useDispatch();
     const [itemName, setItemName] = useState("");
 
@@ -31,7 +27,7 @@ export const ItemCreationDialog = ({
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        dispatch(submitAction(itemName));
+        dispatch(action(itemName));
         setItemName("");
         onClose();
     };

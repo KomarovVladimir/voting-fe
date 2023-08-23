@@ -1,20 +1,29 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import { RootState } from "app/store";
 import { AppBar } from "components";
 
-import { ItemCreationDialog } from "./RoomCreationDialog";
-import { createRoom } from "./roomsManagerSlice";
+import { ActionDialog } from "./ActionDialog";
+import { joinRoom, createRoom } from "./roomsManagerSlice";
 import { RoomCard } from "./RoomCard";
+
+const dialogActions = {
+    create: createRoom,
+    join: joinRoom,
+};
+
+type Actions = keyof typeof dialogActions;
 
 export const RoomsManager = () => {
     const rooms = useSelector(({ roomsManager }: RootState) => roomsManager);
     const [open, setOpen] = useState(false);
+    const [action, setAction] = useState<Actions>("create");
 
-    const handleOpen = () => {
+    const handleOpen = (actionType: Actions) => () => {
         setOpen(true);
+        setAction(actionType);
     };
 
     const handleClose = () => {
@@ -26,16 +35,24 @@ export const RoomsManager = () => {
             <AppBar
                 title="Rooms"
                 menu={
-                    <Box>
-                        <Button sx={{ color: "#fff" }} onClick={handleOpen}>
+                    <>
+                        <Button
+                            sx={{ color: "#fff" }}
+                            onClick={handleOpen("create")}
+                        >
                             + New Room
                         </Button>
-                        <Button sx={{ color: "#fff" }}>Join</Button>
-                    </Box>
+                        <Button
+                            sx={{ color: "#fff" }}
+                            onClick={handleOpen("join")}
+                        >
+                            Join
+                        </Button>
+                    </>
                 }
             />
-            <ItemCreationDialog
-                submitAction={createRoom}
+            <ActionDialog
+                action={dialogActions[action]}
                 onClose={handleClose}
                 {...{ open }}
             />

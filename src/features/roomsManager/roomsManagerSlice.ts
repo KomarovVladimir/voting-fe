@@ -21,12 +21,15 @@ export const roomsManagerSlice = createSlice({
         createRoom(state, action: PayloadAction<string>) {
             state[nanoid()] = { name: action.payload, status: "Pending" };
         },
+        joinRoom(state, action: PayloadAction<string>) {
+            state[nanoid()] = { name: action.payload, status: "Test" };
+        },
         removeRoom(state, action: PayloadAction<string>) {
             delete state[action.payload];
         },
     },
 });
 
-export const { removeRoom, createRoom } = roomsManagerSlice.actions;
+export const { joinRoom, removeRoom, createRoom } = roomsManagerSlice.actions;
 
 export const roomsManagerReducer = roomsManagerSlice.reducer;
