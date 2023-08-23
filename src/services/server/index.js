@@ -1,68 +1,45 @@
 import { faker } from "@faker-js/faker";
+import { nanoid } from "@reduxjs/toolkit";
 import { createServer, Model, Response } from "miragejs";
 
 createServer({
     logging: true,
 
     models: {
-        user: Model,
-        restaurant: Model,
-        dish: Model,
+        users: Model,
+        rooms: Model,
     },
 
     seeds(server) {
         server.create("user", {
-            role: "Admin",
             email: "test@email.com",
             password: "testpassword123123",
             firstName: faker.person.firstName(),
             lastName: faker.person.lastName(),
         });
         server.create("user", {
-            role: "User",
             email: "user1@email.com",
             password: "user1",
             firstName: faker.person.firstName(),
             lastName: faker.person.lastName(),
         });
         server.create("user", {
-            role: "User",
             email: "user2@email.com",
             password: "user2",
             firstName: faker.person.firstName(),
             lastName: faker.person.lastName(),
         });
-        server.create("restaurant", {
-            name: "Tokyo City",
-            address: "Невский пр. 71",
+        server.create("room", {
+            id: nanoid(),
+            name: "Restaurants",
         });
-        server.create("restaurant", {
-            name: "Tokyo City",
-            address: "Невский пр. 71",
+        server.create("room", {
+            id: nanoid(),
+            name: "Movies",
         });
-        server.create("restaurant", {
-            name: "Tokyo City",
-            address: "Невский пр. 71",
-        });
-        server.create("restaurant", {
-            name: "Tokyo City",
-            address: "Невский пр. 71",
-        });
-        server.create("restaurant", {
-            name: "Tokyo City",
-            address: "Невский пр. 71",
-        });
-        server.create("restaurant", {
-            name: "Tokyo City",
-            address: "Невский пр. 71",
-        });
-        server.create("restaurant", {
-            name: "Tokyo City",
-            address: "Невский пр. 71",
-        });
-        server.create("dish", {
-            firstName: "Стейк Рибай",
-            price: "870.00",
+        server.create("room", {
+            id: nanoid(),
+            name: "Test",
         });
     },
 
@@ -85,36 +62,20 @@ createServer({
         //     return schema.users.update(attrs);
         // });
 
-        this.get("/restaurants");
-        this.get("/restaurants/:id");
-        this.delete("restaurants/:id", (schema, request) =>
-            schema.restaurants.find(request.params.id).destroy()
+        this.get("/rooms");
+        this.get("/rooms/:id");
+        this.delete("rooms/:id", (schema, request) =>
+            schema.rooms.find(request.params.id).destroy()
         );
-        this.post("/restaurants", (schema, request) => {
+        this.post("/rooms", (schema, request) => {
             let attrs = JSON.parse(request.requestBody);
 
-            return schema.restaurants.create(attrs);
+            return schema.rooms.create(attrs);
         });
-        // this.update("/restaurants", (schema, request) => {
+        // this.update("/rooms", (schema, request) => {
         //     let attrs = JSON.parse(request.requestBody);
 
-        //     return schema.restaurants.update(attrs);
-        // });
-
-        this.get("/dishes");
-        this.get("/dishes/:id");
-        this.delete("dishes/:id", (schema, request) =>
-            schema.dishes.find(request.params.id).destroy()
-        );
-        this.post("/dishes", (schema, request) => {
-            let attrs = JSON.parse(request.requestBody);
-
-            return schema.dishes.create(attrs);
-        });
-        // this.update("/dishes", (schema, request) => {
-        //     let attrs = JSON.parse(request.requestBody);
-
-        //     return schema.dishes.update(attrs);
+        //     return schema.rooms.update(attrs);
         // });
 
         this.post("/login", (schema, request) => {

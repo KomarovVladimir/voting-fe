@@ -13,7 +13,7 @@ import { useNavigate } from "react-router";
 export type RoomCardProps = {
     id: string;
     name: string;
-    status: string;
+    status?: string;
     endingDate?: string;
 };
 

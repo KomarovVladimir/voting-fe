@@ -1,13 +1,12 @@
 import { Button, Grid } from "@mui/material";
-import { useSelector } from "react-redux";
 import { useState } from "react";
 
-import { RootState } from "app/store";
 import { AppBar } from "components";
 
 import { ActionDialog } from "./ActionDialog";
 import { joinRoom, createRoom } from "./roomsManagerSlice";
 import { RoomCard } from "./RoomCard";
+import { useGetRoomsQuery } from "./roomsApi";
 
 const dialogActions = {
     create: createRoom,
@@ -17,7 +16,7 @@ const dialogActions = {
 type Actions = keyof typeof dialogActions;
 
 export const RoomsManager = () => {
-    const rooms = useSelector(({ roomsManager }: RootState) => roomsManager);
+    const { data } = useGetRoomsQuery();
     const [open, setOpen] = useState(false);
     const [action, setAction] = useState<Actions>("create");
 
@@ -57,13 +56,11 @@ export const RoomsManager = () => {
                 {...{ open }}
             />
             <Grid container spacing={2}>
-                {Object.entries(rooms).map(
-                    ([id, { name, status, endingDate }]) => (
-                        <Grid key={id} item xs={3}>
-                            <RoomCard {...{ id, name, status, endingDate }} />
-                        </Grid>
-                    )
-                )}
+                {data?.rooms.map(({ id, name }) => (
+                    <Grid key={id} item xs={3}>
+                        <RoomCard {...{ id, name }} />
+                    </Grid>
+                ))}
             </Grid>
         </>
     );
