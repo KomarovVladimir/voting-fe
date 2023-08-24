@@ -2,12 +2,16 @@ import { faker } from "@faker-js/faker";
 import { nanoid } from "@reduxjs/toolkit";
 import { createServer, Model, Response } from "miragejs";
 
+const testRoomId1 = nanoid();
+const testRoomId2 = nanoid();
+
 createServer({
     logging: true,
 
     models: {
         users: Model,
         rooms: Model,
+        messages: Model,
     },
 
     seeds(server) {
@@ -30,16 +34,58 @@ createServer({
             lastName: faker.person.lastName(),
         });
         server.create("room", {
-            id: nanoid(),
+            id: testRoomId1,
             name: "Restaurants",
         });
         server.create("room", {
-            id: nanoid(),
+            id: testRoomId2,
             name: "Movies",
         });
         server.create("room", {
             id: nanoid(),
             name: "Test",
+        });
+        server.create("message", {
+            id: nanoid(),
+            roomId: testRoomId1,
+            user: "User Name",
+            text: "test",
+            time: "12:12",
+        });
+        server.create("message", {
+            id: nanoid(),
+            roomId: testRoomId1,
+            user: "User Name",
+            text: "test",
+            time: "12:13",
+        });
+        server.create("message", {
+            id: nanoid(),
+            roomId: testRoomId2,
+            user: "User Name",
+            text: "test",
+            time: "12:14",
+        });
+        server.create("message", {
+            id: nanoid(),
+            roomId: testRoomId2,
+            user: "User Name",
+            text: "test",
+            time: "12:12",
+        });
+        server.create("message", {
+            id: nanoid(),
+            roomId: testRoomId2,
+            user: "User Name",
+            text: "test",
+            time: "12:13",
+        });
+        server.create("message", {
+            id: nanoid(),
+            roomId: testRoomId2,
+            user: "User Name",
+            text: "test",
+            time: "12:14",
         });
     },
 
@@ -72,6 +118,11 @@ createServer({
 
             return schema.rooms.create(attrs);
         });
+
+        this.get("/messages/:chatId", (schema, request) => {
+            return schema.messages.where({ roomId: request.params.chatId });
+        });
+
         // this.update("/rooms", (schema, request) => {
         //     let attrs = JSON.parse(request.requestBody);
 

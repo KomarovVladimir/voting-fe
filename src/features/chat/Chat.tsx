@@ -1,6 +1,5 @@
 import {
     Button,
-    Divider,
     List,
     ListItem,
     ListItemText,
@@ -8,17 +7,24 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import { ChangeEvent, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { RootState } from "app/store";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { addMessage } from "./chatSlice";
+import { useLazyGetMessagesQuery } from "./chatApi";
 
 export const Chat = () => {
     const dispatch = useDispatch();
+    const { roomId } = useParams();
+    const [trigger, { data }] = useLazyGetMessagesQuery();
     const [message, setMessage] = useState("");
-    const messages = useSelector(({ chat }: RootState) => chat);
+
+    useEffect(() => {
+        if (roomId) {
+            trigger(roomId);
+        }
+    }, [roomId, trigger]);
 
     const handleAddMessage = () => {
         dispatch(
@@ -44,25 +50,20 @@ export const Chat = () => {
                 }}
             >
                 <List dense>
-                    {Object.entries(messages).map(
-                        ([id, { userName, time, text }]) => (
-                            <ListItem
-                                key={id}
-                                sx={{
-                                    flexWrap: "wrap",
-                                    justifyContent: "start",
-                                }}
-                            >
-                                <ListItemText
-                                    primary={userName}
-                                    secondary={time}
-                                />
-                                <Typography variant="body2" display="block">
-                                    {text}
-                                </Typography>
-                            </ListItem>
-                        )
-                    )}
+                    {data?.messages?.map(({ id, user, time, text }) => (
+                        <ListItem
+                            key={id}
+                            sx={{
+                                flexWrap: "wrap",
+                                justifyContent: "start",
+                            }}
+                        >
+                            <ListItemText primary={user} secondary={time} />
+                            <Typography variant="body2" display="block">
+                                {text}
+                            </Typography>
+                        </ListItem>
+                    ))}
                 </List>
             </Paper>
             <TextField

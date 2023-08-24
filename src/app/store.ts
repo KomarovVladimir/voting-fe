@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { authApi, roomsApi } from "features";
+import { authApi, roomsApi, chatApi } from "features";
 import { roomReducer, roomsManagerReducer, chatReducer } from "features";
 
 export const store = configureStore({
@@ -10,9 +10,14 @@ export const store = configureStore({
         chat: chatReducer,
         [authApi.reducerPath]: authApi.reducer,
         [roomsApi.reducerPath]: roomsApi.reducer,
+        [chatApi.reducerPath]: chatApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(authApi.middleware, roomsApi.middleware),
+        getDefaultMiddleware().concat(
+            authApi.middleware,
+            roomsApi.middleware,
+            chatApi.middleware
+        ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
