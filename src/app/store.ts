@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { authApi, roomsApi, chatApi } from "features";
+import { authApi, roomsManagerApi, roomApi, chatApi } from "features";
 import { roomReducer, roomsManagerReducer, chatReducer } from "features";
 
 export const store = configureStore({
@@ -9,13 +9,15 @@ export const store = configureStore({
         room: roomReducer,
         chat: chatReducer,
         [authApi.reducerPath]: authApi.reducer,
-        [roomsApi.reducerPath]: roomsApi.reducer,
+        [roomApi.reducerPath]: roomApi.reducer,
+        [roomsManagerApi.reducerPath]: roomsManagerApi.reducer,
         [chatApi.reducerPath]: chatApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(
             authApi.middleware,
-            roomsApi.middleware,
+            roomApi.middleware,
+            roomsManagerApi.middleware,
             chatApi.middleware
         ),
 });

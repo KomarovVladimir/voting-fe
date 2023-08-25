@@ -13,7 +13,7 @@ export const chatApi = createApi({
     tagTypes: ["Chat"],
     endpoints: (builder) => ({
         getMessages: builder.query<{ messages: Message[] }, string>({
-            query: (chatId) => ({ url: `/messages/${chatId}` }),
+            query: (roomId) => ({ url: `rooms/${roomId}/messages` }),
             providesTags: () => [{ type: "Chat" }],
         }),
     }),

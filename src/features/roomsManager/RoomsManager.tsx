@@ -6,7 +6,7 @@ import { AppBar } from "components";
 import { ActionDialog } from "./ActionDialog";
 import { joinRoom, createRoom } from "./roomsManagerSlice";
 import { RoomCard } from "./RoomCard";
-import { useGetRoomsQuery } from "./roomsApi";
+import { useGetRoomsQuery } from "./roomsManagerApi";
 
 const dialogActions = {
     create: createRoom,

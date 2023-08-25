@@ -9,6 +9,7 @@ const server = createServer({
         users: Model,
         rooms: Model,
         messages: Model,
+        items: Model,
     },
 
     factories: {
@@ -48,6 +49,17 @@ const server = createServer({
                 return faker.date.recent();
             },
         }),
+        item: Factory.extend({
+            id() {
+                return nanoid();
+            },
+            name(index) {
+                return `Item ${index}`;
+            },
+            votes(index) {
+                return index * 2;
+            },
+        }),
     },
 
     seeds(server) {
@@ -67,6 +79,9 @@ const server = createServer({
                         userName: `${firstName} ${lastName}`,
                     });
                 });
+            server.createList("item", 5, {
+                roomId,
+            });
         });
     },
 
@@ -79,33 +94,34 @@ const server = createServer({
             schema.users.find(request.params.id).destroy()
         );
         this.post("/users", (schema, request) => {
-            let attrs = JSON.parse(request.requestBody);
+            const attrs = JSON.parse(request.requestBody);
 
             return schema.users.create(attrs);
         });
         // this.update("/users", (schema, request) => {
-        //     let attrs = JSON.parse(request.requestBody);
+        //     const attrs = JSON.parse(request.requestBody);
 
         //     return schema.users.update(attrs);
         // });
 
         this.get("/rooms");
-        this.get("/rooms/:id");
-        this.delete("rooms/:id", (schema, request) =>
-            schema.rooms.find(request.params.id).destroy()
-        );
         this.post("/rooms", (schema, request) => {
-            let attrs = JSON.parse(request.requestBody);
+            const attrs = JSON.parse(request.requestBody);
 
             return schema.rooms.create(attrs);
         });
-
-        this.get("/messages/:chatId", (schema, request) => {
-            return schema.messages.where({ roomId: request.params.chatId });
+        this.get("/rooms/:roomId");
+        this.delete("rooms/:roomId", (schema, request) =>
+            schema.rooms.find(request.params.id).destroy()
+        );
+        this.get("/rooms/:roomId/messages", (schema, request) => {
+            return schema.messages.where({ roomId: request.params.roomId });
         });
-
+        this.get("/rooms/:roomId/items", (schema, request) => {
+            return schema.items.where({ roomId: request.params.roomId });
+        });
         // this.update("/rooms", (schema, request) => {
-        //     let attrs = JSON.parse(request.requestBody);
+        //     const attrs = JSON.parse(request.requestBody);
 
         //     return schema.rooms.update(attrs);
         // });

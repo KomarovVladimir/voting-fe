@@ -6,8 +6,8 @@ export type RoomData = {
     name: string;
 };
 
-export const roomsApi = createApi({
-    reducerPath: "roomsApi",
+export const roomsManagerApi = createApi({
+    reducerPath: "roomsManagerApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
     tagTypes: ["Rooms"],
     endpoints: (builder) => ({
@@ -26,4 +26,4 @@ export const roomsApi = createApi({
     }),
 });
 
-export const { useGetRoomsQuery, useCreateRoomMutation } = roomsApi;
+export const { useGetRoomsQuery, useCreateRoomMutation } = roomsManagerApi;

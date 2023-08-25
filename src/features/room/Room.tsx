@@ -16,29 +16,34 @@ import CloseIcon from "@mui/icons-material/Close";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { RootState } from "app/store";
 import { AppBar } from "components";
+import { Chat } from "features";
 
 import { addItem, removeItem } from "./roomSlice";
-import { Chat } from "features";
 import { ParticipantsDialog } from "./ParticipantsDialog";
+import { useLazyGetItemsQuery } from "./roomApi";
 
 const statuses = ["Active", "Pending", "Completed"];
 
 export const Room = () => {
     const dispatch = useDispatch();
     const { roomId } = useParams();
+    const [trigger, { data }] = useLazyGetItemsQuery();
     const [status, setStatus] = useState("");
     const [open, setOpen] = useState(false);
     const [participantsOpen, setParticipantsOpen] = useState(false);
 
-    const { items } = useSelector(({ room }: RootState) => room);
+    useEffect(() => {
+        if (roomId) {
+            trigger(roomId);
+        }
+    }, [roomId, trigger]);
 
     const handleParticipantsOpen = () => {
         setParticipantsOpen(true);
@@ -136,7 +141,7 @@ export const Room = () => {
             <Grid container spacing={2}>
                 <Grid item xs={6}>
                     <List dense>
-                        {Object.entries(items).map(([id, { name, votes }]) => (
+                        {data?.items?.map(({ id, name, votes }) => (
                             <ListItem
                                 key={id}
                                 secondaryAction={
