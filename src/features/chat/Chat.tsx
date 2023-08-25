@@ -30,7 +30,7 @@ export const Chat = () => {
         dispatch(
             addMessage({
                 userName: "Test",
-                time: "Test Time am",
+                date: "Test Time am",
                 text: message,
             })
         );
@@ -50,7 +50,7 @@ export const Chat = () => {
                 }}
             >
                 <List dense>
-                    {data?.messages?.map(({ id, user, time, text }) => (
+                    {data?.messages?.map(({ id, userName, date, text }) => (
                         <ListItem
                             key={id}
                             sx={{
@@ -58,7 +58,7 @@ export const Chat = () => {
                                 justifyContent: "start",
                             }}
                         >
-                            <ListItemText primary={user} secondary={time} />
+                            <ListItemText primary={userName} secondary={date} />
                             <Typography variant="body2" display="block">
                                 {text}
                             </Typography>

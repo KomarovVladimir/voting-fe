@@ -2,9 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export type Message = {
     id: string;
-    user: string;
+    userName: string;
     text: string;
-    time: string;
+    date: string;
 };
 
 export const chatApi = createApi({

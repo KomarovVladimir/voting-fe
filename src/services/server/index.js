@@ -1,17 +1,53 @@
 import { faker } from "@faker-js/faker";
 import { nanoid } from "@reduxjs/toolkit";
-import { createServer, Model, Response } from "miragejs";
+import { createServer, Model, Response, Factory } from "miragejs";
 
-const testRoomId1 = nanoid();
-const testRoomId2 = nanoid();
-
-createServer({
+const server = createServer({
     logging: true,
 
     models: {
         users: Model,
         rooms: Model,
         messages: Model,
+    },
+
+    factories: {
+        user: Factory.extend({
+            id() {
+                return nanoid();
+            },
+            firstName() {
+                return faker.person.firstName();
+            },
+            lastName() {
+                return faker.person.lastName();
+            },
+            email() {
+                return faker.internet.email();
+            },
+            password() {
+                return faker.internet.password();
+            },
+        }),
+        room: Factory.extend({
+            id() {
+                return nanoid();
+            },
+            name(index) {
+                return `Room ${index}`;
+            },
+        }),
+        message: Factory.extend({
+            id() {
+                return nanoid();
+            },
+            text() {
+                return faker.lorem.lines({ min: 1, max: 3 });
+            },
+            date() {
+                return faker.date.recent();
+            },
+        }),
     },
 
     seeds(server) {
@@ -21,71 +57,16 @@ createServer({
             firstName: faker.person.firstName(),
             lastName: faker.person.lastName(),
         });
-        server.create("user", {
-            email: "user1@email.com",
-            password: "user1",
-            firstName: faker.person.firstName(),
-            lastName: faker.person.lastName(),
-        });
-        server.create("user", {
-            email: "user2@email.com",
-            password: "user2",
-            firstName: faker.person.firstName(),
-            lastName: faker.person.lastName(),
-        });
-        server.create("room", {
-            id: testRoomId1,
-            name: "Restaurants",
-        });
-        server.create("room", {
-            id: testRoomId2,
-            name: "Movies",
-        });
-        server.create("room", {
-            id: nanoid(),
-            name: "Test",
-        });
-        server.create("message", {
-            id: nanoid(),
-            roomId: testRoomId1,
-            user: "User Name",
-            text: "test",
-            time: "12:12",
-        });
-        server.create("message", {
-            id: nanoid(),
-            roomId: testRoomId1,
-            user: "User Name",
-            text: "test",
-            time: "12:13",
-        });
-        server.create("message", {
-            id: nanoid(),
-            roomId: testRoomId2,
-            user: "User Name",
-            text: "test",
-            time: "12:14",
-        });
-        server.create("message", {
-            id: nanoid(),
-            roomId: testRoomId2,
-            user: "User Name",
-            text: "test",
-            time: "12:12",
-        });
-        server.create("message", {
-            id: nanoid(),
-            roomId: testRoomId2,
-            user: "User Name",
-            text: "test",
-            time: "12:13",
-        });
-        server.create("message", {
-            id: nanoid(),
-            roomId: testRoomId2,
-            user: "User Name",
-            text: "test",
-            time: "12:14",
+        server.createList("room", 5).forEach(({ id: roomId }) => {
+            server
+                .createList("user", 5)
+                .forEach(({ id: userId, firstName, lastName }) => {
+                    server.createList("message", 1, {
+                        roomId,
+                        userId,
+                        userName: `${firstName} ${lastName}`,
+                    });
+                });
         });
     },
 
@@ -160,3 +141,5 @@ createServer({
         });
     },
 });
+
+console.log(server.db);
