@@ -37,6 +37,12 @@ const server = createServer({
             name(index) {
                 return `Room ${index}`;
             },
+            status() {
+                return "Active";
+            },
+            endingDate() {
+                return faker.date.recent();
+            },
         }),
         message: Factory.extend({
             id() {
