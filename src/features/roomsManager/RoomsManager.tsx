@@ -6,7 +6,7 @@ import { AppBar } from "components";
 import { ActionDialog } from "./ActionDialog";
 import { joinRoom, createRoom } from "./roomsManagerSlice";
 import { RoomCard } from "./RoomCard";
-import { useGetRoomsQuery } from "./roomsManagerApi";
+import { useCreateRoomMutation, useGetRoomsQuery } from "./roomsManagerApi";
 
 const dialogActions = {
     create: createRoom,
@@ -19,6 +19,7 @@ export const RoomsManager = () => {
     const { data } = useGetRoomsQuery();
     const [open, setOpen] = useState(false);
     const [action, setAction] = useState<Actions>("create");
+    const [createRoom] = useCreateRoomMutation();
 
     const handleOpen = (actionType: Actions) => () => {
         setOpen(true);
@@ -51,7 +52,7 @@ export const RoomsManager = () => {
                 }
             />
             <ActionDialog
-                action={dialogActions[action]}
+                action={createRoom}
                 onClose={handleClose}
                 {...{ open }}
             />

@@ -7,31 +7,30 @@ import {
     DialogTitle,
     DialogContent,
 } from "@mui/material";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import { FormEvent, useState } from "react";
+import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 type ActionDialogProps = {
     open: boolean;
     onClose: () => void;
-    action: ActionCreatorWithPayload<string>;
+    action: MutationTrigger<any>;
 };
 
 export const ActionDialog = ({ open, action, onClose }: ActionDialogProps) => {
-    const dispatch = useDispatch();
     const [itemName, setItemName] = useState("");
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setItemName(event.currentTarget.value);
     };
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        dispatch(action(itemName));
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
+        action(itemName).catch((error) =>
+            console.error("An error occurred", error)
+        );
         setItemName("");
         onClose();
     };
-
     const handleClose = () => {
         setItemName("");
         onClose();

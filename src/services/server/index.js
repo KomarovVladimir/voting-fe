@@ -6,10 +6,10 @@ const server = createServer({
     logging: true,
 
     models: {
-        users: Model,
-        rooms: Model,
-        messages: Model,
-        items: Model,
+        user: Model,
+        room: Model,
+        message: Model,
+        item: Model,
     },
 
     factories: {

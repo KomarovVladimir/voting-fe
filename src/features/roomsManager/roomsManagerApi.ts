@@ -15,11 +15,11 @@ export const roomsManagerApi = createApi({
             query: () => ({ url: `/rooms` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
-        createRoom: builder.mutation<QueryReturnValue, RoomData>({
-            query: (payload) => ({
+        createRoom: builder.mutation<QueryReturnValue, string>({
+            query: (name) => ({
                 url: "/rooms",
                 method: "POST",
-                body: payload,
+                body: { name },
             }),
             invalidatesTags: ["Rooms"],
         }),
