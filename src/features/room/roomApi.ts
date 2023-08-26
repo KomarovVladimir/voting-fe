@@ -1,9 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export type Item = {
+type Item = {
     id: string;
     name: string;
     votes: number;
+};
+
+type RoodData = {
+    id: string;
+    name: string;
+    status: string;
+    endingDate: string;
+    items: Item[];
 };
 
 export const roomApi = createApi({
@@ -11,11 +19,11 @@ export const roomApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
     tagTypes: ["Items"],
     endpoints: (builder) => ({
-        getItems: builder.query<{ items: Item[] }, string>({
-            query: (roomId) => ({ url: `rooms/${roomId}/items` }),
+        getRoomData: builder.query<RoodData, string>({
+            query: (roomId) => ({ url: `rooms/${roomId}` }),
             providesTags: () => [{ type: "Items" }],
         }),
     }),
 });
 
-export const { useLazyGetItemsQuery } = roomApi;
+export const { useLazyGetRoomDataQuery } = roomApi;

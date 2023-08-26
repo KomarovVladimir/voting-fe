@@ -31,9 +31,6 @@ const server = createServer({
             },
         }),
         room: Factory.extend({
-            id() {
-                return nanoid();
-            },
             name(index) {
                 return `Room ${index}`;
             },
@@ -45,9 +42,6 @@ const server = createServer({
             },
         }),
         message: Factory.extend({
-            id() {
-                return nanoid();
-            },
             text() {
                 return faker.lorem.lines({ min: 1, max: 3 });
             },
@@ -56,9 +50,6 @@ const server = createServer({
             },
         }),
         item: Factory.extend({
-            id() {
-                return nanoid();
-            },
             name(index) {
                 return `Item ${index}`;
             },
@@ -104,11 +95,6 @@ const server = createServer({
 
             return schema.users.create(attrs);
         });
-        // this.update("/users", (schema, request) => {
-        //     const attrs = JSON.parse(request.requestBody);
-
-        //     return schema.users.update(attrs);
-        // });
 
         this.get("/rooms");
         this.post("/rooms", (schema, request) => {
@@ -116,21 +102,28 @@ const server = createServer({
 
             return schema.rooms.create(attrs);
         });
-        this.get("/rooms/:roomId");
-        this.delete("rooms/:roomId", (schema, request) =>
-            schema.rooms.find(request.params.id).destroy()
-        );
+        this.get("/rooms/:roomId", (schema, request) => {
+            const { name, status, endingDate } = schema.rooms.find(
+                request.params.roomId
+            );
+            const { models } = schema.items.where({
+                roomId: request.params.roomId,
+            });
+
+            return {
+                name,
+                status,
+                endingDate,
+                items: models,
+            };
+        });
+        this.delete("rooms/:roomId");
         this.get("/rooms/:roomId/messages", (schema, request) => {
             return schema.messages.where({ roomId: request.params.roomId });
         });
         this.get("/rooms/:roomId/items", (schema, request) => {
             return schema.items.where({ roomId: request.params.roomId });
         });
-        // this.update("/rooms", (schema, request) => {
-        //     const attrs = JSON.parse(request.requestBody);
-
-        //     return schema.rooms.update(attrs);
-        // });
 
         this.post("/login", (schema, request) => {
             const { email, password } = JSON.parse(request.requestBody);
