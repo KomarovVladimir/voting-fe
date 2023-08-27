@@ -102,27 +102,23 @@ const server = createServer({
 
             return schema.rooms.create(attrs);
         });
-        this.get("/rooms/:roomId", (schema, request) => {
-            const { name, status, endingDate } = schema.rooms.find(
-                request.params.roomId
-            );
-            const { models } = schema.items.where({
-                roomId: request.params.roomId,
-            });
-
-            return {
-                name,
-                status,
-                endingDate,
-                items: models,
-            };
-        });
-        this.delete("rooms/:roomId");
-        this.get("/rooms/:roomId/messages", (schema, request) => {
-            return schema.messages.where({ roomId: request.params.roomId });
-        });
         this.get("/rooms/:roomId/items", (schema, request) => {
             return schema.items.where({ roomId: request.params.roomId });
+        });
+        this.get("/rooms/:roomId");
+        this.delete("rooms/:roomId");
+        this.post("/rooms/addItem", (schema, request) => {
+            const attrs = JSON.parse(request.requestBody);
+
+            return schema.items.create({ ...attrs, votes: 0 });
+        });
+        this.delete("/rooms/deleteItem", (schema, request) => {
+            const { id } = JSON.parse(request.requestBody);
+
+            return schema.items.find(id).destroy();
+        });
+        this.get("/rooms/:roomId/chat", (schema, request) => {
+            return schema.messages.where({ roomId: request.params.roomId });
         });
 
         this.post("/login", (schema, request) => {

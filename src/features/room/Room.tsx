@@ -17,31 +17,39 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { AppBar } from "components";
 import { Chat } from "features";
 
-import { addItem, removeItem } from "./roomSlice";
 import { ParticipantsDialog } from "./ParticipantsDialog";
-import { useLazyGetRoomDataQuery } from "./roomApi";
+import {
+    useAddItemMutation,
+    useDeleteItemMutation,
+    useLazyGetItemsQuery,
+    useLazyGetRoomDataQuery,
+} from "./roomApi";
 
 const statuses = ["Active", "Pending", "Completed"];
 
 export const Room = () => {
-    const dispatch = useDispatch();
     const { roomId } = useParams();
-    const [trigger, { data }] = useLazyGetRoomDataQuery();
+    const [getItems, { data: itemsData }] = useLazyGetItemsQuery();
+    const [getRoomData, { data: roomData }] = useLazyGetRoomDataQuery();
+    const [addItem] = useAddItemMutation();
+    const [deleteItem] = useDeleteItemMutation();
     const [status, setStatus] = useState("");
     const [open, setOpen] = useState(false);
     const [participantsOpen, setParticipantsOpen] = useState(false);
 
+    console.log(roomData);
+
     useEffect(() => {
         if (roomId) {
-            trigger(roomId);
+            getItems(roomId);
+            getRoomData(roomId);
         }
-    }, [roomId, trigger]);
+    }, [roomId, getItems, getRoomData]);
 
     const handleParticipantsOpen = () => {
         setParticipantsOpen(true);
@@ -52,11 +60,14 @@ export const Room = () => {
     };
 
     const handleAddItem = () => {
-        dispatch(addItem("test"));
+        addItem({
+            roomId,
+            name: "New Item",
+        });
     };
 
     const handleRemoveItem = (id: string) => () => {
-        dispatch(removeItem(id));
+        deleteItem(id);
     };
 
     const handleOpen = () => {
@@ -98,7 +109,7 @@ export const Room = () => {
                             Rooms
                         </Typography>
                         <Typography variant="h6" component="span">
-                            {data?.name}
+                            {roomData?.room?.name}
                         </Typography>
                     </>
                 }
@@ -139,7 +150,7 @@ export const Room = () => {
             <Grid container spacing={2}>
                 <Grid item xs={6}>
                     <List dense>
-                        {data?.items?.map(({ id, name, votes }) => (
+                        {itemsData?.items?.map(({ id, name, votes }) => (
                             <ListItem
                                 key={id}
                                 secondaryAction={
