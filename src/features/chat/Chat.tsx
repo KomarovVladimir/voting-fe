@@ -9,16 +9,16 @@ import {
 } from "@mui/material";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
-import { addMessage } from "./chatSlice";
-import { useLazyGetMessagesQuery } from "./chatApi";
+import { useLazyGetMessagesQuery, useSendMessageMutation } from "./chatApi";
+import { useUser } from "features/auth/hooks/useUser";
 
 export const Chat = () => {
-    const dispatch = useDispatch();
+    const { user } = useUser();
     const { roomId } = useParams();
+    const [sendMessage] = useSendMessageMutation();
     const [trigger, { data }] = useLazyGetMessagesQuery();
-    const [message, setMessage] = useState("");
+    const [text, setText] = useState("");
 
     useEffect(() => {
         if (roomId) {
@@ -26,19 +26,15 @@ export const Chat = () => {
         }
     }, [roomId, trigger]);
 
-    const handleAddMessage = () => {
-        dispatch(
-            addMessage({
-                userName: "Test",
-                date: "Test Time am",
-                text: message,
-            })
-        );
-        setMessage("");
+    const handleSendMessage = () => {
+        if (roomId) {
+            sendMessage({ userName: user?.email, roomId, text });
+            setText("");
+        }
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setMessage(e.target.value as string);
+        setText(e.target.value as string);
     };
     return (
         <>
@@ -68,15 +64,15 @@ export const Chat = () => {
             </Paper>
             <TextField
                 id="message-input"
-                value={message}
+                value={text}
                 onChange={handleChange}
                 InputProps={{
                     endAdornment: (
                         <>
-                            {message && (
+                            {text && (
                                 <Button
                                     variant="contained"
-                                    onClick={handleAddMessage}
+                                    onClick={handleSendMessage}
                                 >
                                     Add Item
                                 </Button>

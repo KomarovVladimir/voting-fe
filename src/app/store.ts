@@ -1,13 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { authApi, roomsManagerApi, roomApi, chatApi } from "features";
-import { roomReducer, roomsManagerReducer, chatReducer } from "features";
+import { roomReducer, roomsManagerReducer } from "features";
 
 export const store = configureStore({
     reducer: {
         roomsManager: roomsManagerReducer,
         room: roomReducer,
-        chat: chatReducer,
         [authApi.reducerPath]: authApi.reducer,
         [roomApi.reducerPath]: roomApi.reducer,
         [roomsManagerApi.reducerPath]: roomsManagerApi.reducer,

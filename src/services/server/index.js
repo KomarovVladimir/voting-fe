@@ -122,6 +122,19 @@ const server = createServer({
         this.get("/rooms/:roomId/chat", (schema, request) => {
             return schema.messages.where({ roomId: request.params.roomId });
         });
+        this.post("/chat", (schema, request) => {
+            const attrs = JSON.parse(request.requestBody);
+
+            return schema.messages.create({
+                ...attrs,
+                date: new Date().toUTCString(),
+            });
+        });
+        this.delete("/chat", (schema, request) => {
+            const { id } = JSON.parse(request.requestBody);
+
+            return schema.messages.find(id).destroy();
+        });
 
         this.post("/login", (schema, request) => {
             const { email, password } = JSON.parse(request.requestBody);
