@@ -105,7 +105,9 @@ const server = createServer({
         this.get("/rooms/:roomId/items", (schema, request) => {
             return schema.items.where({ roomId: request.params.roomId });
         });
-        this.get("/rooms/:roomId");
+        this.get("/rooms/:roomId", (schema, request) => {
+            return schema.rooms.find(request.params.roomId);
+        });
         this.delete("rooms/:roomId");
         this.post("/rooms/addItem", (schema, request) => {
             const attrs = JSON.parse(request.requestBody);

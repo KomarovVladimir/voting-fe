@@ -23,7 +23,7 @@ export const roomApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
     tagTypes: ["Room", "Items"],
     endpoints: (builder) => ({
-        GetRoomData: builder.query<RoomData, string>({
+        getRoomData: builder.query<RoomData, string>({
             query: (roomId) => ({ url: `rooms/${roomId}` }),
             providesTags: () => [{ type: "Room" }],
         }),

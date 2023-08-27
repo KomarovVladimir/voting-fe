@@ -42,8 +42,6 @@ export const Room = () => {
     const [open, setOpen] = useState(false);
     const [participantsOpen, setParticipantsOpen] = useState(false);
 
-    console.log(roomData);
-
     useEffect(() => {
         if (roomId) {
             getItems(roomId);
