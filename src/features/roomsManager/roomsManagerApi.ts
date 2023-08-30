@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export type RoomData = {
     id: string;
     name: string;
-    status: string;
+    status: number;
     endingDate: string;
 };
 
@@ -28,4 +28,4 @@ export const roomsManagerApi = createApi({
     }),
 });
 
-export const { useGetRoomsQuery, useCreateRoomMutation } = roomsManagerApi;
+export const { useLazyGetRoomsQuery, useCreateRoomMutation } = roomsManagerApi;

@@ -35,7 +35,7 @@ const server = createServer({
                 return `Room ${index}`;
             },
             status() {
-                return "Active";
+                return 0;
             },
             endingDate() {
                 return faker.date.recent();
@@ -86,14 +86,20 @@ const server = createServer({
         this.namespace = "/api";
 
         this.get("/users");
-        this.get("/users/:id");
-        this.delete("users/:id", (schema, request) =>
-            schema.users.find(request.params.id).destroy()
-        );
         this.post("/users", (schema, request) => {
             const attrs = JSON.parse(request.requestBody);
 
             return schema.users.create(attrs);
+        });
+        this.get("/users/:id");
+        this.delete("users/:id", (schema, request) =>
+            schema.users.find(request.params.id).destroy()
+        );
+        this.patch("/users/:id", (schema, request) => {
+            let id = request.params.id;
+            let attrs = JSON.parse(request.requestBody);
+
+            return schema.users.find(id).update(attrs);
         });
 
         this.get("/rooms");
@@ -102,6 +108,14 @@ const server = createServer({
 
             return schema.rooms.create(attrs);
         });
+        this.delete("/rooms/:id");
+        this.patch("/rooms/:id", (schema, request) => {
+            let id = request.params.id;
+            let attrs = JSON.parse(request.requestBody);
+
+            return schema.rooms.find(id).update(attrs);
+        });
+
         this.get("/rooms/:roomId/items", (schema, request) => {
             return schema.items.where({ roomId: request.params.roomId });
         });
@@ -122,6 +136,7 @@ const server = createServer({
         this.get("/rooms/:roomId/chat", (schema, request) => {
             return schema.messages.where({ roomId: request.params.roomId });
         });
+
         this.post("/chat", (schema, request) => {
             const attrs = JSON.parse(request.requestBody);
 

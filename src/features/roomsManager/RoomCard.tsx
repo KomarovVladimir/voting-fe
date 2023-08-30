@@ -6,18 +6,24 @@ import {
     CardActionArea,
     Stack,
 } from "@mui/material";
+import { useNavigate } from "react-router";
 
 import image from "assets/images/paella.jpg";
-import { useNavigate } from "react-router";
+import { roomStatuses } from "common/constants";
 
 export type RoomCardProps = {
     id: string;
     name: string;
-    status?: string;
+    status: number;
     endingDate?: string;
 };
 
-export const RoomCard = ({ id, name, status, endingDate }: RoomCardProps) => {
+export const RoomCard = ({
+    id,
+    name,
+    status = 0,
+    endingDate,
+}: RoomCardProps) => {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
@@ -39,7 +45,7 @@ export const RoomCard = ({ id, name, status, endingDate }: RoomCardProps) => {
                     </Typography>
                     <Stack direction="row" justifyContent="space-between">
                         <Typography variant="body2" color="text.secondary">
-                            {status}
+                            {roomStatuses[status]}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             {endingDate}

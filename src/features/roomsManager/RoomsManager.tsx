@@ -1,12 +1,12 @@
 import { Button, Grid } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { AppBar } from "components";
 
 import { ActionDialog } from "./ActionDialog";
 import { joinRoom, createRoom } from "./roomsManagerSlice";
 import { RoomCard } from "./RoomCard";
-import { useCreateRoomMutation, useGetRoomsQuery } from "./roomsManagerApi";
+import { useCreateRoomMutation, useLazyGetRoomsQuery } from "./roomsManagerApi";
 
 const dialogActions = {
     create: createRoom,
@@ -16,10 +16,14 @@ const dialogActions = {
 type Actions = keyof typeof dialogActions;
 
 export const RoomsManager = () => {
-    const { data } = useGetRoomsQuery();
+    const [getRooms, { data: roomsData }] = useLazyGetRoomsQuery();
     const [open, setOpen] = useState(false);
     const [action, setAction] = useState<Actions>("create");
     const [createRoom] = useCreateRoomMutation();
+
+    useEffect(() => {
+        getRooms();
+    }, [getRooms]);
 
     const handleOpen = (actionType: Actions) => () => {
         setOpen(true);
@@ -57,7 +61,7 @@ export const RoomsManager = () => {
                 {...{ open }}
             />
             <Grid container spacing={2}>
-                {data?.rooms.map(({ id, name, status, endingDate }) => (
+                {roomsData?.rooms?.map(({ id, name, status, endingDate }) => (
                     <Grid key={id} item xs={3}>
                         <RoomCard {...{ id, name, status, endingDate }} />
                     </Grid>

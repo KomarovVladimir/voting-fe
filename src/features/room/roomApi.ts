@@ -9,23 +9,25 @@ type Item = {
 
 type ItemsData = { items: Item[] };
 
+type Room = {
+    id: string;
+    name: string;
+    status: string;
+    endingDate: string;
+};
+
 type RoomData = {
-    room: {
-        id: string;
-        name: string;
-        status: string;
-        endingDate: string;
-    };
+    room: Room;
 };
 
 export const roomApi = createApi({
     reducerPath: "roomApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
-    tagTypes: ["Room", "Items"],
+    tagTypes: ["Rooms", "Items"],
     endpoints: (builder) => ({
         getRoomData: builder.query<RoomData, string>({
             query: (roomId) => ({ url: `rooms/${roomId}` }),
-            providesTags: () => [{ type: "Room" }],
+            providesTags: () => [{ type: "Rooms" }],
         }),
         getItems: builder.query<ItemsData, string>({
             query: (roomId) => ({ url: `rooms/${roomId}/items` }),
@@ -50,6 +52,14 @@ export const roomApi = createApi({
             }),
             invalidatesTags: [{ type: "Items" }],
         }),
+        updateRoom: builder.mutation<{ success: boolean }, Partial<Room>>({
+            query: ({ id, ...body }) => ({
+                url: `/rooms/${id}`,
+                method: "PATCH",
+                body,
+            }),
+            invalidatesTags: [{ type: "Rooms" }],
+        }),
     }),
 });
 
@@ -58,4 +68,5 @@ export const {
     useLazyGetItemsQuery,
     useAddItemMutation,
     useDeleteItemMutation,
+    useUpdateRoomMutation,
 } = roomApi;

@@ -20,6 +20,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 import { AppBar } from "components";
+import { roomStatuses } from "common/constants";
 import { Chat } from "features";
 
 import { ParticipantsDialog } from "./ParticipantsDialog";
@@ -28,9 +29,8 @@ import {
     useDeleteItemMutation,
     useLazyGetItemsQuery,
     useLazyGetRoomDataQuery,
+    useUpdateRoomMutation,
 } from "./roomApi";
-
-const statuses = ["Active", "Pending", "Completed"];
 
 export const Room = () => {
     const { roomId } = useParams();
@@ -38,6 +38,7 @@ export const Room = () => {
     const [getRoomData, { data: roomData }] = useLazyGetRoomDataQuery();
     const [addItem] = useAddItemMutation();
     const [deleteItem] = useDeleteItemMutation();
+    const [updateRoom] = useUpdateRoomMutation();
     const [status, setStatus] = useState("");
     const [open, setOpen] = useState(false);
     const [participantsOpen, setParticipantsOpen] = useState(false);
@@ -48,6 +49,12 @@ export const Room = () => {
             getRoomData(roomId);
         }
     }, [roomId, getItems, getRoomData]);
+
+    useEffect(() => {
+        if (roomData) {
+            setStatus(roomData.room.status);
+        }
+    }, [status, roomData]);
 
     const handleParticipantsOpen = () => {
         setParticipantsOpen(true);
@@ -76,8 +83,8 @@ export const Room = () => {
         setOpen(false);
     };
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setStatus(e.target.value as string);
+    const handleStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+        updateRoom({ id: roomId, status: e.target.value });
     };
     return (
         <>
@@ -117,10 +124,10 @@ export const Room = () => {
                             select
                             value={status}
                             label="Status"
-                            onChange={handleChange}
+                            onChange={handleStatusChange}
                             sx={{ minWidth: 120 }}
                         >
-                            {statuses.map((item, index) => (
+                            {roomStatuses.map((item, index) => (
                                 <MenuItem key={index} value={index}>
                                     {item}
                                 </MenuItem>
