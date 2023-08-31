@@ -36,24 +36,23 @@ export const roomApi = createApi({
             { success: boolean; id: number },
             Partial<Item>
         >({
-            query: (body) => ({
-                url: `/rooms/addItem`,
+            query: ({ roomId, ...body }) => ({
+                url: `/rooms/${roomId}/items`,
                 method: "POST",
                 body,
             }),
             invalidatesTags: [{ type: "Items" }],
         }),
         deleteItem: builder.mutation<{ success: boolean; id: number }, string>({
-            query: (id) => ({
-                url: `/rooms/deleteItem`,
+            query: (itemId) => ({
+                url: `/items/${itemId}`,
                 method: "DELETE",
-                body: { id },
             }),
             invalidatesTags: [{ type: "Items" }],
         }),
         updateRoom: builder.mutation<{ success: boolean }, Partial<Room>>({
-            query: ({ id, ...body }) => ({
-                url: `/rooms/${id}`,
+            query: ({ id: roomId, ...body }) => ({
+                url: `/rooms/${roomId}`,
                 method: "PATCH",
                 body,
             }),

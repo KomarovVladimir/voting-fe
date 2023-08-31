@@ -84,70 +84,94 @@ const server = createServer({
         this.namespace = "/api";
 
         this.get("/users");
-        this.post("/users", (schema, request) => {
-            const attrs = JSON.parse(request.requestBody);
+        this.post("/users", (schema, { requestBody }) => {
+            const attrs = JSON.parse(requestBody);
 
             return schema.users.create(attrs);
         });
-        this.get("/users/:id");
-        this.delete("users/:id", (schema, request) =>
-            schema.users.find(request.params.id).destroy()
-        );
-        this.patch("/users/:id", (schema, request) => {
-            let id = request.params.id;
-            let attrs = JSON.parse(request.requestBody);
+        this.get("/users/:userId");
+        this.delete("users/:userId");
+        this.patch(
+            "/users/:userId",
+            (schema, { requestBody, params: { userId } }) => {
+                let attrs = JSON.parse(requestBody);
 
-            return schema.users.find(id).update(attrs);
-        });
+                return schema.users.find(userId).update(attrs);
+            }
+        );
 
         this.get("/rooms");
-        this.post("/rooms", (schema, request) => {
-            const attrs = JSON.parse(request.requestBody);
+        this.post("/rooms", (schema, { requestBody }) => {
+            const attrs = JSON.parse(requestBody);
 
             return schema.rooms.create(attrs);
         });
-        this.delete("/rooms/:id");
-        this.patch("/rooms/:id", (schema, request) => {
-            let id = request.params.id;
-            let attrs = JSON.parse(request.requestBody);
 
-            return schema.rooms.find(id).update(attrs);
+        this.get("/rooms/:roomId", (schema, { params: { roomId } }) => {
+            return schema.rooms.find(roomId);
         });
+        this.delete("/rooms/:roomId");
+        this.patch(
+            "/rooms/:roomId",
+            (schema, { requestBody, params: { roomId } }) => {
+                let attrs = JSON.parse(requestBody);
 
-        this.get("/rooms/:roomId/items", (schema, request) => {
-            return schema.items.where({ roomId: request.params.roomId });
-        });
-        this.get("/rooms/:roomId", (schema, request) => {
-            return schema.rooms.find(request.params.roomId);
-        });
-        this.delete("rooms/:roomId");
-        this.post("/rooms/addItem", (schema, request) => {
-            const attrs = JSON.parse(request.requestBody);
+                return schema.rooms.find(roomId).update(attrs);
+            }
+        );
 
-            return schema.items.create({ ...attrs, votes: 0 });
+        this.get("/rooms/:roomId/items", (schema, { params: { roomId } }) => {
+            return schema.items.where({ roomId });
         });
-        this.delete("/rooms/deleteItem", (schema, request) => {
-            const { id } = JSON.parse(request.requestBody);
+        this.post(
+            "/rooms/:roomId/items",
+            (schema, { requestBody, params: { roomId } }) => {
+                const attrs = JSON.parse(requestBody);
 
-            return schema.items.find(id).destroy();
-        });
-        this.get("/rooms/:roomId/chat", (schema, request) => {
-            return schema.messages.where({ roomId: request.params.roomId });
-        });
+                return schema.items.create({
+                    ...attrs,
+                    roomId,
+                    votes: 0,
+                });
+            }
+        );
 
-        this.post("/chat", (schema, request) => {
-            const attrs = JSON.parse(request.requestBody);
-
-            return schema.messages.create({
-                ...attrs,
-                date: new Date().toUTCString(),
-            });
+        this.delete("/items/:itemId", (schema, { params: { itemId } }) => {
+            return schema.items.find(itemId).destroy();
         });
-        this.delete("/chat", (schema, request) => {
-            const { id } = JSON.parse(request.requestBody);
+        this.patch(
+            "/items/:itemId",
+            (schema, { requestBody, params: { itemId } }) => {
+                let attrs = JSON.parse(requestBody);
 
-            return schema.messages.find(id).destroy();
-        });
+                return schema.items.find(itemId).update(attrs);
+            }
+        );
+
+        this.get(
+            "/rooms/:roomId/messages",
+            (schema, { params: { roomId } }) => {
+                return schema.messages.where({ roomId });
+            }
+        );
+        this.post(
+            "/rooms/:roomId/messages",
+            (schema, { requestBody, params: { roomId } }) => {
+                const attrs = JSON.parse(requestBody);
+
+                return schema.messages.create({
+                    ...attrs,
+                    roomId,
+                    date: new Date().toUTCString(),
+                });
+            }
+        );
+        this.delete(
+            "/messages/:messageId",
+            (schema, { params: { messageId } }) => {
+                return schema.messages.find(messageId).destroy();
+            }
+        );
 
         this.post("/login", (schema, request) => {
             const { email, password } = JSON.parse(request.requestBody);

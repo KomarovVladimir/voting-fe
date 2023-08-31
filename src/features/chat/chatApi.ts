@@ -14,15 +14,15 @@ export const chatApi = createApi({
     tagTypes: ["Chat"],
     endpoints: (builder) => ({
         getMessages: builder.query<{ messages: Message[] }, string>({
-            query: (roomId) => ({ url: `rooms/${roomId}/chat` }),
+            query: (roomId) => ({ url: `rooms/${roomId}/messages` }),
             providesTags: () => [{ type: "Chat" }],
         }),
         sendMessage: builder.mutation<
             { success: boolean; id: number },
             Partial<Message>
         >({
-            query: (body) => ({
-                url: `/chat`,
+            query: ({ roomId, ...body }) => ({
+                url: `rooms/${roomId}/messages`,
                 method: "POST",
                 body,
             }),
@@ -32,10 +32,9 @@ export const chatApi = createApi({
             { success: boolean; id: number },
             string
         >({
-            query: (id) => ({
-                url: `/chat`,
+            query: (messageId) => ({
+                url: `/messages/${messageId}`,
                 method: "DELETE",
-                body: { id },
             }),
             invalidatesTags: [{ type: "Chat" }],
         }),
