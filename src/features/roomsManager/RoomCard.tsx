@@ -15,14 +15,15 @@ export type RoomCardProps = {
     id: string;
     name: string;
     status: number;
-    endingDate?: string;
+    participants?: number;
 };
 
+//TODO: Return the card footer
 export const RoomCard = ({
     id,
     name,
     status = 0,
-    endingDate,
+    participants = 0,
 }: RoomCardProps) => {
     const navigate = useNavigate();
 
@@ -47,9 +48,11 @@ export const RoomCard = ({
                         <Typography variant="body2" color="text.secondary">
                             {roomStatuses[status]}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {endingDate}
-                        </Typography>
+                        {
+                            <Typography variant="body2" color="text.secondary">
+                                Participants: {participants}
+                            </Typography>
+                        }
                     </Stack>
                 </CardContent>
             </CardActionArea>

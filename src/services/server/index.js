@@ -37,9 +37,6 @@ const server = createServer({
             status() {
                 return 0;
             },
-            endingDate() {
-                return faker.date.recent();
-            },
         }),
         message: Factory.extend({
             text() {
@@ -76,6 +73,7 @@ const server = createServer({
                         userName: `${firstName} ${lastName}`,
                     });
                 });
+
             server.createList("item", 5, {
                 roomId,
             });

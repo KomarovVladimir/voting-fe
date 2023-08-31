@@ -10,10 +10,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CloseIcon from "@mui/icons-material/Close";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -86,6 +83,7 @@ export const Room = () => {
     const handleStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         updateRoom({ id: roomId, status: e.target.value });
     };
+
     return (
         <>
             <ParticipantsDialog
@@ -133,9 +131,6 @@ export const Room = () => {
                                 </MenuItem>
                             ))}
                         </TextField>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label="Ends at" />
-                        </LocalizationProvider>
                         <Button
                             sx={{ color: "#fff" }}
                             onClick={handleParticipantsOpen}

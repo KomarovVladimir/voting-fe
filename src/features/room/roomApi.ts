@@ -13,7 +13,6 @@ type Room = {
     id: string;
     name: string;
     status: string;
-    endingDate: string;
 };
 
 type RoomData = {
