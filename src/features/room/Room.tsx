@@ -37,6 +37,7 @@ export const Room = () => {
     const [deleteItem] = useDeleteItemMutation();
     const [updateRoom] = useUpdateRoomMutation();
     const [status, setStatus] = useState("");
+    const [item, setItem] = useState("");
     const [open, setOpen] = useState(false);
     const [participantsOpen, setParticipantsOpen] = useState(false);
 
@@ -82,6 +83,10 @@ export const Room = () => {
 
     const handleStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         updateRoom({ id: roomId, status: e.target.value });
+    };
+
+    const handleItemChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setItem(e.target.value);
     };
 
     return (
@@ -170,6 +175,12 @@ export const Room = () => {
                             </ListItem>
                         ))}
                     </List>
+                    <TextField
+                        label="Add item*"
+                        type="text"
+                        value={item}
+                        onChange={handleItemChange}
+                    />
                     <Button variant="contained" onClick={handleAddItem}>
                         Add Item
                     </Button>
