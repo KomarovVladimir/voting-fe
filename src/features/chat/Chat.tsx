@@ -74,7 +74,7 @@ export const Chat = () => {
                                     variant="contained"
                                     onClick={handleSendMessage}
                                 >
-                                    Add Item
+                                    Send
                                 </Button>
                             )}
                         </>
