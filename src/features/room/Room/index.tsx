@@ -16,8 +16,14 @@ import { useRoom } from "./useRoom";
 import { RoomAppBar } from "../RoomAppBar";
 
 export const Room = () => {
-    const { item, items, handleAddItem, handleRemoveItem, handleItemChange } =
-        useRoom();
+    const {
+        item,
+        items,
+        handleAddItem,
+        handleKeyUp,
+        handleRemoveItem,
+        handleItemChange,
+    } = useRoom();
 
     return (
         <>
@@ -50,9 +56,15 @@ export const Room = () => {
                         type="text"
                         value={item}
                         onChange={handleItemChange}
+                        onKeyUp={handleKeyUp}
+                        onBlur={handleAddItem}
                     />
-                    <Button variant="contained" onClick={handleAddItem}>
-                        Add Item
+                    <Button
+                        variant="contained"
+                        disabled={!item}
+                        onClick={handleAddItem}
+                    >
+                        Add
                     </Button>
                 </Grid>
                 <Grid item xs={6}>

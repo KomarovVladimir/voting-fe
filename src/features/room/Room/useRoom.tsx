@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import {
@@ -20,11 +20,20 @@ export const useRoom = () => {
         }
     }, [roomId, getItems]);
 
+    const handleKeyUp = (event: KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === "Enter") {
+            handleAddItem();
+        }
+    };
+
     const handleAddItem = () => {
-        addItem({
-            roomId,
-            name: "New Item",
-        });
+        if (item) {
+            addItem({
+                roomId,
+                name: item,
+            });
+            setItem("");
+        }
     };
 
     const handleRemoveItem = (id: string) => () => {
@@ -38,8 +47,9 @@ export const useRoom = () => {
     return {
         item,
         items: itemsData?.items,
-        handleAddItem,
         handleRemoveItem,
+        handleAddItem,
+        handleKeyUp,
         handleItemChange,
     };
 };
