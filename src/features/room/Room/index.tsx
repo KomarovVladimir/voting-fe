@@ -51,21 +51,25 @@ export const Room = () => {
                             </ListItem>
                         ))}
                     </List>
-                    <TextField
-                        label="Add item*"
-                        type="text"
-                        value={item}
-                        onChange={handleItemChange}
-                        onKeyUp={handleKeyUp}
-                        onBlur={handleAddItem}
-                    />
-                    <Button
-                        variant="contained"
-                        disabled={!item}
-                        onClick={handleAddItem}
-                    >
-                        Add
-                    </Button>
+                    {items && items.length < 10 && (
+                        <>
+                            <TextField
+                                label="Add item*"
+                                type="text"
+                                value={item}
+                                onChange={handleItemChange}
+                                onKeyUp={handleKeyUp}
+                                onBlur={handleAddItem}
+                            />
+                            <Button
+                                variant="contained"
+                                disabled={!item}
+                                onClick={handleAddItem}
+                            >
+                                Add
+                            </Button>
+                        </>
+                    )}
                 </Grid>
                 <Grid item xs={6}>
                     <Chat />
