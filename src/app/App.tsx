@@ -1,12 +1,13 @@
+import { CssBaseline } from "@mui/material";
 import { StrictMode } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
+import { AuthProvider } from "features/auth/context/AuthProvider";
 import "services/server";
+import { AppRoutes } from "routing";
 
 import { store } from "./store";
-import { AuthProvider } from "features/auth/context/AuthProvider";
-import { AppRoutes } from "routing";
 
 export const App = () => {
     return (
@@ -14,6 +15,7 @@ export const App = () => {
             <AuthProvider>
                 <Provider store={store}>
                     <BrowserRouter>
+                        <CssBaseline />
                         <AppRoutes />
                     </BrowserRouter>
                 </Provider>
