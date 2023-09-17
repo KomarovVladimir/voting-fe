@@ -29,6 +29,9 @@ const server = createServer({
             password() {
                 return faker.internet.password();
             },
+            avatar() {
+                return faker.image.avatar();
+            },
         }),
         room: Factory.extend({
             name(index) {
@@ -66,10 +69,11 @@ const server = createServer({
         server.createList("room", 5).forEach(({ id: roomId }) => {
             server
                 .createList("user", 5)
-                .forEach(({ id: userId, firstName, lastName }) => {
+                .forEach(({ id: userId, firstName, lastName, avatar }) => {
                     server.createList("message", 1, {
                         roomId,
                         userId,
+                        avatar,
                         userName: `${firstName} ${lastName}`,
                     });
                 });

@@ -1,4 +1,5 @@
 import {
+    Avatar,
     Button,
     List,
     ListItem,
@@ -25,23 +26,26 @@ export const Chat = () => {
             >
                 <List dense>
                     {messages &&
-                        messages?.map(({ id, userName, date, text }) => (
-                            <ListItem
-                                key={id}
-                                sx={{
-                                    flexWrap: "wrap",
-                                    justifyContent: "start",
-                                }}
-                            >
-                                <ListItemText
-                                    primary={userName}
-                                    secondary={date}
-                                />
-                                <Typography variant="body2" display="block">
-                                    {text}
-                                </Typography>
-                            </ListItem>
-                        ))}
+                        messages?.map(
+                            ({ id, userName, date, text, avatar }) => (
+                                <ListItem
+                                    key={id}
+                                    sx={{
+                                        flexWrap: "wrap",
+                                        justifyContent: "start",
+                                    }}
+                                >
+                                    <Avatar alt="Test" src={avatar} />
+                                    <ListItemText
+                                        primary={userName}
+                                        secondary={date}
+                                    />
+                                    <Typography variant="body2" display="block">
+                                        {text}
+                                    </Typography>
+                                </ListItem>
+                            )
+                        )}
                 </List>
             </ChatPaper>
             <TextField
