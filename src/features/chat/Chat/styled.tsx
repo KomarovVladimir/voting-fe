@@ -1,8 +1,11 @@
 import { Paper, styled } from "@mui/material";
 
 export const ChatPaper = styled(Paper)({
-    height: "75vh",
-    padding: 2,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "inherit",
+    padding: "1.5rem 1rem",
     overflowY: "auto",
     borderRadius: "8px",
     border: " 1px solid #383c47",

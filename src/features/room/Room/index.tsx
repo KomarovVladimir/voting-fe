@@ -6,6 +6,7 @@ import {
     ListItem,
     ListItemText,
     TextField,
+    styled,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -14,6 +15,11 @@ import { Chat } from "features";
 import { useRoom } from "./useRoom";
 
 import { RoomAppBar } from "../RoomAppBar";
+
+const RoomWrapper = styled("div")({
+    paddingLeft: "2rem",
+    paddingRight: "2rem",
+});
 
 export const Room = () => {
     const {
@@ -26,7 +32,7 @@ export const Room = () => {
     } = useRoom();
 
     return (
-        <>
+        <RoomWrapper>
             <RoomAppBar />
             <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -71,10 +77,10 @@ export const Room = () => {
                         </>
                     )}
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={6} sx={{ height: "calc(100vh - 8.5rem)" }}>
                     <Chat />
                 </Grid>
             </Grid>
-        </>
+        </RoomWrapper>
     );
 };
