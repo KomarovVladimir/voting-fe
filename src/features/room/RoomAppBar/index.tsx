@@ -4,6 +4,7 @@ import {
     MenuItem,
     Button,
     Snackbar,
+    Stack,
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Link } from "react-router-dom";
@@ -61,7 +62,7 @@ export const RoomAppBar = () => {
                     </>
                 }
                 menu={
-                    <>
+                    <Stack gap={2} direction="row" mr={2}>
                         <TextField
                             select
                             value={status}
@@ -88,7 +89,7 @@ export const RoomAppBar = () => {
                         >
                             #387645
                         </Button>
-                    </>
+                    </Stack>
                 }
             />
         </>
