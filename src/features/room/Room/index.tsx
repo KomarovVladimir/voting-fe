@@ -17,6 +17,7 @@ import { useRoom } from "./useRoom";
 import { RoomAppBar } from "../RoomAppBar";
 
 const RoomWrapper = styled("div")({
+    paddingTop: "2.5rem",
     paddingLeft: "2rem",
     paddingRight: "2rem",
 });

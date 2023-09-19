@@ -26,8 +26,15 @@ export const AppBar = ({ title, menu }: AppBarProps) => {
     };
 
     return (
-        <MuiAppBar position="static" sx={{ mb: 4 }}>
-            <Toolbar>
+        <MuiAppBar
+            position="static"
+            sx={{
+                mb: 4,
+                background: "transparent",
+                boxShadow: "none",
+            }}
+        >
+            <Toolbar disableGutters>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {title}
                 </Typography>
