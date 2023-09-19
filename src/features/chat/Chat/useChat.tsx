@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { KeyboardEvent, ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useLazyGetMessagesQuery, useSendMessageMutation } from "../chatApi";
@@ -28,8 +28,15 @@ export const useChat = () => {
         setText(e.target.value as string);
     };
 
+    const handleSend = (event: KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === "Enter") {
+            handleSendMessage();
+        }
+    };
+
     return {
         text,
+        handleSend,
         messages: data?.messages,
         handleSendMessage,
         handleChange,

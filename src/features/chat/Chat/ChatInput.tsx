@@ -6,6 +6,7 @@ import { useChat } from "./useChat";
 
 const Input = styled(TextField)({
     display: "flex",
+    flexShrink: 0,
     alignItems: "center",
     height: "3rem",
     border: "none",
@@ -14,7 +15,7 @@ const Input = styled(TextField)({
 });
 
 export const ChatInput = () => {
-    const { text, handleSendMessage, handleChange } = useChat();
+    const { text, handleSend, handleSendMessage, handleChange } = useChat();
 
     return (
         <Input
@@ -24,6 +25,7 @@ export const ChatInput = () => {
             autoComplete="off"
             variant="standard"
             size="small"
+            onKeyUp={handleSend}
             InputProps={{
                 disableUnderline: true,
                 sx: {
