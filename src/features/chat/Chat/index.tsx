@@ -1,4 +1,4 @@
-import { Avatar, ListItemText, Typography } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 
 import { useChat } from "./useChat";
 import {
@@ -23,7 +23,7 @@ export const Chat = () => {
                                 alt={userName}
                                 src={avatar}
                                 sx={{
-                                    marginRight: "1rem",
+                                    marginRight: ".5rem",
                                     width: 38,
                                     height: 38,
                                 }}
