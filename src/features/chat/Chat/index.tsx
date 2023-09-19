@@ -1,18 +1,19 @@
 import {
     Avatar,
     Box,
-    Button,
+    IconButton,
     List,
     ListItem,
-    ListItemAvatar,
     ListItemText,
     TextField,
     Typography,
     styled,
 } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 import { useChat } from "./useChat";
 import { ChatPaper } from "./styled";
+import { ChatInput } from "./ChatInput";
 
 const Message = styled(ListItem)({
     alignItems: "start",
@@ -26,17 +27,12 @@ const MessageHeader = styled("div")({
     gap: "4px",
 });
 
-const ChatInput = styled(TextField)({
-    borderRadius: "8px",
-    background: "rgba(0, 0, 0, 0.20)",
-});
-
 const ChatBox = styled(List)({
     overflowY: "auto",
 });
 
 export const Chat = () => {
-    const { text, messages, handleSendMessage, handleChange } = useChat();
+    const { messages } = useChat();
 
     return (
         <>
@@ -68,25 +64,7 @@ export const Chat = () => {
                             )
                         )}
                 </ChatBox>
-                <ChatInput
-                    id="message-input"
-                    value={text}
-                    onChange={handleChange}
-                    InputProps={{
-                        endAdornment: (
-                            <>
-                                {text && (
-                                    <Button
-                                        variant="contained"
-                                        onClick={handleSendMessage}
-                                    >
-                                        Send
-                                    </Button>
-                                )}
-                            </>
-                        ),
-                    }}
-                />
+                <ChatInput />
             </ChatPaper>
         </>
     );
