@@ -1,7 +1,13 @@
-import { Avatar, Box, ListItemText, Typography } from "@mui/material";
+import { Avatar, ListItemText, Typography } from "@mui/material";
 
 import { useChat } from "./useChat";
-import { ChatBox, ChatPaper, Message, MessageHeader } from "./styled";
+import {
+    ChatBox,
+    ChatPaper,
+    Message,
+    MessageContent,
+    MessageHeader,
+} from "./styled";
 import { ChatInput } from "./ChatInput";
 
 export const Chat = () => {
@@ -22,20 +28,24 @@ export const Chat = () => {
                                     height: 38,
                                 }}
                             />
-                            <Box>
+                            <MessageContent>
                                 <MessageHeader>
                                     <Typography
                                         color="primary"
                                         fontWeight="600"
+                                        fontSize="small"
                                     >
                                         {userName}
                                     </Typography>
-                                    <Typography color="primary">
+                                    <Typography
+                                        color="primary"
+                                        fontSize=".75rem"
+                                    >
                                         {date}
                                     </Typography>
                                 </MessageHeader>
-                                <ListItemText primary={text} />
-                            </Box>
+                                <Typography>{text}</Typography>
+                            </MessageContent>
                         </Message>
                     ))}
             </ChatBox>

@@ -1,4 +1,14 @@
-import { List, ListItem, Paper, styled } from "@mui/material";
+import { List, ListItem, Paper, TextField, styled } from "@mui/material";
+
+export const Input = styled(TextField)({
+    display: "flex",
+    flexShrink: 0,
+    alignItems: "center",
+    height: "3rem",
+    border: "none",
+    borderRadius: "8px",
+    background: "rgba(0, 0, 0, 0.20)",
+});
 
 export const ChatPaper = styled(Paper)({
     display: "flex",
@@ -18,6 +28,13 @@ export const ChatPaper = styled(Paper)({
 export const Message = styled(ListItem)({
     alignItems: "start",
     justifyContent: "start",
+    maxWidth: "80%",
+});
+
+export const MessageContent = styled("div")({
+    padding: ".6rem .75rem",
+    borderRadius: "0 8px 8px 8px",
+    background: "rgba(0, 0, 0, 0.20)",
 });
 
 export const MessageHeader = styled("div")({

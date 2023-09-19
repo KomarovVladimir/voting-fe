@@ -1,18 +1,8 @@
-import styled from "@emotion/styled";
-import { TextField, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 import { useChat } from "./useChat";
-
-const Input = styled(TextField)({
-    display: "flex",
-    flexShrink: 0,
-    alignItems: "center",
-    height: "3rem",
-    border: "none",
-    borderRadius: "8px",
-    background: "rgba(0, 0, 0, 0.20)",
-});
+import { Input } from "./styled";
 
 export const ChatInput = () => {
     const { text, handleSend, handleSendMessage, handleChange } = useChat();
