@@ -6,6 +6,7 @@ import {
     Typography,
     Menu,
     MenuItem,
+    Avatar,
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 
@@ -49,7 +50,14 @@ export const AppBar = ({ title, menu }: AppBarProps) => {
                             onClick={handleMenu}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            <Avatar
+                                alt={user?.email}
+                                src={user?.avatar}
+                                sx={{
+                                    width: "2.5rem",
+                                    height: "2.5rem",
+                                }}
+                            />
                         </IconButton>
                         <Menu
                             id="menu-appbar"

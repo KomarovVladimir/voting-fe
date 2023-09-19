@@ -4,5 +4,6 @@ export type UserData = {
     firstName: string;
     lastName: string;
     password: string;
+    avatar: string;
     role: string;
 };

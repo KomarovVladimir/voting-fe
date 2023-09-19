@@ -65,6 +65,7 @@ const server = createServer({
             password: "testpassword123123",
             firstName: faker.person.firstName(),
             lastName: faker.person.lastName(),
+            avatar: faker.image.avatar(),
         });
         server.createList("room", 5).forEach(({ id: roomId }) => {
             server
@@ -187,9 +188,8 @@ const server = createServer({
                       {},
                       {
                           data: {
+                              ...user.attrs,
                               token: "token",
-                              role: user.role,
-                              email: user.email,
                           },
                       }
                   )
