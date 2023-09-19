@@ -34,7 +34,7 @@ export const Message = styled(ListItem)({
 export const MessageContent = styled("div")({
     padding: ".6rem .75rem",
     borderRadius: "0 8px 8px 8px",
-    background: "rgba(0, 0, 0, 0.20)",
+    background: "rgba(203, 227, 255, 0.10)",
 });
 
 export const MessageHeader = styled("div")({
