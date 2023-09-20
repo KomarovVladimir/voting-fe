@@ -18,6 +18,7 @@ import { useRoomAppBar } from "./useRoomAppBar";
 import { ParticipantsDialog } from "../ParticipantsDialog";
 
 //TODO: Update the breadcrumbs
+//TODO: Split code. Rework the menu buttons
 export const RoomAppBar = () => {
     const {
         handleSnackbarClose,
@@ -72,12 +73,12 @@ export const RoomAppBar = () => {
                     </Stack>
                 }
                 menu={
-                    <Stack gap={2} direction="row" mr={2}>
+                    <Stack gap={2} direction="row" mr={2} alignItems="center">
                         <TextField
                             select
                             value={status}
-                            label="Status"
                             onChange={handleStatusChange}
+                            variant="standard"
                             sx={{ minWidth: 120 }}
                         >
                             {roomStatuses.map((item, index) => (
@@ -94,8 +95,21 @@ export const RoomAppBar = () => {
                         </Button>
                         <Button
                             onClick={handleSnackbarOpen}
-                            endIcon={<ContentCopyIcon />}
-                            sx={{ color: "#fff" }}
+                            endIcon={
+                                <ContentCopyIcon
+                                    sx={{ height: "1rem", width: "1rem" }}
+                                />
+                            }
+                            sx={{
+                                padding: ".5rem .75rem",
+                                color: "#fff",
+                                borderRadius: ".5rem",
+                                border: " 1px solid #383c47",
+                                background: " rgba(203, 227, 255, 0.10)",
+                                boxShadow:
+                                    "8px 16px 24px 0px rgba(0, 0, 0, 0.16)",
+                                backdropFilter: "blur(8px)",
+                            }}
                         >
                             #387645
                         </Button>
