@@ -49,8 +49,6 @@ export const ChatBox = styled(List)({
     flexDirection: "column",
     gap: "1rem",
     overflowY: "auto",
-    paddingLeft: ".5rem",
-    paddingRight: "0.4rem",
 
     "&::-webkit-scrollbar": {
         width: "0.4em",
