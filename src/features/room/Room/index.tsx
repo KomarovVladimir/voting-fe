@@ -22,6 +22,7 @@ const RoomWrapper = styled("div")({
     paddingRight: "2rem",
 });
 
+//TODO: Move the styles
 export const Room = () => {
     const {
         item,
@@ -35,9 +36,9 @@ export const Room = () => {
     return (
         <RoomWrapper>
             <RoomAppBar />
-            <Grid container spacing={2}>
+            <Grid container spacing={2} rowSpacing="0">
                 <Grid item xs={6}>
-                    <List dense>
+                    <List dense disablePadding>
                         {items?.map(({ id, name, votes }) => (
                             <ListItem
                                 key={id}
@@ -50,6 +51,15 @@ export const Room = () => {
                                         <CloseIcon />
                                     </IconButton>
                                 }
+                                sx={{
+                                    borderRadius: ".5rem",
+                                    mb: "1rem",
+                                    border: " 1px solid #383c47",
+                                    background: "rgba(203, 227, 255, 0.10)",
+                                    boxShadow:
+                                        "8px 16px 24px 0px rgba(0, 0, 0, 0.16)",
+                                    backdropFilter: "blur(8px)",
+                                }}
                             >
                                 <ListItemText
                                     primary={name}

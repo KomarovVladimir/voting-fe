@@ -30,7 +30,7 @@ export const AppBar = ({ title, menu }: AppBarProps) => {
         <MuiAppBar
             position="static"
             sx={{
-                mb: 4,
+                mb: 3,
                 background: "transparent",
                 boxShadow: "none",
             }}
