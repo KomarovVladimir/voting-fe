@@ -7,6 +7,7 @@ import {
     Stack,
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Link } from "react-router-dom";
 
 import { AppBar } from "components";
@@ -16,6 +17,7 @@ import { useRoomAppBar } from "./useRoomAppBar";
 
 import { ParticipantsDialog } from "../ParticipantsDialog";
 
+//TODO: Update the breadcrumbs
 export const RoomAppBar = () => {
     const {
         handleSnackbarClose,
@@ -47,19 +49,27 @@ export const RoomAppBar = () => {
             />
             <AppBar
                 title={
-                    <>
+                    <Stack direction="row" gap={0.5} alignItems="center">
                         <Typography
-                            variant="h6"
                             component={Link}
                             to="/authorized/rooms"
-                            mr={2}
+                            color="white"
+                            fontSize="2rem"
+                            sx={{
+                                textDecoration: "none",
+                                boxShadow: "none",
+                                "&:hover": {
+                                    color: "primary.main",
+                                },
+                            }}
                         >
                             Rooms
                         </Typography>
-                        <Typography variant="h6" component="span">
+                        <ArrowBackIosNewIcon fontSize="small" />
+                        <Typography component="span" fontSize="2rem">
                             {name}
                         </Typography>
-                    </>
+                    </Stack>
                 }
                 menu={
                     <Stack gap={2} direction="row" mr={2}>
