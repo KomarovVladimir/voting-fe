@@ -77,14 +77,27 @@ export const Room = () => {
                                 onChange={handleItemChange}
                                 onKeyUp={handleKeyUp}
                                 onBlur={handleAddItem}
+                                InputProps={{
+                                    disableUnderline: true,
+                                    sx: {
+                                        p: ".2rem 1rem",
+                                        width: "100%",
+                                        height: "100%",
+                                    },
+                                    endAdornment: (
+                                        <>
+                                            {item && (
+                                                <Button
+                                                    variant="contained"
+                                                    onClick={handleAddItem}
+                                                >
+                                                    Add
+                                                </Button>
+                                            )}
+                                        </>
+                                    ),
+                                }}
                             />
-                            <Button
-                                variant="contained"
-                                disabled={!item}
-                                onClick={handleAddItem}
-                            >
-                                Add
-                            </Button>
                         </>
                     )}
                 </Grid>
