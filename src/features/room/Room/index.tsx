@@ -1,34 +1,22 @@
-import {
-    Grid,
-    IconButton,
-    List,
-    ListItem,
-    ListItemText,
-    styled,
-} from "@mui/material";
+import { Grid, IconButton, List, ListItem, ListItemText } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { Chat } from "features";
+import { PageWrapper } from "components";
 
 import { useRoom } from "./useRoom";
 
 import { RoomAppBar } from "../RoomAppBar";
 import { ItemInput } from "../ItemInput";
 
-const RoomWrapper = styled("div")({
-    paddingTop: "2.5rem",
-    paddingLeft: "2rem",
-    paddingRight: "2rem",
-});
-
 //TODO: Move the styles
 export const Room = () => {
     const { items, handleRemoveItem } = useRoom();
 
     return (
-        <RoomWrapper>
+        <PageWrapper>
             <RoomAppBar />
-            <Grid container spacing={2} rowSpacing="0">
+            <Grid container spacing={2} rowSpacing="0" height="100%">
                 <Grid item xs={6}>
                     <List dense disablePadding>
                         {items?.map(({ id, name, votes }) => (
@@ -62,10 +50,10 @@ export const Room = () => {
                     </List>
                     {items && items.length < 10 && <ItemInput />}
                 </Grid>
-                <Grid item xs={6} sx={{ height: "calc(100vh - 8.5rem)" }}>
+                <Grid item xs={6} sx={{ height: "100%" }}>
                     <Chat />
                 </Grid>
             </Grid>
-        </RoomWrapper>
+        </PageWrapper>
     );
 };

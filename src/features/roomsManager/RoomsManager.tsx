@@ -1,7 +1,7 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 
-import { AppBar } from "components";
+import { AppBar, PageWrapper } from "components";
 
 import { ActionDialog } from "./ActionDialog";
 import { joinRoom, createRoom } from "./roomsManagerSlice";
@@ -35,11 +35,11 @@ export const RoomsManager = () => {
     };
 
     return (
-        <>
+        <PageWrapper>
             <AppBar
                 title="Rooms"
                 menu={
-                    <>
+                    <Stack gap={2} direction="row" mr={2} alignItems="center">
                         <Button
                             sx={{ color: "#fff" }}
                             onClick={handleOpen("create")}
@@ -52,7 +52,7 @@ export const RoomsManager = () => {
                         >
                             Join
                         </Button>
-                    </>
+                    </Stack>
                 }
             />
             <ActionDialog
@@ -67,6 +67,6 @@ export const RoomsManager = () => {
                     </Grid>
                 ))}
             </Grid>
-        </>
+        </PageWrapper>
     );
 };

@@ -1,16 +1,16 @@
-import { AccountCircle } from "@mui/icons-material";
 import {
     AppBar as MuiAppBar,
-    Toolbar,
     IconButton,
-    Typography,
     Menu,
     MenuItem,
     Avatar,
+    Box,
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 
 import { useAuth } from "features/auth/hooks/useAuth";
+
+import { Toolbar, Title } from "./styled";
 
 export type AppBarProps = { title: ReactNode; menu?: ReactNode };
 
@@ -36,11 +36,9 @@ export const AppBar = ({ title, menu }: AppBarProps) => {
             }}
         >
             <Toolbar disableGutters>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    {title}
-                </Typography>
+                <Title>{title}</Title>
                 {user && (
-                    <>
+                    <Box display="flex">
                         {menu}
                         <IconButton
                             size="large"
@@ -79,7 +77,7 @@ export const AppBar = ({ title, menu }: AppBarProps) => {
                             </MenuItem>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </Menu>
-                    </>
+                    </Box>
                 )}
             </Toolbar>
         </MuiAppBar>
