@@ -16,7 +16,12 @@ export const Room = () => {
     return (
         <PageWrapper>
             <RoomAppBar />
-            <Grid container spacing={2} rowSpacing="0" height="100%">
+            <Grid
+                container
+                spacing={2}
+                rowSpacing="0"
+                sx={{ height: "calc(100vh - 10rem)" }}
+            >
                 <Grid item xs={6}>
                     <List dense disablePadding>
                         {items?.map(({ id, name, votes }) => (
