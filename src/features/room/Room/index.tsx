@@ -1,11 +1,9 @@
 import {
-    Button,
     Grid,
     IconButton,
     List,
     ListItem,
     ListItemText,
-    TextField,
     styled,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -15,6 +13,7 @@ import { Chat } from "features";
 import { useRoom } from "./useRoom";
 
 import { RoomAppBar } from "../RoomAppBar";
+import { ItemInput } from "../ItemInput";
 
 const RoomWrapper = styled("div")({
     paddingTop: "2.5rem",
@@ -24,14 +23,7 @@ const RoomWrapper = styled("div")({
 
 //TODO: Move the styles
 export const Room = () => {
-    const {
-        item,
-        items,
-        handleAddItem,
-        handleKeyUp,
-        handleRemoveItem,
-        handleItemChange,
-    } = useRoom();
+    const { items, handleRemoveItem } = useRoom();
 
     return (
         <RoomWrapper>
@@ -68,38 +60,7 @@ export const Room = () => {
                             </ListItem>
                         ))}
                     </List>
-                    {items && items.length < 10 && (
-                        <>
-                            <TextField
-                                label="Add item*"
-                                type="text"
-                                value={item}
-                                onChange={handleItemChange}
-                                onKeyUp={handleKeyUp}
-                                onBlur={handleAddItem}
-                                InputProps={{
-                                    disableUnderline: true,
-                                    sx: {
-                                        p: ".2rem 1rem",
-                                        width: "100%",
-                                        height: "100%",
-                                    },
-                                    endAdornment: (
-                                        <>
-                                            {item && (
-                                                <Button
-                                                    variant="contained"
-                                                    onClick={handleAddItem}
-                                                >
-                                                    Add
-                                                </Button>
-                                            )}
-                                        </>
-                                    ),
-                                }}
-                            />
-                        </>
-                    )}
+                    {items && items.length < 10 && <ItemInput />}
                 </Grid>
                 <Grid item xs={6} sx={{ height: "calc(100vh - 8.5rem)" }}>
                     <Chat />

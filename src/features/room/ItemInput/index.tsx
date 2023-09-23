@@ -1,21 +1,22 @@
 import { IconButton } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
+import AddIcon from "@mui/icons-material/Add";
 
-import { useChat } from "./useChat";
+import { useItemInput } from "./useItemInput";
 import { Input } from "./styled";
 
-export const ChatInput = () => {
-    const { text, handleSend, handleSendMessage, handleChange } = useChat();
+export const ItemInput = () => {
+    const { item, handleAddItem, handleKeyUp, handleItemChange } =
+        useItemInput();
 
     return (
         <Input
             id="message-input"
-            value={text}
-            onChange={handleChange}
+            value={item}
+            onChange={handleItemChange}
             autoComplete="off"
             variant="standard"
             size="small"
-            onKeyUp={handleSend}
+            onKeyUp={handleKeyUp}
             InputProps={{
                 disableUnderline: true,
                 sx: {
@@ -25,15 +26,15 @@ export const ChatInput = () => {
                 },
                 endAdornment: (
                     <>
-                        {text && (
-                            <IconButton onClick={handleSendMessage}>
-                                <SendIcon />
+                        {item && (
+                            <IconButton onClick={handleAddItem}>
+                                <AddIcon />
                             </IconButton>
                         )}
                     </>
                 ),
             }}
-            placeholder="Write a message..."
+            placeholder="Add an item..."
         />
     );
 };
