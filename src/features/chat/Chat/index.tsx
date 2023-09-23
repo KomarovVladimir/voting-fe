@@ -8,7 +8,8 @@ import {
     MessageContent,
     MessageHeader,
 } from "./styled";
-import { ChatInput } from "./ChatInput";
+
+import { ChatInput } from "../ChatInput";
 
 export const Chat = () => {
     const { messages } = useChat();
