@@ -178,7 +178,7 @@ const server = createServer({
             }
         );
 
-        this.post("/login", (schema, request) => {
+        this.post("users/login", (schema, request) => {
             const { email, password } = JSON.parse(request.requestBody);
             const user = schema.users.findBy({ email });
 
@@ -200,11 +200,26 @@ const server = createServer({
                   );
         });
 
-        this.post("/logout", (schema, request) => {
+        this.post("users/logout", (schema, request) => {
             const email = JSON.parse(request.requestBody).email;
             schema.users.findBy({ email }).token = null;
 
             return new Response(200);
+        });
+
+        this.post("users/register", (schema, request) => {
+            const attrs = JSON.parse(request.requestBody);
+            const user = schema.users.findBy({ email: attrs.email });
+
+            if (!user) {
+                return schema.users.create({ ...attrs });
+            } else {
+                new Response(
+                    409,
+                    {},
+                    { errors: ["Error: User with this email already exists"] }
+                );
+            }
         });
     },
 });

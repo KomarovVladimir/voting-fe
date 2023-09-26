@@ -15,6 +15,35 @@ import { StyledPaper } from "components";
 import { useAuth } from "../hooks";
 import { RegistrationData } from "../api";
 
+const validate = ({
+    firstName,
+    lastName,
+    email,
+    password,
+    confirm,
+}: Record<string, string>) => {
+    const errors = {} as Record<string, string>;
+
+    if (!email) {
+        errors.email = "Required";
+    }
+    if (!password) {
+        errors.password = "Required";
+    }
+    if (!confirm) {
+        errors.confirm = "Required";
+    } else if (confirm !== password) {
+        errors.confirm = "The password confirmation does not match";
+    }
+    if (!firstName) {
+        errors.firstName = "Required";
+    }
+    if (!lastName) {
+        errors.lastName = "Required";
+    }
+    return errors;
+};
+
 export const RegistrationForm = () => {
     const { handleRegister } = useAuth();
 
@@ -26,7 +55,6 @@ export const RegistrationForm = () => {
         <StyledPaper sx={{ width: "100%" }}>
             <Form
                 onSubmit={onSubmit}
-                // validate={validate}
                 render={({ handleSubmit }) => (
                     <Box component="form" onSubmit={handleSubmit}>
                         <Stack direction="column" spacing={2} padding={3}>
@@ -35,81 +63,110 @@ export const RegistrationForm = () => {
                                     name="email"
                                     render={({
                                         input: { value, onChange },
+                                        meta: { touched, error },
                                     }) => (
                                         <TextField
                                             label="Email"
                                             type="email"
-                                            {...{ value, onChange }}
+                                            {...{
+                                                error: Boolean(
+                                                    touched && error
+                                                ),
+                                                value,
+                                                onChange,
+                                            }}
+                                            helperText={error}
                                         />
                                     )}
                                 />
-                                <FormHelperText>Email helper</FormHelperText>
                             </FormControl>
                             <FormControl required>
                                 <Field
                                     name="password"
                                     render={({
                                         input: { value, onChange },
+                                        meta: { touched, error },
                                     }) => (
                                         <TextField
                                             label="Password*"
                                             type="password"
-                                            {...{ value, onChange }}
+                                            {...{
+                                                error: Boolean(
+                                                    touched && error
+                                                ),
+                                                value,
+                                                onChange,
+                                            }}
+                                            helperText={error}
                                         />
                                     )}
                                 />
-                                <FormHelperText>Password helper</FormHelperText>
                             </FormControl>
                             <FormControl required>
                                 <Field
-                                    name="confirmPassword"
+                                    name="confirm"
                                     render={({
                                         input: { value, onChange },
+                                        meta: { touched, error },
                                     }) => (
                                         <TextField
                                             label="Confirm password*"
                                             type="password"
-                                            {...{ value, onChange }}
+                                            {...{
+                                                error: Boolean(
+                                                    touched && error
+                                                ),
+                                                value,
+                                                onChange,
+                                            }}
+                                            helperText={error}
                                         />
                                     )}
                                 />
-                                <FormHelperText>
-                                    Confirm password helper
-                                </FormHelperText>
                             </FormControl>
                             <FormControl>
                                 <Field
                                     name="firstName"
                                     render={({
                                         input: { value, onChange },
+                                        meta: { touched, error },
                                     }) => (
                                         <TextField
                                             label="First name"
                                             type="text"
-                                            {...{ value, onChange }}
+                                            {...{
+                                                error: Boolean(
+                                                    touched && error
+                                                ),
+                                                value,
+                                                onChange,
+                                            }}
+                                            helperText={error}
                                         />
                                     )}
                                 />
-                                <FormHelperText>
-                                    First name helper
-                                </FormHelperText>
                             </FormControl>
                             <FormControl>
                                 <Field
                                     name="lastName"
                                     render={({
                                         input: { value, onChange },
+                                        meta: { touched, error },
                                     }) => (
                                         <TextField
                                             label="Last name"
                                             type="text"
-                                            {...{ value, onChange }}
+                                            {...{
+                                                error: Boolean(
+                                                    touched && error
+                                                ),
+                                                value,
+                                                onChange,
+                                            }}
+                                            helperText={error}
                                         />
                                     )}
                                 />
-                                <FormHelperText>
-                                    Last name helper
-                                </FormHelperText>
                             </FormControl>
                             <Button variant="contained" type="submit">
                                 Register
@@ -120,6 +177,7 @@ export const RegistrationForm = () => {
                         </Stack>
                     </Box>
                 )}
+                {...{ validate }}
             />
         </StyledPaper>
     );

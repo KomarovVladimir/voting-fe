@@ -20,7 +20,7 @@ export const authApi = createApi({
     endpoints: (builder) => ({
         loginRequest: builder.mutation<QueryReturnValue, AuthData>({
             query: (payload) => ({
-                url: "/login",
+                url: "users/login",
                 method: "POST",
                 body: payload,
             }),
@@ -28,7 +28,7 @@ export const authApi = createApi({
         }),
         logoutRequest: builder.mutation<void, { email: string }>({
             query: (payload) => ({
-                url: "/logout",
+                url: "users/logout",
                 method: "POST",
                 body: payload,
             }),
@@ -39,7 +39,7 @@ export const authApi = createApi({
             RegistrationData
         >({
             query: (payload) => ({
-                url: "/register",
+                url: "users/register",
                 method: "POST",
                 body: payload,
             }),
