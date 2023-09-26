@@ -12,8 +12,10 @@ import { Form, Field } from "react-final-form";
 
 import { StyledPaper } from "components";
 
-import { useAuth } from "../hooks/useAuth";
-import { AuthData } from "../api/authApi";
+import { validate } from "./utils";
+
+import { useAuth } from "../../hooks/useAuth";
+import { AuthData } from "../../api/authApi";
 
 export const LoginForm = () => {
     const { handleLogin } = useAuth();
@@ -26,7 +28,6 @@ export const LoginForm = () => {
         <StyledPaper sx={{ width: "100%" }}>
             <Form
                 onSubmit={onSubmit}
-                // validate={validate}
                 initialValues={{
                     email: "test@email.com",
                     password: "testpassword123123",
@@ -39,30 +40,44 @@ export const LoginForm = () => {
                                     name="email"
                                     render={({
                                         input: { value, onChange },
+                                        meta: { touched, error },
                                     }) => (
                                         <TextField
                                             label="Email"
                                             type="email"
-                                            {...{ value, onChange }}
+                                            {...{
+                                                error: Boolean(
+                                                    touched && error
+                                                ),
+                                                value,
+                                                onChange,
+                                            }}
+                                            helperText={touched && error}
                                         />
                                     )}
                                 />
-                                <FormHelperText>Email helper</FormHelperText>
                             </FormControl>
                             <FormControl>
                                 <Field
                                     name="password"
                                     render={({
                                         input: { value, onChange },
+                                        meta: { touched, error },
                                     }) => (
                                         <TextField
                                             label="Password"
                                             type="password"
-                                            {...{ value, onChange }}
+                                            {...{
+                                                error: Boolean(
+                                                    touched && error
+                                                ),
+                                                value,
+                                                onChange,
+                                            }}
+                                            helperText={touched && error}
                                         />
                                     )}
                                 />
-                                <FormHelperText>Password helper</FormHelperText>
                             </FormControl>
                             <Button variant="contained" type="submit">
                                 Log In
@@ -73,6 +88,7 @@ export const LoginForm = () => {
                         </Stack>
                     </Box>
                 )}
+                {...{ validate }}
             />
         </StyledPaper>
     );

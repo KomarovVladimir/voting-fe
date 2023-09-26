@@ -2,7 +2,6 @@ import {
     Box,
     Button,
     FormControl,
-    FormHelperText,
     Stack,
     TextField,
     Link as MuiLink,
@@ -12,37 +11,10 @@ import { Field, Form } from "react-final-form";
 
 import { StyledPaper } from "components";
 
-import { useAuth } from "../hooks";
-import { RegistrationData } from "../api";
+import { validate } from "./utils";
 
-const validate = ({
-    firstName,
-    lastName,
-    email,
-    password,
-    confirm,
-}: Record<string, string>) => {
-    const errors = {} as Record<string, string>;
-
-    if (!email) {
-        errors.email = "Required";
-    }
-    if (!password) {
-        errors.password = "Required";
-    }
-    if (!confirm) {
-        errors.confirm = "Required";
-    } else if (confirm !== password) {
-        errors.confirm = "The password confirmation does not match";
-    }
-    if (!firstName) {
-        errors.firstName = "Required";
-    }
-    if (!lastName) {
-        errors.lastName = "Required";
-    }
-    return errors;
-};
+import { useAuth } from "../../hooks";
+import { RegistrationData } from "../../api";
 
 export const RegistrationForm = () => {
     const { handleRegister } = useAuth();
@@ -75,7 +47,7 @@ export const RegistrationForm = () => {
                                                 value,
                                                 onChange,
                                             }}
-                                            helperText={error}
+                                            helperText={touched && error}
                                         />
                                     )}
                                 />
@@ -97,7 +69,7 @@ export const RegistrationForm = () => {
                                                 value,
                                                 onChange,
                                             }}
-                                            helperText={error}
+                                            helperText={touched && error}
                                         />
                                     )}
                                 />
@@ -119,7 +91,7 @@ export const RegistrationForm = () => {
                                                 value,
                                                 onChange,
                                             }}
-                                            helperText={error}
+                                            helperText={touched && error}
                                         />
                                     )}
                                 />
@@ -141,7 +113,7 @@ export const RegistrationForm = () => {
                                                 value,
                                                 onChange,
                                             }}
-                                            helperText={error}
+                                            helperText={touched && error}
                                         />
                                     )}
                                 />
@@ -163,7 +135,7 @@ export const RegistrationForm = () => {
                                                 value,
                                                 onChange,
                                             }}
-                                            helperText={error}
+                                            helperText={touched && error}
                                         />
                                     )}
                                 />
