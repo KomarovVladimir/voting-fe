@@ -1,20 +1,24 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 import { useLocalStorage } from "hooks/useLocalStorage";
 
 import {
     AuthData,
+    RegistrationData,
     useLoginRequestMutation,
     useLogoutRequestMutation,
+    useRegistrationRequestMutation,
 } from "../api/authApi";
-
 import { useUser } from "./useUser";
 import { UserData } from "../types/UserData.type";
 
 export const useAuth = () => {
     const { user, addUser, removeUser } = useUser();
     const { getItem } = useLocalStorage("user");
+    const navigate = useNavigate();
     const [loginRequest, loginResult] = useLoginRequestMutation();
+    const [registrationRequest] = useRegistrationRequestMutation();
     const [logoutRequest] = useLogoutRequestMutation();
 
     useEffect(() => {
@@ -45,7 +49,13 @@ export const useAuth = () => {
         }
     };
 
-    const handleRegister = () => {};
+    const handleRegister = (data: RegistrationData) => {
+        registrationRequest(data)
+            .then(() => {
+                navigate(`/`);
+            })
+            .catch((error) => console.error("An error occurred", error));
+    };
 
     return { user, handleLogin, loginResult, handleRegister, handleLogout };
 };

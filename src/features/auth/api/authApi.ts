@@ -6,6 +6,13 @@ export type AuthData = {
     password: string;
 };
 
+export type RegistrationData = {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+};
+
 export const authApi = createApi({
     reducerPath: "authApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
@@ -27,7 +34,22 @@ export const authApi = createApi({
             }),
             invalidatesTags: ["Auth"],
         }),
+        registrationRequest: builder.mutation<
+            QueryReturnValue,
+            RegistrationData
+        >({
+            query: (payload) => ({
+                url: "/register",
+                method: "POST",
+                body: payload,
+            }),
+            invalidatesTags: ["Auth"],
+        }),
     }),
 });
 
-export const { useLoginRequestMutation, useLogoutRequestMutation } = authApi;
+export const {
+    useLoginRequestMutation,
+    useLogoutRequestMutation,
+    useRegistrationRequestMutation,
+} = authApi;
