@@ -3,15 +3,16 @@ import {
     Button,
     FormControl,
     FormHelperText,
-    Paper,
     Stack,
     TextField,
     Link as MuiLink,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
+import { StyledPaper } from "components";
+
 export const RegistrationForm = () => (
-    <Paper>
+    <StyledPaper sx={{ width: "100%" }}>
         <Box component="form">
             <Stack direction="column" spacing={2} padding={3}>
                 <FormControl required>
@@ -40,5 +41,5 @@ export const RegistrationForm = () => (
                 </MuiLink>
             </Stack>
         </Box>
-    </Paper>
+    </StyledPaper>
 );

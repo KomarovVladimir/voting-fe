@@ -23,7 +23,7 @@ export const LoginForm = () => {
     };
 
     return (
-        <StyledPaper>
+        <StyledPaper sx={{ width: "100%" }}>
             <Form
                 onSubmit={onSubmit}
                 // validate={validate}

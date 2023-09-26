@@ -11,7 +11,10 @@ export const PublicRoutes = () => {
     }
 
     return (
-        <Container maxWidth="xs">
+        <Container
+            maxWidth="xs"
+            sx={{ display: "flex", alignItems: "center", height: "100%" }}
+        >
             <Outlet />
         </Container>
     );
