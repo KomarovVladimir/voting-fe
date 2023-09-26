@@ -3,13 +3,14 @@ import {
     Button,
     FormControl,
     FormHelperText,
-    Paper,
     Stack,
     TextField,
     Link as MuiLink,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Form, Field } from "react-final-form";
+
+import { StyledPaper } from "components";
 
 import { useAuth } from "../hooks/useAuth";
 import { AuthData } from "../api/authApi";
@@ -22,7 +23,7 @@ export const LoginForm = () => {
     };
 
     return (
-        <Paper>
+        <StyledPaper>
             <Form
                 onSubmit={onSubmit}
                 // validate={validate}
@@ -73,6 +74,6 @@ export const LoginForm = () => {
                     </Box>
                 )}
             />
-        </Paper>
+        </StyledPaper>
     );
 };
