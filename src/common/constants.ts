@@ -1,1 +1,1 @@
-export const roomStatuses = ["Pending", "Active", "Completed"];
+export const roomStatuses = ["Paused", "Active", "Completed"];

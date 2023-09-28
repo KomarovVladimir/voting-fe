@@ -19,7 +19,7 @@ export const roomsManagerSlice = createSlice({
     reducers: {
         reset: () => initialState,
         createRoom(state, action: PayloadAction<string>) {
-            state[nanoid()] = { name: action.payload, status: "Pending" };
+            state[nanoid()] = { name: action.payload, status: "Paused" };
         },
         joinRoom(state, action: PayloadAction<string>) {
             state[nanoid()] = { name: action.payload, status: "Test" };
