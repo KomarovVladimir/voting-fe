@@ -1,15 +1,9 @@
-import {
-    Card,
-    CardMedia,
-    CardContent,
-    Typography,
-    CardActionArea,
-    Stack,
-} from "@mui/material";
+import { CardContent, Typography, CardActionArea, Stack } from "@mui/material";
 import { useNavigate } from "react-router";
 
-import image from "assets/images/paella.jpg";
 import { roomStatuses } from "common/constants";
+
+import { StyledCard } from "./styled";
 
 export type RoomCardProps = {
     id: string;
@@ -32,14 +26,8 @@ export const RoomCard = ({
     };
 
     return (
-        <Card>
+        <StyledCard>
             <CardActionArea onClick={handleNavigate}>
-                <CardMedia
-                    component="img"
-                    height="140"
-                    image={image}
-                    alt="Image"
-                />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {name}
@@ -56,6 +44,6 @@ export const RoomCard = ({
                     </Stack>
                 </CardContent>
             </CardActionArea>
-        </Card>
+        </StyledCard>
     );
 };
