@@ -2,7 +2,6 @@ import {
     Box,
     Button,
     FormControl,
-    FormHelperText,
     Stack,
     TextField,
     Link as MuiLink,
@@ -10,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 
-import { StyledPaper } from "components";
+import { Paper } from "components";
 
 import { validate } from "./utils";
 
@@ -25,7 +24,7 @@ export const LoginForm = () => {
     };
 
     return (
-        <StyledPaper sx={{ width: "100%" }}>
+        <Paper sx={{ width: "100%" }}>
             <Form
                 onSubmit={onSubmit}
                 initialValues={{
@@ -90,6 +89,6 @@ export const LoginForm = () => {
                 )}
                 {...{ validate }}
             />
-        </StyledPaper>
+        </Paper>
     );
 };

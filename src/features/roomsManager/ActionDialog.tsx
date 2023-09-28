@@ -1,6 +1,6 @@
 import {
-    Dialog,
     Box,
+    Dialog,
     TextField,
     Button,
     DialogActions,
@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 import { ChangeEvent, FormEvent, useState } from "react";
+
+import { Paper } from "components";
 
 type ActionDialogProps = {
     open: boolean;
@@ -37,7 +39,7 @@ export const ActionDialog = ({ open, action, onClose }: ActionDialogProps) => {
     };
 
     return (
-        <Dialog onClose={handleClose} {...{ open }}>
+        <Dialog onClose={handleClose} PaperComponent={Paper} {...{ open }}>
             <Box component="form" onSubmit={handleSubmit}>
                 <DialogTitle>Add a new room</DialogTitle>
                 <DialogContent>

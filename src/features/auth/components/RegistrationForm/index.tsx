@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { Field, Form } from "react-final-form";
 
-import { StyledPaper } from "components";
+import { Paper } from "components";
 
 import { validate } from "./utils";
 
@@ -24,7 +24,7 @@ export const RegistrationForm = () => {
     };
 
     return (
-        <StyledPaper sx={{ width: "100%" }}>
+        <Paper sx={{ width: "100%" }}>
             <Form
                 onSubmit={onSubmit}
                 render={({ handleSubmit }) => (
@@ -151,6 +151,6 @@ export const RegistrationForm = () => {
                 )}
                 {...{ validate }}
             />
-        </StyledPaper>
+        </Paper>
     );
 };

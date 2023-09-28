@@ -1,7 +1,6 @@
 import { Paper as MuiPaper, styled } from "@mui/material";
 
-export const StyledPaper = styled(MuiPaper)({
-    padding: ".75rem 1rem",
+export const Paper = styled(MuiPaper)({
     borderRadius: "8px",
     border: " 1px solid #383c47",
     background: "rgba(203, 227, 255, 0.10)",
