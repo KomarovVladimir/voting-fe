@@ -1,23 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-type Item = {
-    id: string;
-    name: string;
-    votes: number;
-    roomId: string | number;
-};
-
-type ItemsData = { items: Item[] };
-
-type Room = {
-    id: string;
-    name: string;
-    status: string;
-};
-
-type RoomData = {
-    room: Room;
-};
+import { ItemData, ItemsData, Room, RoomData } from "./types";
 
 export const roomApi = createApi({
     reducerPath: "roomApi",
@@ -34,7 +17,7 @@ export const roomApi = createApi({
         }),
         addItem: builder.mutation<
             { success: boolean; id: number },
-            Partial<Item>
+            Partial<ItemData>
         >({
             query: ({ roomId, ...body }) => ({
                 url: `/rooms/${roomId}/items`,

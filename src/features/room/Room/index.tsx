@@ -1,17 +1,16 @@
-import { Grid, IconButton, List, ListItemText } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Grid, List } from "@mui/material";
 
 import { Chat } from "features";
 import { PageWrapper } from "components";
 
 import { useRoom } from "./useRoom";
-import { ListItem } from "./styled";
 
+import { Item } from "../Item";
 import { RoomAppBar } from "../RoomAppBar";
 import { ItemInput } from "../ItemInput";
 
 export const Room = () => {
-    const { items, handleRemoveItem } = useRoom();
+    const { items } = useRoom();
 
     return (
         <PageWrapper>
@@ -25,23 +24,7 @@ export const Room = () => {
                 <Grid item xs={6}>
                     <List dense disablePadding>
                         {items?.map(({ id, name, votes }) => (
-                            <ListItem
-                                key={id}
-                                secondaryAction={
-                                    <IconButton
-                                        edge="end"
-                                        aria-label="delete"
-                                        onClick={handleRemoveItem(id)}
-                                    >
-                                        <CloseIcon />
-                                    </IconButton>
-                                }
-                            >
-                                <ListItemText
-                                    primary={name}
-                                    secondary={votes}
-                                />
-                            </ListItem>
+                            <Item key={id} {...{ id, name, votes }} />
                         ))}
                     </List>
                     {items && items.length < 10 && <ItemInput />}
