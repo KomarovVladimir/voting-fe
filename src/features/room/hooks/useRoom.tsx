@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 
 import { useLazyGetRoomDataQuery, useUpdateRoomMutation } from "../roomApi";
 
-export const useRoomAppBar = () => {
+export const useRoom = () => {
     const { roomId } = useParams();
     const [participantsOpen, setParticipantsOpen] = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false);

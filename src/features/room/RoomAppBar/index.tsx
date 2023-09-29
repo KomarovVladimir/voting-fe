@@ -13,9 +13,8 @@ import { Link } from "react-router-dom";
 import { AppBar } from "components";
 import { roomStatuses } from "common/constants";
 
-import { useRoomAppBar } from "./useRoomAppBar";
-
 import { ParticipantsDialog } from "../ParticipantsDialog";
+import { useRoom } from "../hooks";
 
 //TODO: Update the breadcrumbs
 //TODO: Split code. Rework the menu buttons
@@ -30,7 +29,7 @@ export const RoomAppBar = () => {
         handleStatusChange,
         handleParticipantsOpen,
         handleSnackbarOpen,
-    } = useRoomAppBar();
+    } = useRoom();
 
     return (
         <>

@@ -3,14 +3,13 @@ import { Grid, List } from "@mui/material";
 import { Chat } from "features";
 import { PageWrapper } from "components";
 
-import { useRoom } from "./useRoom";
-
 import { Item } from "../Item";
 import { RoomAppBar } from "../RoomAppBar";
 import { ItemInput } from "../ItemInput";
+import { useItems } from "../hooks";
 
 export const Room = () => {
-    const { items } = useRoom();
+    const { items } = useItems();
 
     return (
         <PageWrapper>

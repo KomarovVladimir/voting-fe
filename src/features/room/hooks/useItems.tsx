@@ -1,11 +1,16 @@
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { useAddItemMutation, useLazyGetItemsQuery } from "../roomApi";
+import {
+    useAddItemMutation,
+    useDeleteItemMutation,
+    useLazyGetItemsQuery,
+} from "../roomApi";
 
-export const useRoom = () => {
+export const useItems = () => {
     const { roomId } = useParams();
     const [getItems, { data: itemsData }] = useLazyGetItemsQuery();
+    const [deleteItem] = useDeleteItemMutation();
     const [addItem] = useAddItemMutation();
     const [item, setItem] = useState("");
 
@@ -35,11 +40,16 @@ export const useRoom = () => {
         setItem(e.target.value);
     };
 
+    const handleRemoveItem = (id: string) => () => {
+        deleteItem(id);
+    };
+
     return {
         item,
         items: itemsData?.items,
         handleAddItem,
         handleKeyUp,
         handleItemChange,
+        handleRemoveItem,
     };
 };
