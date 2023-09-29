@@ -1,15 +1,15 @@
-import { Grid, IconButton, List, ListItem, ListItemText } from "@mui/material";
+import { Grid, IconButton, List, ListItemText } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { Chat } from "features";
 import { PageWrapper } from "components";
 
 import { useRoom } from "./useRoom";
+import { ListItem } from "./styled";
 
 import { RoomAppBar } from "../RoomAppBar";
 import { ItemInput } from "../ItemInput";
 
-//TODO: Move the styles
 export const Room = () => {
     const { items, handleRemoveItem } = useRoom();
 
@@ -36,15 +36,6 @@ export const Room = () => {
                                         <CloseIcon />
                                     </IconButton>
                                 }
-                                sx={{
-                                    borderRadius: ".5rem",
-                                    mb: "1rem",
-                                    border: " 1px solid #383c47",
-                                    background: "rgba(203, 227, 255, 0.10)",
-                                    boxShadow:
-                                        "8px 16px 24px 0px rgba(0, 0, 0, 0.16)",
-                                    backdropFilter: "blur(8px)",
-                                }}
                             >
                                 <ListItemText
                                     primary={name}
