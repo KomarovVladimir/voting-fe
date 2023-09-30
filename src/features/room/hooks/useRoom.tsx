@@ -25,7 +25,7 @@ export const useRoom = () => {
     }, [status, roomData]);
 
     const handleStatusChange = (e: SelectChangeEvent<number>) => {
-        updateRoom({ id: roomId, status: e.target.value as number });
+        updateRoom({ id: roomId, status: +e.target.value });
     };
 
     const handleParticipantsOpen = () => {
