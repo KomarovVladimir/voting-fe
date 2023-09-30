@@ -9,8 +9,9 @@ import { ItemInput } from "../ItemInput";
 import { useItems, useRoom } from "../hooks";
 
 export const Room = () => {
-    const { items } = useItems();
+    const { items = [] } = useItems();
     const { status } = useRoom();
+    const showInput = Boolean(status === 0 && items.length < 10);
 
     return (
         <PageWrapper>
@@ -27,7 +28,7 @@ export const Room = () => {
                             <Item key={id} {...{ id, name, votes, status }} />
                         ))}
                     </List>
-                    {items && items.length < 10 && <ItemInput />}
+                    {showInput && <ItemInput />}
                 </Grid>
                 <Grid item xs={6} sx={{ height: "100%" }}>
                     <Chat />
