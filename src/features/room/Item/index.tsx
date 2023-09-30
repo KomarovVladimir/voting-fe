@@ -12,7 +12,7 @@ type ItemProps = Omit<ItemData, "roomId"> &
 
 export const Item = ({ id, name, votes, status, ...props }: ItemProps) => {
     const { handleRemoveItem } = useItem();
-    const disabled = status !== 0;
+    const disabled = status === 2;
 
     return (
         <ListItem
