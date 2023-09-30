@@ -10,7 +10,7 @@ export const ItemInput = () => {
 
     return (
         <Input
-            id="message-input"
+            id="item-input"
             value={item}
             onChange={handleItemChange}
             autoComplete="off"

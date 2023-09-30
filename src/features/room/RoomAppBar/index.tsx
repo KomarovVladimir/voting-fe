@@ -60,6 +60,7 @@ export const RoomAppBar = () => {
                 menu={
                     <Stack gap={2} direction="row" mr={2} alignItems="center">
                         <Select
+                            name="status-select"
                             value={status}
                             onChange={handleStatusChange}
                             variant="standard"
