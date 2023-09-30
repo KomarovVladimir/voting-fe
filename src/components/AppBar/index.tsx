@@ -10,11 +10,11 @@ import { ReactNode, useState } from "react";
 
 import { useAuth } from "features/auth/hooks/useAuth";
 
-import { Toolbar, Title } from "./styled";
+import { Toolbar } from "./styled";
 
-export type AppBarProps = { title: ReactNode; menu?: ReactNode };
+export type AppBarProps = { leftBlock: ReactNode; menu?: ReactNode };
 
-export const AppBar = ({ title, menu }: AppBarProps) => {
+export const AppBar = ({ leftBlock, menu }: AppBarProps) => {
     const { user, handleLogout } = useAuth();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -36,7 +36,7 @@ export const AppBar = ({ title, menu }: AppBarProps) => {
             }}
         >
             <Toolbar disableGutters>
-                <Title>{title}</Title>
+                <Box>{leftBlock}</Box>
                 {user && (
                     <Box display="flex">
                         {menu}

@@ -1,7 +1,7 @@
 import { Button, Grid, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 
-import { AppBar, PageWrapper } from "components";
+import { AppBar, PageWrapper, Title } from "components";
 
 import { ActionDialog } from "./ActionDialog";
 import { joinRoom, createRoom } from "./roomsManagerSlice";
@@ -37,7 +37,7 @@ export const RoomsManager = () => {
     return (
         <PageWrapper>
             <AppBar
-                title="Rooms"
+                leftBlock={<Title>Rooms</Title>}
                 menu={
                     <Stack gap={2} direction="row" mr={2} alignItems="center">
                         <Button

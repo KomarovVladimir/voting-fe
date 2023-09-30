@@ -1,5 +1,5 @@
 import {
-    Typography,
+    Link as MuiLink,
     MenuItem,
     Button,
     Snackbar,
@@ -10,7 +10,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Link } from "react-router-dom";
 
-import { AppBar } from "components";
+import { AppBar, Title, TitleLink } from "components";
 import { roomStatuses } from "common/constants";
 
 import { ParticipantsDialog } from "../ParticipantsDialog";
@@ -48,27 +48,13 @@ export const RoomAppBar = () => {
                 onClose={handleParticipantsClose}
             />
             <AppBar
-                title={
+                leftBlock={
                     <Stack direction="row" gap={0.5} alignItems="center">
-                        <Typography
-                            component={Link}
-                            to="/authorized/rooms"
-                            color="white"
-                            fontSize="2rem"
-                            sx={{
-                                textDecoration: "none",
-                                boxShadow: "none",
-                                "&:hover": {
-                                    color: "primary.main",
-                                },
-                            }}
-                        >
+                        <TitleLink component={Link} to="/authorized/rooms">
                             Rooms
-                        </Typography>
+                        </TitleLink>
                         <ArrowBackIosNewIcon fontSize="small" />
-                        <Typography component="span" fontSize="2rem">
-                            {name}
-                        </Typography>
+                        <Title>{name}</Title>
                     </Stack>
                 }
                 menu={
