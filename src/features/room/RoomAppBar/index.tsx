@@ -1,10 +1,10 @@
 import {
     Typography,
-    TextField,
     MenuItem,
     Button,
     Snackbar,
     Stack,
+    Select,
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -20,15 +20,15 @@ import { useRoom } from "../hooks";
 //TODO: Split code. Rework the menu buttons
 export const RoomAppBar = () => {
     const {
-        handleSnackbarClose,
-        snackbarOpen,
-        participantsOpen,
-        handleParticipantsClose,
         name,
         status,
-        handleStatusChange,
-        handleParticipantsOpen,
+        snackbarOpen,
+        participantsOpen,
         handleSnackbarOpen,
+        handleStatusChange,
+        handleSnackbarClose,
+        handleParticipantsOpen,
+        handleParticipantsClose,
     } = useRoom();
 
     return (
@@ -73,19 +73,20 @@ export const RoomAppBar = () => {
                 }
                 menu={
                     <Stack gap={2} direction="row" mr={2} alignItems="center">
-                        <TextField
-                            select
+                        <Select
                             value={status}
                             onChange={handleStatusChange}
                             variant="standard"
                             sx={{ minWidth: 120 }}
                         >
-                            {roomStatuses.map((item, index) => (
-                                <MenuItem key={index} value={index}>
-                                    {item}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                            {Object.entries(roomStatuses).map(
+                                ([key, value]) => (
+                                    <MenuItem {...{ key, value: key }}>
+                                        {value}
+                                    </MenuItem>
+                                )
+                            )}
+                        </Select>
                         <Button
                             sx={{ color: "#fff" }}
                             onClick={handleParticipantsOpen}

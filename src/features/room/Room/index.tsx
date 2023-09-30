@@ -6,10 +6,11 @@ import { PageWrapper } from "components";
 import { Item } from "../Item";
 import { RoomAppBar } from "../RoomAppBar";
 import { ItemInput } from "../ItemInput";
-import { useItems } from "../hooks";
+import { useItems, useRoom } from "../hooks";
 
 export const Room = () => {
     const { items } = useItems();
+    const { status } = useRoom();
 
     return (
         <PageWrapper>
@@ -23,7 +24,7 @@ export const Room = () => {
                 <Grid item xs={6}>
                     <List dense disablePadding>
                         {items?.map(({ id, name, votes }) => (
-                            <Item key={id} {...{ id, name, votes }} />
+                            <Item key={id} {...{ id, name, votes, status }} />
                         ))}
                     </List>
                     {items && items.length < 10 && <ItemInput />}

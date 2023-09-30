@@ -61,9 +61,9 @@ export const RoomsManager = () => {
                 {...{ open }}
             />
             <Grid container spacing={2}>
-                {roomsData?.rooms?.map(({ id, name, status, endingDate }) => (
+                {roomsData?.rooms?.map(({ id, name, status }) => (
                     <Grid key={id} item xs={3}>
-                        <RoomCard {...{ id, name, status, endingDate }} />
+                        <RoomCard {...{ id, name, status }} />
                     </Grid>
                 ))}
             </Grid>

@@ -10,7 +10,7 @@ export type ItemsData = { items: ItemData[] };
 export type Room = {
     id: string;
     name: string;
-    status: string;
+    status: number;
 };
 
 export type RoomData = {

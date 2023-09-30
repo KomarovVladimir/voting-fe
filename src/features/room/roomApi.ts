@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { ItemData, ItemsData, Room, RoomData } from "./types";
+import { ItemData, ItemsData, Room, RoomData } from "../../types/roomTypes";
 
 export const roomApi = createApi({
     reducerPath: "roomApi",

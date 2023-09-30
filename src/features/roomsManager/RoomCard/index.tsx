@@ -34,7 +34,7 @@ export const RoomCard = ({
                     </Typography>
                     <Stack direction="row" justifyContent="space-between">
                         <Typography variant="body2" color="text.secondary">
-                            {roomStatuses[status]}
+                            {roomStatuses[status as keyof typeof roomStatuses]}
                         </Typography>
                         {
                             <Typography variant="body2" color="text.secondary">
