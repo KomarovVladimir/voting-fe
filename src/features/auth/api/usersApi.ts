@@ -5,7 +5,7 @@ import { UserData } from "features/auth/types/UserData.type";
 
 export const usersApi = createApi({
     reducerPath: "usersApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["User"],
     endpoints: (builder) => ({
         getUser: builder.query<UserData, number>({

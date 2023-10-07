@@ -15,7 +15,7 @@ export type RegistrationData = {
 
 export const authApi = createApi({
     reducerPath: "authApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Auth"],
     endpoints: (builder) => ({
         loginRequest: builder.mutation<QueryReturnValue, AuthData>({

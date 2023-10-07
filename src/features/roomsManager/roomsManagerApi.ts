@@ -5,7 +5,7 @@ import { Room } from "types";
 
 export const roomsManagerApi = createApi({
     reducerPath: "roomsManagerApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Rooms"],
     endpoints: (builder) => ({
         getRooms: builder.query<{ rooms: Room[] }, void>({

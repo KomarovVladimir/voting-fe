@@ -4,7 +4,7 @@ import { ItemData, ItemsData, Room, RoomData } from "../../types/roomTypes";
 
 export const roomApi = createApi({
     reducerPath: "roomApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Rooms", "Items"],
     endpoints: (builder) => ({
         getRoomData: builder.query<RoomData, string>({
