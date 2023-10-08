@@ -25,8 +25,6 @@ export const RoomsManager = () => {
         getRooms();
     }, [getRooms]);
 
-    console.log(roomsData);
-
     const handleOpen = (actionType: Actions) => () => {
         setOpen(true);
         setAction(actionType);
