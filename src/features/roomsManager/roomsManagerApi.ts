@@ -8,7 +8,7 @@ export const roomsManagerApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Rooms"],
     endpoints: (builder) => ({
-        getRooms: builder.query<{ rooms: Room[] }, void>({
+        getRooms: builder.query<{ data: Room[] }, void>({
             query: () => ({ url: `/rooms` }),
             providesTags: () => [{ type: "Rooms" }],
         }),

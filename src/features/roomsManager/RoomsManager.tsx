@@ -25,6 +25,8 @@ export const RoomsManager = () => {
         getRooms();
     }, [getRooms]);
 
+    console.log(roomsData);
+
     const handleOpen = (actionType: Actions) => () => {
         setOpen(true);
         setAction(actionType);
@@ -61,7 +63,7 @@ export const RoomsManager = () => {
                 {...{ open }}
             />
             <Grid container spacing={2}>
-                {roomsData?.rooms?.map(({ id, name, status }) => (
+                {roomsData?.data?.map(({ id, name, status }) => (
                     <Grid key={id} item xs={3}>
                         <RoomCard {...{ id, name, status }} />
                     </Grid>
