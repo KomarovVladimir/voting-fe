@@ -7,11 +7,11 @@ export const roomApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Rooms", "Items"],
     endpoints: (builder) => ({
-        getRoomData: builder.query<{ data: Room }, string>({
+        getRoomData: builder.query<Room, string>({
             query: (roomId) => ({ url: `rooms/${roomId}` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
-        getItems: builder.query<{ data: ItemsData }, string>({
+        getItems: builder.query<ItemsData, string>({
             query: (roomId) => ({ url: `rooms/${roomId}/items` }),
             providesTags: () => [{ type: "Items" }],
         }),
@@ -19,8 +19,8 @@ export const roomApi = createApi({
             { success: boolean; id: number },
             Partial<ItemData>
         >({
-            query: ({ roomId, ...body }) => ({
-                url: `/rooms/${roomId}/items`,
+            query: (body) => ({
+                url: `/rooms/${body.id}/items`,
                 method: "POST",
                 body,
             }),
@@ -33,9 +33,9 @@ export const roomApi = createApi({
             }),
             invalidatesTags: [{ type: "Items" }],
         }),
-        updateRoom: builder.mutation<{ success: boolean }, Partial<Room>>({
-            query: ({ id: roomId, ...body }) => ({
-                url: `/rooms/${roomId}`,
+        updateRoom: builder.mutation<{ success: boolean }, Room>({
+            query: (body) => ({
+                url: `/rooms/${body.id}`,
                 method: "PATCH",
                 body,
             }),
@@ -45,8 +45,8 @@ export const roomApi = createApi({
 });
 
 export const {
-    useLazyGetRoomDataQuery,
-    useLazyGetItemsQuery,
+    useGetRoomDataQuery,
+    useGetItemsQuery,
     useAddItemMutation,
     useDeleteItemMutation,
     useUpdateRoomMutation,

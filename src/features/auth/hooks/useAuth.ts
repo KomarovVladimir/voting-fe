@@ -32,7 +32,7 @@ export const useAuth = () => {
     const handleLogin = (data: AuthData) => {
         loginRequest(data)
             .unwrap()
-            .then(({ data }) => {
+            .then((data) => {
                 addUser(data as UserData);
             })
             .catch((error) => console.error("An error occurred", error));

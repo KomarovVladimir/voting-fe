@@ -1,24 +1,18 @@
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useParams } from "react-router";
 
 import {
     useAddItemMutation,
     useDeleteItemMutation,
-    useLazyGetItemsQuery,
+    useGetItemsQuery,
 } from "../roomApi";
 
 export const useItems = () => {
-    const { roomId } = useParams();
-    const [getItems, { data: response }] = useLazyGetItemsQuery();
+    const { roomId } = useParams() as { roomId: string };
+    const { data: items } = useGetItemsQuery(roomId);
     const [deleteItem] = useDeleteItemMutation();
     const [addItem] = useAddItemMutation();
     const [item, setItem] = useState("");
-
-    useEffect(() => {
-        if (roomId) {
-            getItems(roomId);
-        }
-    }, [roomId, getItems]);
 
     const handleKeyUp = (event: KeyboardEvent<HTMLDivElement>) => {
         if (event.key === "Enter") {
@@ -46,7 +40,7 @@ export const useItems = () => {
 
     return {
         item,
-        items: response?.data,
+        items,
         handleAddItem,
         handleKeyUp,
         handleItemChange,

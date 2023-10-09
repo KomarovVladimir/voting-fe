@@ -1,6 +1,8 @@
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+import { UserData } from "../types/UserData.type";
+
 export type AuthData = {
     email: string;
     password: string;
@@ -18,7 +20,7 @@ export const authApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Auth"],
     endpoints: (builder) => ({
-        loginRequest: builder.mutation<QueryReturnValue, AuthData>({
+        loginRequest: builder.mutation<UserData, AuthData>({
             query: (payload) => ({
                 url: "users/login",
                 method: "POST",
