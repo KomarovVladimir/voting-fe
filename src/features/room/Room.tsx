@@ -2,16 +2,17 @@ import { Grid, List } from "@mui/material";
 
 import { Chat } from "features";
 import { PageWrapper } from "components";
+import { statuses } from "common/statuses";
 
-import { Item } from "../Item";
-import { RoomAppBar } from "../RoomAppBar";
-import { ItemInput } from "../ItemInput";
-import { useItems, useRoom } from "../hooks";
+import { Item } from "./Item";
+import { RoomAppBar } from "./RoomAppBar";
+import { ItemInput } from "./ItemInput";
+import { useItems, useRoom } from "./hooks";
 
 export const Room = () => {
     const { items = [] } = useItems();
     const { status } = useRoom();
-    const showInput = Boolean(status === 0 && items.length < 10);
+    const showInput = Boolean(status === statuses[0] && items.length < 10);
 
     return (
         <PageWrapper>

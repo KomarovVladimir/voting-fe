@@ -1,14 +1,15 @@
 import { CardContent, Typography, CardActionArea, Stack } from "@mui/material";
 import { useNavigate } from "react-router";
 
-import { roomStatuses } from "common/constants";
+import { statuses } from "common/statuses";
+import { Status } from "types";
 
 import { StyledCard } from "./styled";
 
 export type RoomCardProps = {
     id: string;
     name: string;
-    status: number;
+    status: Status;
     participants?: number;
 };
 
@@ -16,7 +17,7 @@ export type RoomCardProps = {
 export const RoomCard = ({
     id,
     name,
-    status = 0,
+    status = statuses[0],
     participants = 0,
 }: RoomCardProps) => {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ export const RoomCard = ({
                     </Typography>
                     <Stack direction="row" justifyContent="space-between">
                         <Typography variant="body2" color="text.secondary">
-                            {roomStatuses[status as keyof typeof roomStatuses]}
+                            {status}
                         </Typography>
                         {
                             <Typography variant="body2" color="text.secondary">

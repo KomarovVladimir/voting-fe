@@ -1,6 +1,8 @@
 import { SelectChangeEvent } from "@mui/material";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+
+import { Status } from "types";
 
 import { useLazyGetRoomDataQuery, useUpdateRoomMutation } from "../roomApi";
 
@@ -8,9 +10,9 @@ export const useRoom = () => {
     const { roomId } = useParams();
     const [participantsOpen, setParticipantsOpen] = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
-    const [status, setStatus] = useState(0);
+    const [status, setStatus] = useState<Status>("Pending");
     const [updateRoom] = useUpdateRoomMutation();
-    const [getRoomData, { data: roomData }] = useLazyGetRoomDataQuery();
+    const [getRoomData, { data: response }] = useLazyGetRoomDataQuery();
 
     useEffect(() => {
         if (roomId) {
@@ -19,13 +21,13 @@ export const useRoom = () => {
     }, [roomId, getRoomData]);
 
     useEffect(() => {
-        if (roomData) {
-            setStatus(roomData.room.status);
+        if (response) {
+            setStatus(response?.data?.status);
         }
-    }, [status, roomData]);
+    }, [status, response]);
 
-    const handleStatusChange = (e: SelectChangeEvent<number>) => {
-        updateRoom({ id: roomId, status: +e.target.value });
+    const handleStatusChange = (e: SelectChangeEvent) => {
+        updateRoom({ id: roomId, status: e.target.value as Status });
     };
 
     const handleParticipantsOpen = () => {
@@ -46,7 +48,7 @@ export const useRoom = () => {
 
     return {
         status,
-        name: roomData?.room?.name,
+        name: response?.data?.name,
         snackbarOpen,
         handleSnackbarOpen,
         handleSnackbarClose,

@@ -1,3 +1,7 @@
+import { statuses } from "common/statuses";
+
+export type Status = (typeof statuses)[number];
+
 export type ItemData = {
     id: string;
     name: string;
@@ -5,14 +9,10 @@ export type ItemData = {
     roomId: string | number;
 };
 
-export type ItemsData = { items: ItemData[] };
+export type ItemsData = ItemData[];
 
 export type Room = {
     id: string;
     name: string;
-    status: number;
-};
-
-export type RoomData = {
-    room: Room;
+    status: Status;
 };

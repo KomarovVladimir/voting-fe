@@ -1,17 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { ItemData, ItemsData, Room, RoomData } from "../../types/roomTypes";
+import { ItemData, ItemsData, Room } from "./types";
 
 export const roomApi = createApi({
     reducerPath: "roomApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Rooms", "Items"],
     endpoints: (builder) => ({
-        getRoomData: builder.query<RoomData, string>({
+        getRoomData: builder.query<{ data: Room }, string>({
             query: (roomId) => ({ url: `rooms/${roomId}` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
-        getItems: builder.query<ItemsData, string>({
+        getItems: builder.query<{ data: ItemsData }, string>({
             query: (roomId) => ({ url: `rooms/${roomId}/items` }),
             providesTags: () => [{ type: "Items" }],
         }),

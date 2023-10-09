@@ -1,20 +1,13 @@
-import {
-    Link as MuiLink,
-    MenuItem,
-    Button,
-    Snackbar,
-    Stack,
-    Select,
-} from "@mui/material";
+import { MenuItem, Button, Snackbar, Stack, Select } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { Link } from "react-router-dom";
 
 import { AppBar, Title, TitleLink } from "components";
-import { roomStatuses } from "common/constants";
+import { statuses } from "common/statuses";
 
-import { ParticipantsDialog } from "../ParticipantsDialog";
-import { useRoom } from "../hooks";
+import { ParticipantsDialog } from "./ParticipantsDialog";
+import { useRoom } from "./hooks";
 
 //TODO: Update the breadcrumbs
 //TODO: Split code. Rework the menu buttons
@@ -66,13 +59,11 @@ export const RoomAppBar = () => {
                             variant="standard"
                             sx={{ minWidth: 120 }}
                         >
-                            {Object.entries(roomStatuses).map(
-                                ([key, value]) => (
-                                    <MenuItem {...{ key, value: key }}>
-                                        {value}
-                                    </MenuItem>
-                                )
-                            )}
+                            {statuses.map((value, index) => (
+                                <MenuItem key={index} {...{ value }}>
+                                    {value}
+                                </MenuItem>
+                            ))}
                         </Select>
                         <Button
                             sx={{ color: "#fff" }}

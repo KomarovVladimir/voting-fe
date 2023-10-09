@@ -9,7 +9,7 @@ import {
 
 export const useItemInput = () => {
     const { roomId } = useParams();
-    const [getItems, { data: itemsData }] = useLazyGetItemsQuery();
+    const [getItems, { data: items }] = useLazyGetItemsQuery();
     const [addItem] = useAddItemMutation();
     const [deleteItem] = useDeleteItemMutation();
     const [item, setItem] = useState("");
@@ -46,7 +46,7 @@ export const useItemInput = () => {
 
     return {
         item,
-        items: itemsData?.items,
+        items,
         handleRemoveItem,
         handleAddItem,
         handleKeyUp,

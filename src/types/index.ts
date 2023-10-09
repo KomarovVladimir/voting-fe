@@ -1,1 +1,1 @@
-export * from "./roomTypes";
+export * from "../features/room/types";
