@@ -4,16 +4,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import { statuses } from "common/statuses";
 
 import { ListItem } from "./styled";
-import { useItem } from "./useItem";
 
 import { ItemData, Room } from "../types";
+import { useItems } from "../hooks";
 
 type ItemProps = Omit<ItemData, "roomId"> &
     ListItemProps &
     Pick<Room, "status">;
 
 export const Item = ({ id, name, votes, status, ...props }: ItemProps) => {
-    const { handleRemoveItem } = useItem();
+    const { handleRemoveItem } = useItems();
     const disabled = status === statuses[2];
 
     return (

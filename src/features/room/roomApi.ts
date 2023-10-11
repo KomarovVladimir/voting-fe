@@ -17,18 +17,21 @@ export const roomApi = createApi({
         }),
         addItem: builder.mutation<
             { success: boolean; id: number },
-            Partial<ItemData>
+            Pick<ItemData, "roomId" | "name">
         >({
-            query: (body) => ({
-                url: `/rooms/${body.id}/items`,
+            query: ({ roomId, ...body }) => ({
+                url: `/rooms/${roomId}/items`,
                 method: "POST",
                 body,
             }),
             invalidatesTags: [{ type: "Items" }],
         }),
-        deleteItem: builder.mutation<{ success: boolean; id: number }, string>({
-            query: (itemId) => ({
-                url: `/items/${itemId}`,
+        deleteItem: builder.mutation<
+            { success: boolean; id: number },
+            Pick<ItemData, "roomId" | "id">
+        >({
+            query: ({ roomId, id }) => ({
+                url: `/rooms/${roomId}/items/${id}`,
                 method: "DELETE",
             }),
             invalidatesTags: [{ type: "Items" }],

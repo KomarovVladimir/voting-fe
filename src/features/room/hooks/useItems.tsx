@@ -7,6 +7,7 @@ import {
     useGetItemsQuery,
 } from "../roomApi";
 
+//TODO: Move the hooks
 export const useItems = () => {
     const { roomId } = useParams() as { roomId: string };
     const { data: items } = useGetItemsQuery(roomId);
@@ -22,10 +23,7 @@ export const useItems = () => {
 
     const handleAddItem = () => {
         if (item) {
-            addItem({
-                roomId,
-                name: item,
-            });
+            addItem({ roomId, name: item });
             setItem("");
         }
     };
@@ -35,7 +33,7 @@ export const useItems = () => {
     };
 
     const handleRemoveItem = (id: string) => () => {
-        deleteItem(id);
+        deleteItem({ roomId, id });
     };
 
     return {
