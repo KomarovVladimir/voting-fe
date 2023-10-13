@@ -2,7 +2,7 @@ import { SelectChangeEvent } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { Status } from "types";
+import { Status } from "types/roomTypes";
 
 import { useGetRoomDataQuery, useUpdateRoomMutation } from "../roomApi";
 

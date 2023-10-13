@@ -2,15 +2,13 @@ import { IconButton, ListItemProps, ListItemText } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { statuses } from "common/statuses";
+import { IItem, IRoom } from "types/roomTypes";
 
 import { ListItem } from "./styled";
 
-import { ItemData, Room } from "../types";
 import { useItems } from "../hooks";
 
-type ItemProps = Omit<ItemData, "roomId"> &
-    ListItemProps &
-    Pick<Room, "status">;
+type ItemProps = Omit<IItem, "roomId"> & ListItemProps & Pick<IRoom, "status">;
 
 export const Item = ({ id, name, votes, status, ...props }: ItemProps) => {
     const { handleRemoveItem } = useItems();

@@ -2,17 +2,15 @@ import { statuses } from "common/statuses";
 
 export type Status = (typeof statuses)[number];
 
-export type ItemData = {
+export interface IItem {
     id: string;
     name: string;
     votes: number;
     roomId: string | number;
-};
+}
 
-export type ItemsData = ItemData[];
-
-export type Room = {
+export interface IRoom {
     id: string;
     name: string;
     status: Status;
-};
+}

@@ -1,4 +1,4 @@
-import { KeyboardEvent, ChangeEvent, useEffect, useState } from "react";
+import { KeyboardEvent, ChangeEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useSendMessageMutation } from "../chatApi";

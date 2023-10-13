@@ -2,7 +2,7 @@ import { CardContent, Typography, CardActionArea, Stack } from "@mui/material";
 import { useNavigate } from "react-router";
 
 import { statuses } from "common/statuses";
-import { Status } from "types";
+import { Status } from "types/roomTypes";
 
 import { StyledCard } from "./styled";
 
