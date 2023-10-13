@@ -1,19 +1,12 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { useLazyGetMessagesQuery } from "../chatApi";
+import { useGetMessagesQuery } from "../chatApi";
 
 export const useChat = () => {
-    const { roomId } = useParams();
-    const [trigger, { data }] = useLazyGetMessagesQuery();
-
-    useEffect(() => {
-        if (roomId) {
-            trigger(roomId);
-        }
-    }, [roomId, trigger]);
+    const { roomId } = useParams() as { roomId: string };
+    const { data: messages } = useGetMessagesQuery(roomId);
 
     return {
-        messages: data?.messages,
+        messages,
     };
 };

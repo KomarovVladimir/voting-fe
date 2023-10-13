@@ -14,7 +14,7 @@ export const chatApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Chat"],
     endpoints: (builder) => ({
-        getMessages: builder.query<{ messages: Message[] }, string>({
+        getMessages: builder.query<Message[], string>({
             query: (roomId) => ({ url: `rooms/${roomId}/messages` }),
             providesTags: () => [{ type: "Chat" }],
         }),
@@ -43,7 +43,7 @@ export const chatApi = createApi({
 });
 
 export const {
-    useLazyGetMessagesQuery,
+    useGetMessagesQuery,
     useDeleteMessageMutation,
     useSendMessageMutation,
 } = chatApi;
