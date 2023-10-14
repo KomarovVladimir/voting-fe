@@ -1,3 +1,4 @@
+import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { IRoom, IItem } from "types/roomTypes";
@@ -16,7 +17,7 @@ export const roomApi = createApi({
             providesTags: () => [{ type: "Items" }],
         }),
         addItem: builder.mutation<
-            { success: boolean; id: number },
+            QueryReturnValue,
             Pick<IItem, "roomId" | "name">
         >({
             query: ({ roomId, ...body }) => ({
@@ -27,7 +28,7 @@ export const roomApi = createApi({
             invalidatesTags: [{ type: "Items" }],
         }),
         deleteItem: builder.mutation<
-            { success: boolean; id: number },
+            QueryReturnValue,
             Pick<IItem, "roomId" | "id">
         >({
             query: ({ roomId, id }) => ({

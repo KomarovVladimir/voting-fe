@@ -1,3 +1,4 @@
+import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 //TODO: Move the types
@@ -25,10 +26,7 @@ export const chatApi = createApi({
             query: (roomId) => ({ url: `rooms/${roomId}/messages` }),
             providesTags: () => [{ type: "Chat" }],
         }),
-        sendMessage: builder.mutation<
-            { success: boolean; id: number },
-            IMessageQuery
-        >({
+        sendMessage: builder.mutation<QueryReturnValue, IMessageQuery>({
             query: ({ roomId, ...body }) => ({
                 url: `rooms/${roomId}/messages`,
                 method: "POST",
@@ -36,10 +34,7 @@ export const chatApi = createApi({
             }),
             invalidatesTags: [{ type: "Chat" }],
         }),
-        deleteMessage: builder.mutation<
-            { success: boolean; id: number },
-            string
-        >({
+        deleteMessage: builder.mutation<QueryReturnValue, string>({
             query: (messageId) => ({
                 url: `/messages/${messageId}`,
                 method: "DELETE",
