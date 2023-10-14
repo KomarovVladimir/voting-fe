@@ -12,6 +12,7 @@ export interface IMessageQuery {
     roomId: string;
     userId: number;
     text: string;
+    postingDate: Date;
 }
 
 //TODO: Update the response types

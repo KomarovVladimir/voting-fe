@@ -14,7 +14,7 @@ export const useChatInput = () => {
     const [text, setText] = useState("");
 
     const handleSendMessage = () => {
-        sendMessage({ roomId, userId, text });
+        sendMessage({ roomId, userId, text, postingDate: new Date() });
         setText("");
     };
 
