@@ -38,11 +38,6 @@ export const CreationDialog = ({ open, onClose }: CreationDialogProps) => {
         onClose();
     };
 
-    const handleCreate = () => {
-        createRoom({ name, userId, creationDate: new Date() });
-        setName("");
-        onClose();
-    };
     const handleClose = () => {
         setName("");
         onClose();

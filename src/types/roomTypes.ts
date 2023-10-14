@@ -10,7 +10,7 @@ export interface IItem {
 }
 
 export interface IRoom {
-    id: string;
+    id: number;
     name: string;
     status: Status;
 }

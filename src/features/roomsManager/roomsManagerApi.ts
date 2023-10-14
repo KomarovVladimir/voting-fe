@@ -10,6 +10,7 @@ export interface ICreateRoomQuery {
     creationDate: Date;
 }
 
+//TODO: Add QueryReturnValue everywhere
 export const roomsManagerApi = createApi({
     reducerPath: "roomsManagerApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
@@ -27,7 +28,19 @@ export const roomsManagerApi = createApi({
             }),
             invalidatesTags: ["Rooms"],
         }),
+        deleteRoom: builder.mutation<QueryReturnValue, number>({
+            query: (id) => ({
+                url: "/rooms",
+                method: "DELETE",
+                body: { id },
+            }),
+            invalidatesTags: ["Rooms"],
+        }),
     }),
 });
 
-export const { useGetRoomsQuery, useCreateRoomMutation } = roomsManagerApi;
+export const {
+    useGetRoomsQuery,
+    useCreateRoomMutation,
+    useDeleteRoomMutation,
+} = roomsManagerApi;

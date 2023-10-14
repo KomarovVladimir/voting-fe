@@ -22,7 +22,7 @@ export const useRoom = () => {
 
     const handleStatusChange = (e: SelectChangeEvent) => {
         updateRoom({
-            id: roomId,
+            id: Number(roomId),
             name: room?.name as string,
             status: e.target.value as Status,
         });
