@@ -1,18 +1,18 @@
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { UserData } from "features/auth/types/UserData.type";
+import { IUser } from "features/auth/types/types";
 
 export const usersApi = createApi({
     reducerPath: "usersApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["User"],
     endpoints: (builder) => ({
-        getUser: builder.query<UserData, number>({
+        getUser: builder.query<IUser, number>({
             query: (id) => ({ url: `/users/${id}` }),
             providesTags: (result, error, id) => [{ type: "User", id }],
         }),
-        getUsersList: builder.query<{ users: UserData[] }, void>({
+        getUsersList: builder.query<{ users: IUser[] }, void>({
             query: () => ({ url: `/users` }),
             providesTags: () => [{ type: "User" }],
         }),

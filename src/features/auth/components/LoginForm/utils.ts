@@ -1,4 +1,6 @@
-export const validate = ({ email, password }: Record<string, string>) => {
+import { ILoginForm } from ".";
+
+export const validate = ({ email, password }: ILoginForm) => {
     const errors = {} as Record<string, string>;
 
     if (!email) {

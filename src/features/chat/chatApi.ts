@@ -1,26 +1,32 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export type Message = {
+//TODO: Move the types
+export interface IMessage {
     id: string;
     userName: string;
-    avatar: string;
     text: string;
     date: string;
-    roomId: number | string;
-};
+}
 
+export interface IMessageQuery {
+    roomId: string;
+    userId: number;
+    text: string;
+}
+
+//TODO: Update the response types
 export const chatApi = createApi({
     reducerPath: "chatApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Chat"],
     endpoints: (builder) => ({
-        getMessages: builder.query<Message[], string>({
+        getMessages: builder.query<IMessage[], string>({
             query: (roomId) => ({ url: `rooms/${roomId}/messages` }),
             providesTags: () => [{ type: "Chat" }],
         }),
         sendMessage: builder.mutation<
             { success: boolean; id: number },
-            Partial<Message>
+            IMessageQuery
         >({
             query: ({ roomId, ...body }) => ({
                 url: `rooms/${roomId}/messages`,

@@ -14,12 +14,18 @@ import { Paper } from "components";
 import { validate } from "./utils";
 
 import { useAuth } from "../../hooks/useAuth";
-import { AuthData } from "../../api/authApi";
+import { IAuthData } from "../../api/authApi";
+
+//TODO: Move the types
+export interface ILoginForm {
+    email: string;
+    password: string;
+}
 
 export const LoginForm = () => {
     const { handleLogin } = useAuth();
 
-    const onSubmit = (values: AuthData) => {
+    const onSubmit = (values: IAuthData) => {
         handleLogin(values);
     };
 

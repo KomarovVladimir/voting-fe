@@ -1,4 +1,4 @@
-import { Avatar, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import { useChat } from "./useChat";
 import {
@@ -11,6 +11,7 @@ import {
 
 import { ChatInput } from "../ChatInput";
 
+//TODO: Add avatars
 export const Chat = () => {
     const { messages } = useChat();
 
@@ -18,9 +19,9 @@ export const Chat = () => {
         <ChatPaper>
             <ChatBox dense disablePadding>
                 {messages &&
-                    messages?.map(({ id, userName, date, text, avatar }) => (
+                    messages?.map(({ id, userName, date, text }) => (
                         <Message key={id} dense disablePadding>
-                            <Avatar
+                            {/* <Avatar
                                 alt={userName}
                                 src={avatar}
                                 sx={{
@@ -28,7 +29,7 @@ export const Chat = () => {
                                     width: 38,
                                     height: 38,
                                 }}
-                            />
+                            /> */}
                             <MessageContent>
                                 <MessageHeader>
                                     <Typography

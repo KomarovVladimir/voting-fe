@@ -1,10 +1,12 @@
+import { IRegistrationForm } from ".";
+
 export const validate = ({
     firstName,
     lastName,
     email,
     password,
     confirm,
-}: Record<string, string>) => {
+}: IRegistrationForm) => {
     const errors = {} as Record<string, string>;
 
     if (!email) {

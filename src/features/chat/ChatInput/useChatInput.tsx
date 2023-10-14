@@ -3,18 +3,19 @@ import { useParams } from "react-router-dom";
 
 import { useSendMessageMutation } from "../chatApi";
 import { useUser } from "features/auth/hooks/useUser";
+import { IUser } from "features/auth/types/types";
 
 export const useChatInput = () => {
-    const { user } = useUser();
-    const { roomId } = useParams();
+    const {
+        user: { id: userId },
+    } = useUser() as { user: IUser };
+    const { roomId } = useParams() as { roomId: string };
     const [sendMessage] = useSendMessageMutation();
     const [text, setText] = useState("");
 
     const handleSendMessage = () => {
-        if (roomId) {
-            sendMessage({ userName: user?.email, roomId, text });
-            setText("");
-        }
+        sendMessage({ roomId, userId, text });
+        setText("");
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

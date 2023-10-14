@@ -14,12 +14,21 @@ import { Paper } from "components";
 import { validate } from "./utils";
 
 import { useAuth } from "../../hooks";
-import { RegistrationData } from "../../api";
+import { IRegistrationData } from "../../api";
+
+//TODO: Move the types
+export interface IRegistrationForm {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    confirm: string;
+}
 
 export const RegistrationForm = () => {
     const { handleRegister } = useAuth();
 
-    const onSubmit = (values: RegistrationData) => {
+    const onSubmit = (values: IRegistrationData) => {
         handleRegister(values);
     };
 

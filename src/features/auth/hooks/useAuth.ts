@@ -4,15 +4,16 @@ import { useNavigate } from "react-router";
 import { useLocalStorage } from "hooks/useLocalStorage";
 
 import {
-    AuthData,
-    RegistrationData,
+    IAuthData,
+    IRegistrationData,
     useLoginRequestMutation,
     useLogoutRequestMutation,
     useRegistrationRequestMutation,
 } from "../api/authApi";
 import { useUser } from "./useUser";
-import { UserData } from "../types/UserData.type";
+import { IUser } from "../types/types";
 
+//TODO: Use async
 export const useAuth = () => {
     const { user, addUser, removeUser } = useUser();
     const { getItem } = useLocalStorage("user");
@@ -29,11 +30,11 @@ export const useAuth = () => {
         }
     }, []);
 
-    const handleLogin = (data: AuthData) => {
+    const handleLogin = (data: IAuthData) => {
         loginRequest(data)
             .unwrap()
             .then((data) => {
-                addUser(data as UserData);
+                addUser(data as IUser);
             })
             .catch((error) => console.error("An error occurred", error));
     };
@@ -49,7 +50,7 @@ export const useAuth = () => {
         }
     };
 
-    const handleRegister = (data: RegistrationData) => {
+    const handleRegister = (data: IRegistrationData) => {
         registrationRequest(data)
             .then(() => {
                 navigate(`/`);

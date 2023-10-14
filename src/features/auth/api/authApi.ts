@@ -1,26 +1,27 @@
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { UserData } from "../types/UserData.type";
+import { IUser } from "../types/types";
 
-export type AuthData = {
+export interface IAuthData {
+    id: number;
     email: string;
     password: string;
-};
+}
 
-export type RegistrationData = {
+export interface IRegistrationData {
     email: string;
     password: string;
     firstName: string;
     lastName: string;
-};
+}
 
 export const authApi = createApi({
     reducerPath: "authApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
     tagTypes: ["Auth"],
     endpoints: (builder) => ({
-        loginRequest: builder.mutation<UserData, AuthData>({
+        loginRequest: builder.mutation<IUser, IAuthData>({
             query: (payload) => ({
                 url: "users/login",
                 method: "POST",
@@ -38,7 +39,7 @@ export const authApi = createApi({
         }),
         registrationRequest: builder.mutation<
             QueryReturnValue,
-            RegistrationData
+            IRegistrationData
         >({
             query: (payload) => ({
                 url: "users/register",
