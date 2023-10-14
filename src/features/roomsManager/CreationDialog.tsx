@@ -57,7 +57,7 @@ export const CreationDialog = ({ open, onClose }: CreationDialogProps) => {
                         autoFocus
                         value={name}
                         onChange={handleChange}
-                        autoComplete="none"
+                        autoComplete="off"
                     />
                 </DialogContent>
                 <DialogActions>
