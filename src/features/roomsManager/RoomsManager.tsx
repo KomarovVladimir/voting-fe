@@ -3,28 +3,22 @@ import { useState } from "react";
 
 import { AppBar, PageWrapper, Title } from "components";
 
-import { ActionDialog } from "./ActionDialog";
-import { joinRoom, createRoom } from "./roomsManagerSlice";
+import { CreationDialog } from "./CreationDialog";
 import { RoomCard } from "./RoomCard";
-import { useCreateRoomMutation, useGetRoomsQuery } from "./roomsManagerApi";
+import { useGetRoomsQuery } from "./roomsManagerApi";
 
-const dialogActions = {
-    create: createRoom,
-    join: joinRoom,
-};
-
-type Actions = keyof typeof dialogActions;
-
+//TODO: Move into a hook
+//TODO: Rework the dialog logic
 export const RoomsManager = () => {
     const { data: rooms } = useGetRoomsQuery();
-    const [open, setOpen] = useState(false);
-    const [createRoom] = useCreateRoomMutation();
-    const handleOpen = (actionType: Actions) => () => {
-        setOpen(true);
+    const [creationOpen, setCreationOpen] = useState(false);
+
+    const handleOpen = () => {
+        setCreationOpen(true);
     };
 
     const handleClose = () => {
-        setOpen(false);
+        setCreationOpen(false);
     };
 
     return (
@@ -33,26 +27,14 @@ export const RoomsManager = () => {
                 leftBlock={<Title>Rooms</Title>}
                 menu={
                     <Stack gap={2} direction="row" mr={2} alignItems="center">
-                        <Button
-                            sx={{ color: "#fff" }}
-                            onClick={handleOpen("create")}
-                        >
+                        <Button sx={{ color: "#fff" }} onClick={handleOpen}>
                             + New Room
                         </Button>
-                        <Button
-                            sx={{ color: "#fff" }}
-                            onClick={handleOpen("join")}
-                        >
-                            Join
-                        </Button>
+                        <Button sx={{ color: "#fff" }}>Join</Button>
                     </Stack>
                 }
             />
-            <ActionDialog
-                action={createRoom}
-                onClose={handleClose}
-                {...{ open }}
-            />
+            <CreationDialog onClose={handleClose} open={creationOpen} />
             <Grid container spacing={2}>
                 {rooms?.map(({ id, name, status }) => (
                     <Grid key={id} item xs={3}>

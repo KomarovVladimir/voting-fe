@@ -26,7 +26,6 @@ export const ParticipantsDialog = ({
     onClose,
 }: ParticipantsDialogProps) => {
     const dispatch = useDispatch();
-    const { participants } = useSelector(({ room }: RootState) => room);
 
     const handleRemove = (id: string) => () => {
         dispatch(removeParticipant(id));
@@ -39,7 +38,7 @@ export const ParticipantsDialog = ({
             {...{ open, onClose }}
         >
             <DialogTitle>Participants</DialogTitle>
-            <DialogContent>
+            {/* <DialogContent>
                 <List dense>
                     {Object.entries(participants).map(([id, { name }]) => (
                         <ListItem
@@ -58,7 +57,7 @@ export const ParticipantsDialog = ({
                         </ListItem>
                     ))}
                 </List>
-            </DialogContent>
+            </DialogContent> */}
             <DialogActions>
                 <Button onClick={onClose}>Cancel</Button>
             </DialogActions>

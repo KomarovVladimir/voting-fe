@@ -3,6 +3,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { IRoom } from "../../types/roomTypes";
 
+//TODO: Move the types
+export interface ICreateRoomQuery {
+    name: string;
+    userId: number;
+    creationDate: Date;
+}
+
 export const roomsManagerApi = createApi({
     reducerPath: "roomsManagerApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
@@ -12,11 +19,11 @@ export const roomsManagerApi = createApi({
             query: () => ({ url: `/rooms` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
-        createRoom: builder.mutation<QueryReturnValue, string>({
-            query: (name) => ({
+        createRoom: builder.mutation<QueryReturnValue, ICreateRoomQuery>({
+            query: (body) => ({
                 url: "/rooms",
                 method: "POST",
-                body: { name },
+                body,
             }),
             invalidatesTags: ["Rooms"],
         }),

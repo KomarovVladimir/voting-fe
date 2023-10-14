@@ -1,40 +1,50 @@
 import {
-    Box,
     Dialog,
     TextField,
     Button,
     DialogActions,
     DialogTitle,
     DialogContent,
+    Box,
 } from "@mui/material";
-import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { Paper } from "components";
+import { useAuth } from "features/auth";
+import { IUser } from "features/auth/types/types";
 
-type ActionDialogProps = {
+import { useCreateRoomMutation } from "./roomsManagerApi";
+
+export type CreationDialogProps = {
     open: boolean;
     onClose: () => void;
-    action: MutationTrigger<any>;
 };
 
-export const ActionDialog = ({ open, action, onClose }: ActionDialogProps) => {
-    const [itemName, setItemName] = useState("");
+export const CreationDialog = ({ open, onClose }: CreationDialogProps) => {
+    const {
+        user: { id: userId },
+    } = useAuth() as { user: IUser };
+    const [createRoom] = useCreateRoomMutation();
+    const [name, setName] = useState("");
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setItemName(event.currentTarget.value);
+        setName(event.currentTarget.value);
     };
 
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-        action(itemName).catch((error) =>
-            console.error("An error occurred", error)
-        );
-        setItemName("");
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        createRoom({ name, userId, creationDate: new Date() });
+        setName("");
+        onClose();
+    };
+
+    const handleCreate = () => {
+        createRoom({ name, userId, creationDate: new Date() });
+        setName("");
         onClose();
     };
     const handleClose = () => {
-        setItemName("");
+        setName("");
         onClose();
     };
 
@@ -45,13 +55,14 @@ export const ActionDialog = ({ open, action, onClose }: ActionDialogProps) => {
                 <DialogContent>
                     <TextField
                         autoFocus
-                        value={itemName}
+                        value={name}
                         onChange={handleChange}
+                        autoComplete="none"
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button disabled={itemName === ""} type="submit">
+                    <Button disabled={name === ""} type="submit">
                         Submit
                     </Button>
                 </DialogActions>
