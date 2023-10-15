@@ -8,12 +8,14 @@ import {
     Menu,
     MenuItem,
 } from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { MouseEvent, useState } from "react";
 import { useNavigate } from "react-router";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { statuses } from "common/statuses";
 import { Status } from "types/roomTypes";
+import { IUser } from "features/auth/types/types";
+import { useAuth } from "features/auth";
 
 import { StyledCard } from "./styled";
 
@@ -21,6 +23,7 @@ import { useDeleteRoomMutation } from "../roomsManagerApi";
 
 export type RoomCardProps = {
     id: number;
+    ownerId: number;
     name: string;
     status: Status;
     participants?: number;
@@ -34,13 +37,19 @@ export type RoomCardProps = {
 export const RoomCard = ({
     id,
     name,
+    ownerId,
     status = statuses[0],
     participants = 0,
 }: RoomCardProps) => {
+    const {
+        user: { id: userId },
+    } = useAuth() as { user: IUser };
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [deleteRoom] = useDeleteRoomMutation();
     const open = Boolean(anchorEl);
+
+    const showMenu = userId === ownerId;
 
     const handleMenuOpen = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -62,25 +71,31 @@ export const RoomCard = ({
 
     return (
         <>
-            <Menu
-                id="room-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-            >
-                <MenuItem onClick={handleClose}>Settings</MenuItem>
-                <MenuItem onClick={handleDelete}>Delete</MenuItem>
-            </Menu>
+            {showMenu && (
+                <Menu
+                    id="room-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                >
+                    <MenuItem onClick={handleClose}>Settings</MenuItem>
+                    <MenuItem onClick={handleDelete}>Delete</MenuItem>
+                </Menu>
+            )}
             <StyledCard>
                 <CardActionArea onClick={handleNavigate}>
                     <CardHeader
                         action={
-                            <IconButton
-                                aria-label="settings"
-                                onClick={handleMenuOpen}
-                            >
-                                <MoreVertIcon />
-                            </IconButton>
+                            <>
+                                {showMenu && (
+                                    <IconButton
+                                        aria-label="settings"
+                                        onClick={handleMenuOpen}
+                                    >
+                                        <MoreVertIcon />
+                                    </IconButton>
+                                )}
+                            </>
                         }
                         title={name}
                     />

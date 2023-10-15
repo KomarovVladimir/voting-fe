@@ -11,6 +11,7 @@ export interface IItem {
 
 export interface IRoom {
     id: number;
+    ownerId: number;
     name: string;
     status: Status;
 }

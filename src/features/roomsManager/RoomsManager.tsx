@@ -36,9 +36,9 @@ export const RoomsManager = () => {
             />
             <CreationDialog onClose={handleClose} open={creationOpen} />
             <Grid container spacing={2}>
-                {rooms?.map(({ id, name, status }) => (
+                {rooms?.map(({ id, ownerId, name, status }) => (
                     <Grid key={id} item xs={3}>
-                        <RoomCard {...{ id, name, status }} />
+                        <RoomCard {...{ id, ownerId, name, status }} />
                     </Grid>
                 ))}
             </Grid>

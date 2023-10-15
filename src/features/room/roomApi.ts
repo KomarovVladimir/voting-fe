@@ -37,7 +37,10 @@ export const roomApi = createApi({
             }),
             invalidatesTags: [{ type: "Items" }],
         }),
-        updateRoom: builder.mutation<{ success: boolean }, IRoom>({
+        updateRoom: builder.mutation<
+            { success: boolean },
+            Pick<IRoom, "id" | "name" | "status">
+        >({
             query: (body) => ({
                 url: `/rooms/${body.id}`,
                 method: "PATCH",
