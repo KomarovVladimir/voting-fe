@@ -53,6 +53,9 @@ export const RoomCard = ({
     const [deleteRoom] = useDeleteRoomMutation();
     const [leaveRoom] = useLeaveRoomMutation();
     const open = Boolean(anchorEl);
+
+    console.log(id);
+
     const isOwner = userId === ownerId;
 
     const handleMenuOpen = (e: MouseEvent<HTMLButtonElement>) => {
@@ -69,6 +72,8 @@ export const RoomCard = ({
     };
 
     const handleLeave = () => {
+        console.log(id, userId);
+
         leaveRoom({ roomId: id, userId });
     };
 

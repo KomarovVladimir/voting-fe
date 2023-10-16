@@ -21,6 +21,10 @@ export const roomsManagerApi = createApi({
             query: () => ({ url: `/rooms` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
+        getUserRooms: builder.query<IRoom[], number>({
+            query: (userId) => ({ url: `/user/${userId}/rooms` }),
+            providesTags: () => [{ type: "Rooms" }],
+        }),
         createRoom: builder.mutation<QueryReturnValue, ICreateRoomQuery>({
             query: (body) => ({
                 url: "/room",
@@ -31,7 +35,7 @@ export const roomsManagerApi = createApi({
         }),
         deleteRoom: builder.mutation<QueryReturnValue, number>({
             query: (id) => ({
-                url: `/room/:${id}`,
+                url: `/room/${id}`,
                 method: "DELETE",
             }),
             invalidatesTags: ["Rooms"],
@@ -60,7 +64,8 @@ export const roomsManagerApi = createApi({
 });
 
 export const {
-    useGetRoomsQuery,
+    useGetUserRoomsQuery,
+    useJoinRoomMutation,
     useLeaveRoomMutation,
     useCreateRoomMutation,
     useDeleteRoomMutation,
