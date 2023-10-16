@@ -19,7 +19,10 @@ import { useAuth } from "features/auth";
 
 import { StyledCard } from "./styled";
 
-import { useDeleteRoomMutation } from "../roomsManagerApi";
+import {
+    useDeleteRoomMutation,
+    useLeaveRoomMutation,
+} from "../roomsManagerApi";
 
 export type RoomCardProps = {
     id: number;
@@ -34,6 +37,7 @@ export type RoomCardProps = {
 //TODO: Move and style the menu
 //TODO: Add synthetic events
 //TODO: Add an deleting alert dialog
+//TODO: Make the whole card clickable
 export const RoomCard = ({
     id,
     name,
@@ -47,9 +51,9 @@ export const RoomCard = ({
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [deleteRoom] = useDeleteRoomMutation();
+    const [leaveRoom] = useLeaveRoomMutation();
     const open = Boolean(anchorEl);
-
-    const showMenu = userId === ownerId;
+    const isOwner = userId === ownerId;
 
     const handleMenuOpen = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -62,7 +66,10 @@ export const RoomCard = ({
 
     const handleDelete = () => {
         deleteRoom(id);
-        handleClose();
+    };
+
+    const handleLeave = () => {
+        leaveRoom({ roomId: id, userId });
     };
 
     const handleNavigate = () => {
@@ -71,34 +78,38 @@ export const RoomCard = ({
 
     return (
         <>
-            {showMenu && (
-                <Menu
-                    id="room-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                >
-                    <MenuItem onClick={handleClose}>Settings</MenuItem>
-                    <MenuItem onClick={handleDelete}>Delete</MenuItem>
-                </Menu>
-            )}
+            <Menu
+                id="room-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+            >
+                {isOwner ? (
+                    [
+                        <MenuItem onClick={handleClose} key="settings">
+                            Settings
+                        </MenuItem>,
+                        <MenuItem onClick={handleDelete} key="delete">
+                            Delete
+                        </MenuItem>,
+                    ]
+                ) : (
+                    <MenuItem onClick={handleLeave}>Leave</MenuItem>
+                )}
+            </Menu>
             <StyledCard>
+                <CardHeader
+                    action={
+                        <IconButton
+                            aria-label="settings"
+                            onClick={handleMenuOpen}
+                        >
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title={name}
+                />
                 <CardActionArea onClick={handleNavigate}>
-                    <CardHeader
-                        action={
-                            <>
-                                {showMenu && (
-                                    <IconButton
-                                        aria-label="settings"
-                                        onClick={handleMenuOpen}
-                                    >
-                                        <MoreVertIcon />
-                                    </IconButton>
-                                )}
-                            </>
-                        }
-                        title={name}
-                    />
                     <CardContent>
                         <Stack direction="row" justifyContent="space-between">
                             <Typography variant="body2" color="text.secondary">

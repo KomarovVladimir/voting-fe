@@ -10,6 +10,7 @@ export interface ICreateRoomQuery {
     creationDate: Date;
 }
 
+//TODO: Replace body with params
 //TODO: Add QueryReturnValue everywhere
 export const roomsManagerApi = createApi({
     reducerPath: "roomsManagerApi",
@@ -22,7 +23,7 @@ export const roomsManagerApi = createApi({
         }),
         createRoom: builder.mutation<QueryReturnValue, ICreateRoomQuery>({
             query: (body) => ({
-                url: "/rooms",
+                url: "/room",
                 method: "POST",
                 body,
             }),
@@ -30,9 +31,28 @@ export const roomsManagerApi = createApi({
         }),
         deleteRoom: builder.mutation<QueryReturnValue, number>({
             query: (id) => ({
-                url: "/rooms",
+                url: `/room/:${id}`,
                 method: "DELETE",
-                body: { id },
+            }),
+            invalidatesTags: ["Rooms"],
+        }),
+        joinRoom: builder.mutation<
+            QueryReturnValue,
+            { roomId: number; userId: number }
+        >({
+            query: ({ roomId, userId }) => ({
+                url: `/room/${roomId}/join/${userId}`,
+                method: "POST",
+            }),
+            invalidatesTags: ["Rooms"],
+        }),
+        leaveRoom: builder.mutation<
+            QueryReturnValue,
+            { roomId: number; userId: number }
+        >({
+            query: ({ roomId, userId }) => ({
+                url: `/room/${roomId}/join/${userId}`,
+                method: "DELETE",
             }),
             invalidatesTags: ["Rooms"],
         }),
@@ -41,6 +61,7 @@ export const roomsManagerApi = createApi({
 
 export const {
     useGetRoomsQuery,
+    useLeaveRoomMutation,
     useCreateRoomMutation,
     useDeleteRoomMutation,
 } = roomsManagerApi;
