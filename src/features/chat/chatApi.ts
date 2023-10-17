@@ -23,12 +23,12 @@ export const chatApi = createApi({
     tagTypes: ["Chat"],
     endpoints: (builder) => ({
         getMessages: builder.query<IMessage[], string>({
-            query: (roomId) => ({ url: `rooms/${roomId}/messages` }),
+            query: (roomId) => ({ url: `room/${roomId}/messages` }),
             providesTags: () => [{ type: "Chat" }],
         }),
         sendMessage: builder.mutation<QueryReturnValue, IMessageQuery>({
             query: ({ roomId, ...body }) => ({
-                url: `rooms/${roomId}/messages`,
+                url: `room/${roomId}/message`,
                 method: "POST",
                 body,
             }),
@@ -36,7 +36,7 @@ export const chatApi = createApi({
         }),
         deleteMessage: builder.mutation<QueryReturnValue, string>({
             query: (messageId) => ({
-                url: `/messages/${messageId}`,
+                url: `/message/${messageId}`,
                 method: "DELETE",
             }),
             invalidatesTags: [{ type: "Chat" }],

@@ -54,8 +54,6 @@ export const RoomCard = ({
     const [leaveRoom] = useLeaveRoomMutation();
     const open = Boolean(anchorEl);
 
-    console.log(id);
-
     const isOwner = userId === ownerId;
 
     const handleMenuOpen = (e: MouseEvent<HTMLButtonElement>) => {

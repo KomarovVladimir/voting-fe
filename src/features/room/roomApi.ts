@@ -9,11 +9,11 @@ export const roomApi = createApi({
     tagTypes: ["Rooms", "Items"],
     endpoints: (builder) => ({
         getRoomData: builder.query<IRoom, string>({
-            query: (roomId) => ({ url: `rooms/${roomId}` }),
+            query: (roomId) => ({ url: `room/${roomId}` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
         getItems: builder.query<IItem[], string>({
-            query: (roomId) => ({ url: `rooms/${roomId}/items` }),
+            query: (roomId) => ({ url: `room/${roomId}/items` }),
             providesTags: () => [{ type: "Items" }],
         }),
         addItem: builder.mutation<
@@ -21,7 +21,7 @@ export const roomApi = createApi({
             Pick<IItem, "roomId" | "name">
         >({
             query: ({ roomId, ...body }) => ({
-                url: `/rooms/${roomId}/items`,
+                url: `/room/${roomId}/item`,
                 method: "POST",
                 body,
             }),
@@ -32,17 +32,17 @@ export const roomApi = createApi({
             Pick<IItem, "roomId" | "id">
         >({
             query: ({ roomId, id }) => ({
-                url: `/rooms/${roomId}/items/${id}`,
+                url: `/room/${roomId}/item/${id}`,
                 method: "DELETE",
             }),
             invalidatesTags: [{ type: "Items" }],
         }),
         updateRoom: builder.mutation<
-            { success: boolean },
+            QueryReturnValue,
             Pick<IRoom, "id" | "name" | "status">
         >({
             query: (body) => ({
-                url: `/rooms/${body.id}`,
+                url: `/room/${body.id}`,
                 method: "PATCH",
                 body,
             }),
