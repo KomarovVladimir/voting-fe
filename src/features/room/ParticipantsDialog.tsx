@@ -14,8 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "app/store";
 
-import { removeParticipant } from "./roomSlice";
-
 type ParticipantsDialogProps = {
     open: boolean;
     onClose: () => void;
@@ -25,11 +23,7 @@ export const ParticipantsDialog = ({
     open,
     onClose,
 }: ParticipantsDialogProps) => {
-    const dispatch = useDispatch();
-
-    const handleRemove = (id: string) => () => {
-        dispatch(removeParticipant(id));
-    };
+    const handleRemove = (id: string) => () => {};
 
     return (
         <Dialog
