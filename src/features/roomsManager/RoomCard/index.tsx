@@ -5,11 +5,9 @@ import {
     Stack,
     IconButton,
     CardHeader,
-    Menu,
-    MenuItem,
 } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { MouseEvent, useState } from "react";
+import LogoutIcon from "@mui/icons-material/Logout";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useNavigate } from "react-router";
 
 import { statuses } from "common/statuses";
@@ -49,29 +47,15 @@ export const RoomCard = ({
         user: { id: userId },
     } = useAuth() as { user: IUser };
     const navigate = useNavigate();
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [deleteRoom] = useDeleteRoomMutation();
     const [leaveRoom] = useLeaveRoomMutation();
-    const open = Boolean(anchorEl);
 
     const isOwner = userId === ownerId;
-
-    const handleMenuOpen = (e: MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation();
-        setAnchorEl(e.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     const handleDelete = () => {
         deleteRoom(id);
     };
 
     const handleLeave = () => {
-        console.log(id, userId);
-
         leaveRoom({ roomId: id, userId });
     };
 
@@ -81,34 +65,24 @@ export const RoomCard = ({
 
     return (
         <>
-            <Menu
-                id="room-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-            >
-                {isOwner ? (
-                    [
-                        <MenuItem onClick={handleClose} key="settings">
-                            Settings
-                        </MenuItem>,
-                        <MenuItem onClick={handleDelete} key="delete">
-                            Delete
-                        </MenuItem>,
-                    ]
-                ) : (
-                    <MenuItem onClick={handleLeave}>Leave</MenuItem>
-                )}
-            </Menu>
             <StyledCard>
                 <CardHeader
                     action={
-                        <IconButton
-                            aria-label="settings"
-                            onClick={handleMenuOpen}
-                        >
-                            <MoreVertIcon />
-                        </IconButton>
+                        isOwner ? (
+                            <IconButton
+                                aria-label="delete-button"
+                                onClick={handleDelete}
+                            >
+                                <ClearIcon />
+                            </IconButton>
+                        ) : (
+                            <IconButton
+                                aria-label="leave-button"
+                                onClick={handleLeave}
+                            >
+                                <LogoutIcon />
+                            </IconButton>
+                        )
                     }
                     title={name}
                 />
