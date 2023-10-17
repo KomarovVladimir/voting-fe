@@ -57,9 +57,9 @@ export const RoomsManager = () => {
             <JoiningDialog onClose={handleJoiningClose} open={joiningOpen} />
             <CreationDialog onClose={handleClose} open={creationOpen} />
             <Grid container spacing={2}>
-                {rooms?.map(({ id, ownerId, name, status }) => (
+                {rooms?.map(({ id, ...props }) => (
                     <Grid key={id} item xs={3}>
-                        <RoomCard {...{ id, ownerId, name, status }} />
+                        <RoomCard {...{ id, ...props }} />
                     </Grid>
                 ))}
             </Grid>

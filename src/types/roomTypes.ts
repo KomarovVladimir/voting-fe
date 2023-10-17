@@ -12,6 +12,7 @@ export interface IItem {
 export interface IRoom {
     id: number;
     ownerId: number;
+    authorName?: string;
     name: string;
     status: Status;
 }

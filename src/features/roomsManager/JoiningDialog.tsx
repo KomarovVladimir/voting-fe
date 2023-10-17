@@ -51,7 +51,6 @@ export const JoiningDialog = ({ open, onClose }: JoiningDialogProps) => {
                 <DialogContent>
                     <TextField
                         autoFocus
-                        type="number"
                         value={roomId}
                         onChange={handleChange}
                         autoComplete="off"

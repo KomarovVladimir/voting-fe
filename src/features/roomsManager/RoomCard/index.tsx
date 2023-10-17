@@ -25,6 +25,7 @@ import {
 export type RoomCardProps = {
     id: number;
     ownerId: number;
+    authorName?: string;
     name: string;
     status: Status;
     participants?: number;
@@ -40,6 +41,7 @@ export const RoomCard = ({
     id,
     name,
     ownerId,
+    authorName,
     status = statuses[0],
     participants = 0,
 }: RoomCardProps) => {
@@ -49,8 +51,8 @@ export const RoomCard = ({
     const navigate = useNavigate();
     const [deleteRoom] = useDeleteRoomMutation();
     const [leaveRoom] = useLeaveRoomMutation();
-
     const isOwner = userId === ownerId;
+
     const handleDelete = () => {
         deleteRoom(id);
     };
@@ -85,6 +87,7 @@ export const RoomCard = ({
                         )
                     }
                     title={name}
+                    subheader={authorName}
                 />
                 <CardActionArea onClick={handleNavigate}>
                     <CardContent>
