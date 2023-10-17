@@ -1,7 +1,7 @@
 import { MenuItem, Button, Snackbar, Stack, Select } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { AppBar, Title, TitleLink } from "components";
 import { statuses } from "common/statuses";
@@ -12,12 +12,14 @@ import { useRoom } from "./hooks";
 //TODO: Update the breadcrumbs
 //TODO: Split code. Rework the menu buttons
 export const RoomAppBar = () => {
+    const { roomId } = useParams() as { roomId: string };
+
     const {
         name,
         status,
         snackbarOpen,
         participantsOpen,
-        handleSnackbarOpen,
+        handleCopy,
         handleStatusChange,
         handleSnackbarClose,
         handleParticipantsOpen,
@@ -72,7 +74,7 @@ export const RoomAppBar = () => {
                             N participants
                         </Button>
                         <Button
-                            onClick={handleSnackbarOpen}
+                            onClick={handleCopy(roomId)}
                             endIcon={
                                 <ContentCopyIcon
                                     sx={{ height: "1rem", width: "1rem" }}
@@ -89,7 +91,7 @@ export const RoomAppBar = () => {
                                 backdropFilter: "blur(8px)",
                             }}
                         >
-                            #387645
+                            Room id: {roomId}
                         </Button>
                     </Stack>
                 }

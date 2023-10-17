@@ -36,7 +36,8 @@ export const useRoom = () => {
         setParticipantsOpen(false);
     };
 
-    const handleSnackbarOpen = () => {
+    const handleCopy = (id: string) => () => {
+        navigator.clipboard.writeText(id);
         setSnackbarOpen(true);
     };
 
@@ -49,7 +50,7 @@ export const useRoom = () => {
         status,
         name: room?.name,
         snackbarOpen,
-        handleSnackbarOpen,
+        handleCopy,
         handleSnackbarClose,
         participantsOpen,
         handleParticipantsOpen,
