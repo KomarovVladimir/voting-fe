@@ -7,6 +7,7 @@ import { IUser } from "features/auth/types/types";
 import {
     useAddItemMutation,
     useDeleteItemMutation,
+    useRemoveVoteMutation,
     useGetItemsQuery,
     useVoteMutation,
 } from "../roomApi";
@@ -19,6 +20,7 @@ export const useItems = () => {
     const [addItem] = useAddItemMutation();
     const [item, setItem] = useState("");
     const [voteRequest] = useVoteMutation();
+    const [downvoteRequest] = useRemoveVoteMutation();
     const {
         user: { id: userId },
     } = useAuth() as { user: IUser };

@@ -64,7 +64,7 @@ export const roomApi = createApi({
             { roomId: number; userId: number; itemId: number }
         >({
             query: ({ roomId, userId, itemId }) => ({
-                url: `/room/${roomId}/user/${userId}/item/${itemId}/vote`,
+                url: `/room/${roomId}/item/${itemId}/user/${userId}/vote`,
                 method: "DELETE",
             }),
             invalidatesTags: [{ type: "Items" }],
@@ -79,4 +79,5 @@ export const {
     useDeleteItemMutation,
     useUpdateRoomMutation,
     useVoteMutation,
+    useRemoveVoteMutation,
 } = roomApi;
