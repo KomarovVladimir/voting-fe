@@ -46,7 +46,7 @@ export const useRoom = () => {
     };
 
     return {
-        roomId,
+        roomId: Number(roomId),
         status,
         name: room?.name,
         snackbarOpen,

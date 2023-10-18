@@ -3,7 +3,7 @@ import { statuses } from "common/statuses";
 export type Status = (typeof statuses)[number];
 
 export interface IItem {
-    id: string;
+    id: number;
     name: string;
     votes: number;
     roomId: string | number;

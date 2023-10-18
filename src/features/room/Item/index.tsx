@@ -1,4 +1,4 @@
-import { IconButton, ListItemProps, ListItemText } from "@mui/material";
+import { IconButton, ListItemText } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { statuses } from "common/statuses";
@@ -8,10 +8,10 @@ import { ListItem } from "./styled";
 
 import { useItems } from "../hooks";
 
-type ItemProps = Omit<IItem, "roomId"> & ListItemProps & Pick<IRoom, "status">;
+type ItemProps = Omit<IItem, "roomId"> & Pick<IRoom, "status">;
 
 export const Item = ({ id, name, votes, status, ...props }: ItemProps) => {
-    const { handleRemoveItem } = useItems();
+    const { handleVote, handleRemoveItem } = useItems();
     const disabled = status === statuses[2];
 
     return (
@@ -29,6 +29,7 @@ export const Item = ({ id, name, votes, status, ...props }: ItemProps) => {
                     )}
                 </>
             }
+            onClick={handleVote(id)}
             {...{ props, disabled }}
         >
             <ListItemText primary={name} secondary={votes} />
