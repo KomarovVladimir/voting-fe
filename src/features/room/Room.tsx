@@ -10,8 +10,8 @@ import { ItemInput } from "./ItemInput";
 import { useItems, useRoom } from "./hooks";
 
 export const Room = () => {
-    const { items = [] } = useItems();
     const { status } = useRoom();
+    const { items = [] } = useItems();
     const showInput = Boolean(status === statuses[0] && items.length < 10);
 
     return (
@@ -25,8 +25,11 @@ export const Room = () => {
             >
                 <Grid item xs={6}>
                     <List dense disablePadding>
-                        {items?.map(({ id, name, votes }) => (
-                            <Item key={id} {...{ id, name, votes, status }} />
+                        {items?.map(({ id, name, votes, voted }) => (
+                            <Item
+                                key={id}
+                                {...{ id, name, votes, status, voted }}
+                            />
                         ))}
                     </List>
                     {showInput && <ItemInput />}

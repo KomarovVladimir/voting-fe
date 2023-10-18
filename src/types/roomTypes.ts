@@ -6,6 +6,7 @@ export interface IItem {
     id: number;
     name: string;
     votes: number;
+    voted: boolean;
     roomId: string | number;
 }
 

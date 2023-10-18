@@ -15,18 +15,25 @@ import {
 //TODO: Move the hooks
 export const useItems = () => {
     const { roomId } = useParams() as { roomId: string };
-    const { data: items } = useGetItemsQuery(roomId);
     const [deleteItem] = useDeleteItemMutation();
     const [addItem] = useAddItemMutation();
     const [item, setItem] = useState("");
     const [voteRequest] = useVoteMutation();
-    const [downvoteRequest] = useRemoveVoteMutation();
+    const [removeVoteRequest] = useRemoveVoteMutation();
     const {
         user: { id: userId },
     } = useAuth() as { user: IUser };
+    const { data: items } = useGetItemsQuery({ roomId, userId });
 
-    const handleVote = (id: number) => () => {
-        voteRequest({ itemId: id, roomId: Number(roomId), userId });
+    const handleItemClick = (isChosen: boolean, id: number) => () => {
+        console.log(isChosen, id);
+        console.log({ itemId: id, roomId: Number(roomId), userId });
+
+        if (Boolean(isChosen)) {
+            removeVoteRequest({ itemId: id, roomId: Number(roomId), userId });
+        } else {
+            voteRequest({ itemId: id, roomId: Number(roomId), userId });
+        }
     };
 
     const handleKeyUp = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -54,7 +61,7 @@ export const useItems = () => {
         item,
         items,
         handleAddItem,
-        handleVote,
+        handleItemClick,
         handleKeyUp,
         handleItemChange,
         handleRemoveItem,

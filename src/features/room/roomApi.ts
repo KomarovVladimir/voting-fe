@@ -13,8 +13,10 @@ export const roomApi = createApi({
             query: (roomId) => ({ url: `room/${roomId}` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
-        getItems: builder.query<IItem[], string>({
-            query: (roomId) => ({ url: `room/${roomId}/items` }),
+        getItems: builder.query<IItem[], { roomId: string; userId: number }>({
+            query: ({ roomId, userId }) => ({
+                url: `room/${roomId}/items/${userId}`,
+            }),
             providesTags: () => [{ type: "Items" }],
         }),
         addItem: builder.mutation<

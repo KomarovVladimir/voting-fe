@@ -10,8 +10,8 @@ import { useItems } from "../hooks";
 
 type ItemProps = Omit<IItem, "roomId"> & Pick<IRoom, "status">;
 
-export const Item = ({ id, name, votes, status, ...props }: ItemProps) => {
-    const { handleVote, handleRemoveItem } = useItems();
+export const Item = ({ id, name, votes, status, voted }: ItemProps) => {
+    const { handleItemClick, handleRemoveItem } = useItems();
     const disabled = status === statuses[2];
 
     return (
@@ -29,8 +29,8 @@ export const Item = ({ id, name, votes, status, ...props }: ItemProps) => {
                     )}
                 </>
             }
-            onClick={handleVote(id)}
-            {...{ props, disabled }}
+            onClick={handleItemClick(voted, id)}
+            {...{ disabled }}
         >
             <ListItemText primary={name} secondary={votes} />
         </ListItem>
