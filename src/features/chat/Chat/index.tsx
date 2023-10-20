@@ -19,10 +19,10 @@ export const Chat = () => {
         <ChatPaper>
             <ChatBox dense disablePadding>
                 {messages &&
-                    messages?.map(({ id, userName, date, text }) => (
+                    messages?.map(({ id, username, created: date, text }) => (
                         <Message key={id} dense disablePadding>
                             {/* <Avatar
-                                alt={userName}
+                                alt={username}
                                 src={avatar}
                                 sx={{
                                     marginRight: ".5rem",
@@ -37,7 +37,7 @@ export const Chat = () => {
                                         fontWeight="600"
                                         fontSize="small"
                                     >
-                                        {userName}
+                                        {username}
                                     </Typography>
                                     <Typography
                                         color="primary"

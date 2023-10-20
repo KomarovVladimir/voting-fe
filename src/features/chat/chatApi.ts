@@ -4,9 +4,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 //TODO: Move the types
 export interface IMessage {
     id: string;
-    userName: string;
+    username: string;
     text: string;
-    date: string;
+    created?: string;
+    lastUpdated?: string;
+    userId: number;
 }
 
 export interface IMessageQuery {

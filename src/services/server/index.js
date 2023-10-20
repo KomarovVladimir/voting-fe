@@ -75,7 +75,7 @@ const server = createServer({
                         roomId,
                         userId,
                         avatar,
-                        userName: `${firstName} ${lastName}`,
+                        username: `${firstName} ${lastName}`,
                     });
                 });
 
