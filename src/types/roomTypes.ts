@@ -17,3 +17,10 @@ export interface IRoom {
     name: string;
     status: Status;
 }
+
+//TODO: Add a status field
+export interface IMember {
+    id: number;
+    username?: string;
+    email?: string;
+}

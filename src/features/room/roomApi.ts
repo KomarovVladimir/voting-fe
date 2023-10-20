@@ -1,13 +1,13 @@
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { IRoom, IItem } from "types/roomTypes";
+import { IRoom, IItem, IMember } from "types/roomTypes";
 
 //TODO: Add more specific types
 export const roomApi = createApi({
     reducerPath: "roomApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
-    tagTypes: ["Rooms", "Items"],
+    tagTypes: ["Rooms", "Items", "Members"],
     endpoints: (builder) => ({
         getRoomData: builder.query<IRoom, string>({
             query: (roomId) => ({ url: `room/${roomId}` }),
@@ -18,6 +18,20 @@ export const roomApi = createApi({
                 url: `room/${roomId}/items/${userId}`,
             }),
             providesTags: () => [{ type: "Items" }],
+        }),
+        getMembers: builder.query<IMember[], string>({
+            query: (roomId) => ({ url: `/room/${roomId}/members` }),
+            providesTags: () => [{ type: "Members" }],
+        }),
+        excludeMember: builder.mutation<
+            QueryReturnValue,
+            { roomId: number; userId: number }
+        >({
+            query: ({ roomId, userId }) => ({
+                url: `/room/${roomId}/members/${userId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: [{ type: "Members" }],
         }),
         addItem: builder.mutation<
             QueryReturnValue,
@@ -80,6 +94,8 @@ export const {
     useAddItemMutation,
     useDeleteItemMutation,
     useUpdateRoomMutation,
+    useGetMembersQuery,
+    useExcludeMemberMutation,
     useVoteMutation,
     useRemoveVoteMutation,
 } = roomApi;

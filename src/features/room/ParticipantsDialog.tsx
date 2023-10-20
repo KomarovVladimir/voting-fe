@@ -10,20 +10,27 @@ import {
     ListItemText,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useDispatch, useSelector } from "react-redux";
 
-import { RootState } from "app/store";
+import { useExcludeMemberMutation, useGetMembersQuery } from "./roomApi";
 
 type ParticipantsDialogProps = {
+    roomId: string;
     open: boolean;
     onClose: () => void;
 };
 
+//TODO: Move the logic to a hook
 export const ParticipantsDialog = ({
     open,
+    roomId,
     onClose,
 }: ParticipantsDialogProps) => {
-    const handleRemove = (id: string) => () => {};
+    const { data: members = [] } = useGetMembersQuery(roomId);
+    const [excludeUser] = useExcludeMemberMutation();
+
+    const handleExclude = (userId: number) => () => {
+        excludeUser({ roomId: Number(roomId), userId });
+    };
 
     return (
         <Dialog
@@ -31,27 +38,27 @@ export const ParticipantsDialog = ({
             aria-describedby="modal-modal-description"
             {...{ open, onClose }}
         >
-            <DialogTitle>Participants</DialogTitle>
-            {/* <DialogContent>
+            <DialogTitle>Room members</DialogTitle>
+            <DialogContent>
                 <List dense>
-                    {Object.entries(participants).map(([id, { name }]) => (
+                    {members.map(({ id, username }) => (
                         <ListItem
                             key={id}
                             secondaryAction={
                                 <IconButton
                                     edge="end"
                                     aria-label="delete"
-                                    onClick={handleRemove(id)}
+                                    onClick={handleExclude(id)}
                                 >
                                     <CloseIcon />
                                 </IconButton>
                             }
                         >
-                            <ListItemText primary={name} />
+                            <ListItemText primary={username} />
                         </ListItem>
                     ))}
                 </List>
-            </DialogContent> */}
+            </DialogContent>
             <DialogActions>
                 <Button onClick={onClose}>Cancel</Button>
             </DialogActions>

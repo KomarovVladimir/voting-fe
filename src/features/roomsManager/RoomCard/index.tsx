@@ -28,7 +28,7 @@ export type RoomCardProps = {
     authorName?: string;
     name: string;
     status: Status;
-    participants?: number;
+    members?: number;
 };
 
 //TODO: Add area attributes
@@ -43,7 +43,7 @@ export const RoomCard = ({
     ownerId,
     authorName,
     status = statuses[0],
-    participants = 0,
+    members = 0,
 }: RoomCardProps) => {
     const {
         user: { id: userId },
@@ -100,7 +100,7 @@ export const RoomCard = ({
                                     variant="body2"
                                     color="text.secondary"
                                 >
-                                    Participants: {participants}
+                                    Participants: {members}
                                 </Typography>
                             }
                         </Stack>

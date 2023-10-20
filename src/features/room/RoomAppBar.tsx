@@ -11,6 +11,7 @@ import { useRoom } from "./hooks";
 
 //TODO: Update the breadcrumbs
 //TODO: Split code. Rework the menu buttons
+//TODO: Add a members number selector
 export const RoomAppBar = () => {
     const { roomId } = useParams() as { roomId: string };
 
@@ -41,6 +42,7 @@ export const RoomAppBar = () => {
             <ParticipantsDialog
                 open={participantsOpen}
                 onClose={handleParticipantsClose}
+                {...{ roomId }}
             />
             <AppBar
                 leftBlock={
@@ -71,7 +73,7 @@ export const RoomAppBar = () => {
                             sx={{ color: "#fff" }}
                             onClick={handleParticipantsOpen}
                         >
-                            N participants
+                            N members
                         </Button>
                         <Button
                             onClick={handleCopy(roomId)}
