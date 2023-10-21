@@ -11,7 +11,8 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { useExcludeMemberMutation, useGetMembersQuery } from "./roomApi";
+import { useExcludeMemberMutation } from "./roomApi";
+import { useRoom } from "./hooks";
 
 type ParticipantsDialogProps = {
     roomId: string;
@@ -25,7 +26,7 @@ export const ParticipantsDialog = ({
     roomId,
     onClose,
 }: ParticipantsDialogProps) => {
-    const { data: members = [] } = useGetMembersQuery(roomId);
+    const { members } = useRoom();
     const [excludeUser] = useExcludeMemberMutation();
 
     const handleExclude = (userId: number) => () => {

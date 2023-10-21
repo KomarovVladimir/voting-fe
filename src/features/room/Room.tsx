@@ -23,6 +23,9 @@ export const Room = () => {
                 rowSpacing="0"
                 sx={{ height: "calc(100vh - 10rem)" }}
             >
+                <Grid item xs={6} sx={{ height: "100%" }}>
+                    <Chat />
+                </Grid>
                 <Grid item xs={6}>
                     <List dense disablePadding>
                         {items?.map(({ id, name, votes, voted }) => (
@@ -33,9 +36,6 @@ export const Room = () => {
                         ))}
                     </List>
                     {showInput && <ItemInput />}
-                </Grid>
-                <Grid item xs={6} sx={{ height: "100%" }}>
-                    <Chat />
                 </Grid>
             </Grid>
         </PageWrapper>

@@ -4,7 +4,11 @@ import { useParams } from "react-router";
 
 import { Status } from "types/roomTypes";
 
-import { useGetRoomDataQuery, useUpdateRoomMutation } from "../roomApi";
+import {
+    useLazyGetMembersQuery,
+    useGetRoomDataQuery,
+    useUpdateRoomMutation,
+} from "../roomApi";
 
 export const useRoom = () => {
     const { roomId } = useParams() as { roomId: string };
@@ -13,6 +17,11 @@ export const useRoom = () => {
     const [status, setStatus] = useState<Status>("Pending");
     const [updateRoom] = useUpdateRoomMutation();
     const { data: room } = useGetRoomDataQuery(roomId);
+    const [getMembers, { data: members = [] }] = useLazyGetMembersQuery();
+
+    useEffect(() => {
+        getMembers(roomId);
+    }, [getMembers, roomId]);
 
     useEffect(() => {
         if (room) {
@@ -48,6 +57,7 @@ export const useRoom = () => {
     return {
         roomId: Number(roomId),
         status,
+        members,
         name: room?.name,
         snackbarOpen,
         handleCopy,

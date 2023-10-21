@@ -14,10 +14,10 @@ import { useRoom } from "./hooks";
 //TODO: Add a members number selector
 export const RoomAppBar = () => {
     const { roomId } = useParams() as { roomId: string };
-
     const {
         name,
         status,
+        members,
         snackbarOpen,
         participantsOpen,
         handleCopy,
@@ -42,7 +42,7 @@ export const RoomAppBar = () => {
             <ParticipantsDialog
                 open={participantsOpen}
                 onClose={handleParticipantsClose}
-                {...{ roomId }}
+                {...{ members, roomId }}
             />
             <AppBar
                 leftBlock={
@@ -73,7 +73,7 @@ export const RoomAppBar = () => {
                             sx={{ color: "#fff" }}
                             onClick={handleParticipantsOpen}
                         >
-                            N members
+                            {members.length} members
                         </Button>
                         <Button
                             onClick={handleCopy(roomId)}

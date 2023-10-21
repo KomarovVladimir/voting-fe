@@ -94,7 +94,7 @@ export const {
     useAddItemMutation,
     useDeleteItemMutation,
     useUpdateRoomMutation,
-    useGetMembersQuery,
+    useLazyGetMembersQuery,
     useExcludeMemberMutation,
     useVoteMutation,
     useRemoveVoteMutation,
