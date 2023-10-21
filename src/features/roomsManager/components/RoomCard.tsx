@@ -9,7 +9,7 @@ import {
 import LogoutIcon from "@mui/icons-material/Logout";
 import ClearIcon from "@mui/icons-material/Clear";
 
-import { statuses } from "common/statuses";
+import { statuses } from "common/constants";
 import { Status } from "features";
 
 import { StyledCard } from "./styled";

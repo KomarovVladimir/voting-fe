@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 
 import { Chat } from "features";
 import { PageWrapper } from "components";
-import { statuses } from "common/statuses";
+import { statuses } from "common/constants";
 
 import { Item } from "./Item";
 import { RoomAppBar } from "./RoomAppBar";

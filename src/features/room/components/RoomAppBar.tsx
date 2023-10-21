@@ -5,7 +5,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
 
 import { AppBar, Title, TitleLink } from "components";
-import { statuses } from "common/statuses";
+import { statuses } from "common/constants";
 
 import { MembersDialog } from "./MembersDialog";
 

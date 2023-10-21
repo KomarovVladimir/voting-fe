@@ -1,7 +1,7 @@
 import { IconButton, ListItemButton, ListItemText } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { statuses } from "common/statuses";
+import { statuses } from "common/constants";
 
 import { ListItem } from "./styled";
 

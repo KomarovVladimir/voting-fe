@@ -1,4 +1,4 @@
-import { statuses } from "common/statuses";
+import { statuses } from "common/constants";
 
 export type Status = (typeof statuses)[number];
 
