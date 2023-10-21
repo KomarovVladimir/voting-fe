@@ -1,6 +1,10 @@
-import { ListItemProps, ListItem as MuiListItem, styled } from "@mui/material";
+import {
+    ListItemProps,
+    ListItemButton as MuiListItemButton,
+    styled,
+} from "@mui/material";
 
-export const ListItem = styled(MuiListItem)<
+export const ListItemButton = styled(MuiListItemButton)<
     ListItemProps & { disabled?: boolean }
 >(({ theme, disabled }) => ({
     borderRadius: ".5rem",

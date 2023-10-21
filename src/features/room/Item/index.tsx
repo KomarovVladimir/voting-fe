@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { statuses } from "common/statuses";
 import { IItem, IRoom } from "types/roomTypes";
 
-import { ListItem } from "./styled";
+import { ListItemButton } from "./styled";
 
 import { useItems } from "../hooks";
 
@@ -15,7 +15,7 @@ export const Item = ({ id, name, votes, status, voted }: ItemProps) => {
     const disabled = status === statuses[2];
 
     return (
-        <ListItem
+        <ListItemButton
             secondaryAction={
                 <>
                     {status === statuses[0] && (
@@ -33,6 +33,6 @@ export const Item = ({ id, name, votes, status, voted }: ItemProps) => {
             {...{ disabled }}
         >
             <ListItemText primary={name} secondary={votes} />
-        </ListItem>
+        </ListItemButton>
     );
 };
