@@ -1,7 +1,7 @@
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { IRoom } from "../../types/roomTypes";
+import { api } from "services/api";
+import { RoomData } from "features";
 
 //TODO: Move the types
 export interface ICreateRoomQuery {
@@ -12,16 +12,13 @@ export interface ICreateRoomQuery {
 
 //TODO: Replace body with params
 //TODO: Add QueryReturnValue everywhere
-export const roomsManagerApi = createApi({
-    reducerPath: "roomsManagerApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
-    tagTypes: ["Rooms"],
+export const roomsManagerApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        getRooms: builder.query<IRoom[], void>({
+        getRooms: builder.query<RoomData[], void>({
             query: () => ({ url: `/rooms` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
-        getUserRooms: builder.query<IRoom[], number>({
+        getUserRooms: builder.query<RoomData[], number>({
             query: (userId) => ({ url: `/user/${userId}/rooms` }),
             providesTags: () => [{ type: "Rooms" }],
         }),

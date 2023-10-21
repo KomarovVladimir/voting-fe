@@ -1,12 +1,10 @@
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+import { api } from "services/api";
 
 import { AuthUser, UserSignInData, UserSignUpData } from "../types";
 
-export const authApi = createApi({
-    reducerPath: "authApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
-    tagTypes: ["Auth"],
+export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         loginRequest: builder.mutation<AuthUser, UserSignInData>({
             query: (body) => ({

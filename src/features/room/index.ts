@@ -1,2 +1,3 @@
-export * from "./Room";
-export * from "./roomApi";
+export * from "./components";
+export * from "./api";
+export * from "./types";

@@ -11,26 +11,26 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { useExcludeMemberMutation } from "./roomApi";
-import { useRoom } from "./hooks";
+import { useExcludeMemberMutation } from "../api";
+import { useMembers } from "../hooks";
 
-type ParticipantsDialogProps = {
+type MembersDialogProps = {
     roomId: string;
     open: boolean;
     onClose: () => void;
 };
 
 //TODO: Move the logic to a hook
-export const ParticipantsDialog = ({
+export const MembersDialog = ({
     open,
     roomId,
     onClose,
-}: ParticipantsDialogProps) => {
-    const { members } = useRoom();
+}: MembersDialogProps) => {
+    const { members } = useMembers(roomId);
     const [excludeUser] = useExcludeMemberMutation();
 
     const handleExclude = (userId: number) => () => {
-        excludeUser({ roomId: Number(roomId), userId });
+        excludeUser({ roomId, userId });
     };
 
     return (
@@ -42,7 +42,7 @@ export const ParticipantsDialog = ({
             <DialogTitle>Room members</DialogTitle>
             <DialogContent>
                 <List dense>
-                    {members.map(({ id, username }) => (
+                    {members?.map(({ id, username }) => (
                         <ListItem
                             key={id}
                             secondaryAction={

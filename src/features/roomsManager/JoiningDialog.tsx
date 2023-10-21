@@ -29,7 +29,7 @@ export const JoiningDialog = ({ open, onClose }: JoiningDialogProps) => {
     const [roomId, setRoomId] = useState<number | null>(null);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setRoomId(Number(event.currentTarget.value));
+        setRoomId(+event.currentTarget.value);
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

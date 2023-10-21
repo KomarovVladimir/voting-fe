@@ -2,31 +2,38 @@ import { MenuItem, Button, Snackbar, Stack, Select } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PersonIcon from "@mui/icons-material/Person";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { AppBar, Title, TitleLink } from "components";
 import { statuses } from "common/statuses";
 
-import { ParticipantsDialog } from "./ParticipantsDialog";
-import { useRoom } from "./hooks";
+import { MembersDialog } from "./MembersDialog";
+
+import { useRoom } from "../hooks";
+import { useMembers } from "../hooks";
+
+type RoomAppBarProps = {
+    roomId: string;
+};
 
 //TODO: Update the breadcrumbs
 //TODO: Split code. Rework the menu buttons
 //TODO: Add a members number selector
-export const RoomAppBar = () => {
-    const { roomId } = useParams() as { roomId: string };
+export const RoomAppBar = ({ roomId }: RoomAppBarProps) => {
     const {
         name,
         status,
-        members,
         snackbarOpen,
-        participantsOpen,
         handleCopy,
         handleStatusChange,
         handleSnackbarClose,
-        handleParticipantsOpen,
-        handleParticipantsClose,
-    } = useRoom();
+    } = useRoom(roomId);
+    const {
+        members,
+        membersDialogOpen,
+        handleMembersOpen,
+        handleMembersClose,
+    } = useMembers(roomId);
 
     return (
         <>
@@ -40,9 +47,9 @@ export const RoomAppBar = () => {
                 onClose={handleSnackbarClose}
                 open={snackbarOpen}
             />
-            <ParticipantsDialog
-                open={participantsOpen}
-                onClose={handleParticipantsClose}
+            <MembersDialog
+                open={membersDialogOpen}
+                onClose={handleMembersClose}
                 {...{ members, roomId }}
             />
             <AppBar
@@ -72,10 +79,10 @@ export const RoomAppBar = () => {
                         </Select>
                         <Button
                             sx={{ color: "#fff" }}
-                            onClick={handleParticipantsOpen}
+                            onClick={handleMembersOpen}
                             startIcon={<PersonIcon />}
                         >
-                            {members.length}
+                            {members?.length || 0}
                         </Button>
                         <Button
                             onClick={handleCopy(roomId)}

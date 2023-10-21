@@ -1,12 +1,10 @@
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+import { api } from "services/api";
 
 import { PostMessageRequest, MessageData } from "../types";
 
-export const chatApi = createApi({
-    reducerPath: "chatApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
-    tagTypes: ["Chat"],
+export const chatApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getMessages: builder.query<MessageData[], string>({
             query: (roomId) => ({ url: `room/${roomId}/messages` }),

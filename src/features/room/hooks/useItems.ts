@@ -1,16 +1,15 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useParams } from "react-router";
 
-import { useAuth } from "features/auth";
-import { AuthUser } from "features/auth/types";
+import { useAuth, AuthUser } from "features";
 
 import {
-    useAddItemMutation,
     useDeleteItemMutation,
+    useAddItemMutation,
+    useVoteMutation,
     useRemoveVoteMutation,
     useGetItemsQuery,
-    useVoteMutation,
-} from "../roomApi";
+} from "../api";
 
 //TODO: Move the hooks
 export const useItems = () => {
@@ -27,9 +26,9 @@ export const useItems = () => {
 
     const handleItemClick = (isChosen: boolean, id: number) => () => {
         if (Boolean(isChosen)) {
-            removeVoteRequest({ itemId: id, roomId: Number(roomId), userId });
+            removeVoteRequest({ itemId: id, roomId: +roomId, userId });
         } else {
-            voteRequest({ itemId: id, roomId: Number(roomId), userId });
+            voteRequest({ itemId: id, roomId: +roomId, userId });
         }
     };
 

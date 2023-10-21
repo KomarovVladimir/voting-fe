@@ -11,9 +11,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { useNavigate } from "react-router";
 
 import { statuses } from "common/statuses";
-import { Status } from "types/roomTypes";
-import { AuthUser } from "features/auth/types";
-import { useAuth } from "features/auth";
+import { AuthUser, Status, useAuth } from "features";
 
 import { StyledCard } from "./styled";
 
@@ -100,7 +98,7 @@ export const RoomCard = ({
                                     variant="body2"
                                     color="text.secondary"
                                 >
-                                    Participants: {members}
+                                    Members: {members}
                                 </Typography>
                             }
                         </Stack>

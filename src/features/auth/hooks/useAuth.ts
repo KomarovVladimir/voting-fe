@@ -27,7 +27,7 @@ export const useAuth = () => {
         if (user) {
             addUser(user);
         }
-    }, [user, getItem, addUser]);
+    }, []);
 
     const handleLogin = (data: UserSignInData) => {
         loginRequest(data)
