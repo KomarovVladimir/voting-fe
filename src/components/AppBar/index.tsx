@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 
-import { useAuth } from "features/auth/hooks/useAuth";
+import { useAuth } from "features";
 
 import { Toolbar } from "./styled";
 

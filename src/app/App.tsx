@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
 // import "services/server";
-import { AuthProvider } from "features/auth/context/AuthProvider";
+import { AuthProvider } from "features";
 import { AppRoutes } from "routing";
 
 import { store } from "./store";

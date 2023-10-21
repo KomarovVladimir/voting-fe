@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 
-import { RegistrationForm, LoginForm, RoomsManager, Room } from "features";
+import { RegistrationForm, LoginForm, Room, RoomsManager } from "features";
 
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
