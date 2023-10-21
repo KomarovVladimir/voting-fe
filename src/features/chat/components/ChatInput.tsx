@@ -2,7 +2,8 @@ import { IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 import { Input } from "./styled";
-import { useChatInput } from "./useChatInput";
+
+import { useChatInput } from "../hooks/useChatInput";
 
 export const ChatInput = () => {
     const { text, handleSend, handleSendMessage, handleChange } =
@@ -19,11 +20,6 @@ export const ChatInput = () => {
             onKeyUp={handleSend}
             InputProps={{
                 disableUnderline: true,
-                sx: {
-                    p: ".2rem 1rem",
-                    width: "100%",
-                    height: "100%",
-                },
                 endAdornment: (
                     <>
                         {text && (

@@ -1,5 +1,6 @@
 import { List, ListItem, Paper, TextField, styled } from "@mui/material";
 
+//TODO: Create common components
 export const Input = styled(TextField)({
     display: "flex",
     flexShrink: 0,
@@ -8,6 +9,12 @@ export const Input = styled(TextField)({
     border: "none",
     borderRadius: "8px",
     background: "rgba(0, 0, 0, 0.20)",
+
+    "& .MuiInput-root": {
+        padding: ".2rem 1rem",
+        width: "100%",
+        height: "100%",
+    },
 });
 
 export const ChatPaper = styled(Paper)({

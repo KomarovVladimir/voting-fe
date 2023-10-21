@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
 
-import { useChat } from "./useChat";
 import {
     ChatBox,
     ChatPaper,
@@ -8,8 +7,9 @@ import {
     MessageContent,
     MessageHeader,
 } from "./styled";
+import { ChatInput } from "./ChatInput";
 
-import { ChatInput } from "../ChatInput";
+import { useChat } from "../hooks/useChat";
 
 //TODO: Add avatars
 export const Chat = () => {

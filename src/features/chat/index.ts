@@ -1,2 +1,2 @@
-export * from "./Chat";
-export * from "./chatApi";
+export * from "./components/Chat";
+export * from "./api/chatApi";

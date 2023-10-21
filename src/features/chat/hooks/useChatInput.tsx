@@ -1,7 +1,7 @@
 import { KeyboardEvent, ChangeEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { useSendMessageMutation } from "../chatApi";
+import { useSendMessageMutation } from "../api/chatApi";
 import { useUser } from "features/auth/hooks/useUser";
 import { AuthUser } from "features/auth/types";
 
