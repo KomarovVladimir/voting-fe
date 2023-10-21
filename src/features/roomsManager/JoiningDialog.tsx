@@ -11,7 +11,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 
 import { Paper } from "components";
 import { useAuth } from "features/auth";
-import { IUser } from "features/auth/types/types";
+import { AuthUser } from "features/auth/types";
 
 import { useJoinRoomMutation } from "./roomsManagerApi";
 
@@ -24,7 +24,7 @@ export type JoiningDialogProps = {
 export const JoiningDialog = ({ open, onClose }: JoiningDialogProps) => {
     const {
         user: { id: userId },
-    } = useAuth() as { user: IUser };
+    } = useAuth() as { user: AuthUser };
     const [joinRoom] = useJoinRoomMutation();
     const [roomId, setRoomId] = useState<number | null>(null);
 

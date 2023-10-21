@@ -2,7 +2,7 @@ import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useParams } from "react-router";
 
 import { useAuth } from "features/auth";
-import { IUser } from "features/auth/types/types";
+import { AuthUser } from "features/auth/types";
 
 import {
     useAddItemMutation,
@@ -22,7 +22,7 @@ export const useItems = () => {
     const [removeVoteRequest] = useRemoveVoteMutation();
     const {
         user: { id: userId },
-    } = useAuth() as { user: IUser };
+    } = useAuth() as { user: AuthUser };
     const { data: items } = useGetItemsQuery({ roomId, userId });
 
     const handleItemClick = (isChosen: boolean, id: number) => () => {

@@ -12,7 +12,7 @@ import { useNavigate } from "react-router";
 
 import { statuses } from "common/statuses";
 import { Status } from "types/roomTypes";
-import { IUser } from "features/auth/types/types";
+import { AuthUser } from "features/auth/types";
 import { useAuth } from "features/auth";
 
 import { StyledCard } from "./styled";
@@ -47,7 +47,7 @@ export const RoomCard = ({
 }: RoomCardProps) => {
     const {
         user: { id: userId },
-    } = useAuth() as { user: IUser };
+    } = useAuth() as { user: AuthUser };
     const navigate = useNavigate();
     const [deleteRoom] = useDeleteRoomMutation();
     const [leaveRoom] = useLeaveRoomMutation();

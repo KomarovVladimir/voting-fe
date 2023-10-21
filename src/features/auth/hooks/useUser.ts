@@ -3,13 +3,13 @@ import { useContext } from "react";
 import { useLocalStorage } from "hooks/useLocalStorage";
 
 import { AuthContext } from "../context/AuthContext";
-import { IUser } from "../types/types";
+import { AuthUser } from "../types";
 
 export const useUser = () => {
     const { user, setUser } = useContext(AuthContext);
     const { setItem, removeItem } = useLocalStorage("user");
 
-    const addUser = (user: IUser) => {
+    const addUser = (user: AuthUser) => {
         setUser(user);
         setItem(JSON.stringify(user));
     };

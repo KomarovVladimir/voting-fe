@@ -2,7 +2,7 @@ import { Button, Grid, Stack } from "@mui/material";
 import { useState } from "react";
 
 import { AppBar, PageWrapper, Title } from "components";
-import { IUser } from "features/auth/types/types";
+import { AuthUser } from "features/auth/types";
 import { useAuth } from "features/auth";
 
 import { CreationDialog } from "./CreationDialog";
@@ -15,7 +15,7 @@ import { JoiningDialog } from "./JoiningDialog";
 export const RoomsManager = () => {
     const {
         user: { id: userId },
-    } = useAuth() as { user: IUser };
+    } = useAuth() as { user: AuthUser };
     const { data: rooms = [] } = useGetUserRoomsQuery(userId);
     const [creationOpen, setCreationOpen] = useState(false);
     const [joiningOpen, setJoiningOpen] = useState(false);

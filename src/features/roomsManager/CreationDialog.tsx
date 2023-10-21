@@ -11,7 +11,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 
 import { Paper } from "components";
 import { useAuth } from "features/auth";
-import { IUser } from "features/auth/types/types";
+import { AuthUser } from "features/auth/types";
 
 import { useCreateRoomMutation } from "./roomsManagerApi";
 
@@ -23,7 +23,7 @@ export type CreationDialogProps = {
 export const CreationDialog = ({ open, onClose }: CreationDialogProps) => {
     const {
         user: { id: userId },
-    } = useAuth() as { user: IUser };
+    } = useAuth() as { user: AuthUser };
     const [createRoom] = useCreateRoomMutation();
     const [name, setName] = useState("");
 

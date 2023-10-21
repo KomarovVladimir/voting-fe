@@ -11,24 +11,14 @@ import { Field, Form } from "react-final-form";
 
 import { Paper } from "components";
 
-import { validate } from "./utils";
-
-import { useAuth } from "../../hooks";
-import { IRegistrationData } from "../../api";
-
-//TODO: Move the types
-export interface IRegistrationForm {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    confirm: string;
-}
+import { validateRegistration } from "../utils";
+import { useAuth } from "../hooks";
+import { UserSignUpData } from "../types";
 
 export const RegistrationForm = () => {
     const { handleRegister } = useAuth();
 
-    const onSubmit = (values: IRegistrationData) => {
+    const onSubmit = (values: UserSignUpData) => {
         handleRegister(values);
     };
 
@@ -150,7 +140,7 @@ export const RegistrationForm = () => {
                                 />
                             </FormControl>
                             <Button variant="contained" type="submit">
-                                Register
+                                Sign Up
                             </Button>
                             <MuiLink component={Link} to="/">
                                 I already have an account
@@ -158,7 +148,7 @@ export const RegistrationForm = () => {
                         </Stack>
                     </Box>
                 )}
-                {...{ validate }}
+                validate={validateRegistration}
             />
         </Paper>
     );

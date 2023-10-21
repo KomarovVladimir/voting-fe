@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 
 import { useSendMessageMutation } from "../chatApi";
 import { useUser } from "features/auth/hooks/useUser";
-import { IUser } from "features/auth/types/types";
+import { AuthUser } from "features/auth/types";
 
 export const useChatInput = () => {
     const {
         user: { id: userId },
-    } = useUser() as { user: IUser };
+    } = useUser() as { user: AuthUser };
     const { roomId } = useParams() as { roomId: string };
     const [sendMessage] = useSendMessageMutation();
     const [text, setText] = useState("");

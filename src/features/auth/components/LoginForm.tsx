@@ -11,21 +11,14 @@ import { Form, Field } from "react-final-form";
 
 import { Paper } from "components";
 
-import { validate } from "./utils";
-
-import { useAuth } from "../../hooks/useAuth";
-import { IAuthData } from "../../api/authApi";
-
-//TODO: Move the types
-export interface ILoginForm {
-    email: string;
-    password: string;
-}
+import { validateLogin } from "../utils";
+import { useAuth } from "../hooks/useAuth";
+import { UserSignInData } from "../types";
 
 export const LoginForm = () => {
     const { handleLogin } = useAuth();
 
-    const onSubmit = (values: IAuthData) => {
+    const onSubmit = (values: UserSignInData) => {
         handleLogin(values);
     };
 
@@ -85,7 +78,7 @@ export const LoginForm = () => {
                                 />
                             </FormControl>
                             <Button variant="contained" type="submit">
-                                Log In
+                                Sign In
                             </Button>
                             <MuiLink component={Link} to="../register">
                                 Don't have an account?
@@ -93,7 +86,7 @@ export const LoginForm = () => {
                         </Stack>
                     </Box>
                 )}
-                {...{ validate }}
+                validate={validateLogin}
             />
         </Paper>
     );
