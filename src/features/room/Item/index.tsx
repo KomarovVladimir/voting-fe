@@ -12,7 +12,7 @@ type ItemProps = Omit<IItem, "roomId"> & Pick<IRoom, "status">;
 
 export const Item = ({ id, name, votes, status, voted }: ItemProps) => {
     const { handleItemClick, handleRemoveItem } = useItems();
-    const disabled = status === statuses[2];
+    const disabled = status !== statuses[1];
 
     return (
         <ListItemButton
