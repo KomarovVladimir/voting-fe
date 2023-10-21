@@ -7,42 +7,19 @@ import {
     DialogContent,
     Box,
 } from "@mui/material";
-import { ChangeEvent, FormEvent, useState } from "react";
 
 import { Paper } from "components";
-import { useAuth } from "features/auth";
-import { AuthUser } from "features/auth/types";
 
-import { useJoinRoomMutation } from "./roomsManagerApi";
+import { useJoiningDialog } from "../hooks";
 
-export type JoiningDialogProps = {
+type JoiningDialogProps = {
     open: boolean;
     onClose: () => void;
 };
 
-//Update the joining logic
 export const JoiningDialog = ({ open, onClose }: JoiningDialogProps) => {
-    const {
-        user: { id: userId },
-    } = useAuth() as { user: AuthUser };
-    const [joinRoom] = useJoinRoomMutation();
-    const [roomId, setRoomId] = useState<number | null>(null);
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setRoomId(+event.currentTarget.value);
-    };
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        joinRoom({ roomId, userId } as { roomId: number; userId: number });
-        setRoomId(null);
-        onClose();
-    };
-
-    const handleClose = () => {
-        setRoomId(null);
-        onClose();
-    };
+    const { roomId, handleChange, handleSubmit, handleClose } =
+        useJoiningDialog(onClose);
 
     return (
         <Dialog onClose={handleClose} PaperComponent={Paper} {...{ open }}>

@@ -8,17 +8,13 @@ import {
 } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ClearIcon from "@mui/icons-material/Clear";
-import { useNavigate } from "react-router";
 
 import { statuses } from "common/statuses";
-import { AuthUser, Status, useAuth } from "features";
+import { Status } from "features";
 
 import { StyledCard } from "./styled";
 
-import {
-    useDeleteRoomMutation,
-    useLeaveRoomMutation,
-} from "../roomsManagerApi";
+import { useRoomCard } from "../hooks";
 
 export type RoomCardProps = {
     id: number;
@@ -30,9 +26,7 @@ export type RoomCardProps = {
 };
 
 //TODO: Add area attributes
-//TODO: Rework the layout
 //TODO: Move and style the menu
-//TODO: Add synthetic events
 //TODO: Add an deleting alert dialog
 //TODO: Make the whole card clickable
 export const RoomCard = ({
@@ -43,25 +37,10 @@ export const RoomCard = ({
     status = statuses[0],
     members = 0,
 }: RoomCardProps) => {
-    const {
-        user: { id: userId },
-    } = useAuth() as { user: AuthUser };
-    const navigate = useNavigate();
-    const [deleteRoom] = useDeleteRoomMutation();
-    const [leaveRoom] = useLeaveRoomMutation();
-    const isOwner = userId === ownerId;
-
-    const handleDelete = () => {
-        deleteRoom(id);
-    };
-
-    const handleLeave = () => {
-        leaveRoom({ roomId: id, userId });
-    };
-
-    const handleNavigate = () => {
-        navigate(`/authorized/Room/${id}`);
-    };
+    const { isOwner, handleDelete, handleLeave, handleNavigate } = useRoomCard({
+        id,
+        ownerId,
+    });
 
     return (
         <>

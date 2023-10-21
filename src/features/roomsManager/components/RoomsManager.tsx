@@ -1,40 +1,23 @@
 import { Button, Grid, Stack } from "@mui/material";
-import { useState } from "react";
 
 import { AppBar, PageWrapper, Title } from "components";
-import { AuthUser } from "features/auth/types";
-import { useAuth } from "features/auth";
 
 import { CreationDialog } from "./CreationDialog";
 import { RoomCard } from "./RoomCard";
-import { useGetUserRoomsQuery } from "./roomsManagerApi";
 import { JoiningDialog } from "./JoiningDialog";
 
-//TODO: Move into a hook
-//TODO: Rework the dialog logic
+import { useRoomsManager } from "../hooks";
+
 export const RoomsManager = () => {
     const {
-        user: { id: userId },
-    } = useAuth() as { user: AuthUser };
-    const { data: rooms = [] } = useGetUserRoomsQuery(userId);
-    const [creationOpen, setCreationOpen] = useState(false);
-    const [joiningOpen, setJoiningOpen] = useState(false);
-
-    const handleOpen = () => {
-        setCreationOpen(true);
-    };
-
-    const handleClose = () => {
-        setCreationOpen(false);
-    };
-
-    const handleJoiningOpen = () => {
-        setJoiningOpen(true);
-    };
-
-    const handleJoiningClose = () => {
-        setJoiningOpen(false);
-    };
+        rooms,
+        creationOpen,
+        joiningOpen,
+        handleOpen,
+        handleClose,
+        handleJoiningOpen,
+        handleJoiningClose,
+    } = useRoomsManager();
 
     return (
         <PageWrapper>

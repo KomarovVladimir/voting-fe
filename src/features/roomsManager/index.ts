@@ -1,2 +1,2 @@
-export * from "./RoomsManager";
-export * from "./roomsManagerApi";
+export * from "./components";
+export * from "./api";

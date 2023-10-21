@@ -3,15 +3,9 @@ import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { api } from "services/api";
 import { RoomData } from "features";
 
-//TODO: Move the types
-export interface ICreateRoomQuery {
-    name: string;
-    userId: number;
-    creationDate: Date;
-}
+import { CreateRoomRequest, JoinRoomRequest, LeaveRoomRequest } from "../types";
 
 //TODO: Replace body with params
-//TODO: Add QueryReturnValue everywhere
 export const roomsManagerApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getRooms: builder.query<RoomData[], void>({
@@ -22,7 +16,7 @@ export const roomsManagerApi = api.injectEndpoints({
             query: (userId) => ({ url: `/user/${userId}/rooms` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
-        createRoom: builder.mutation<QueryReturnValue, ICreateRoomQuery>({
+        createRoom: builder.mutation<QueryReturnValue, CreateRoomRequest>({
             query: (body) => ({
                 url: "/room",
                 method: "POST",
@@ -37,20 +31,14 @@ export const roomsManagerApi = api.injectEndpoints({
             }),
             invalidatesTags: ["Rooms"],
         }),
-        joinRoom: builder.mutation<
-            QueryReturnValue,
-            { roomId: number; userId: number }
-        >({
+        joinRoom: builder.mutation<QueryReturnValue, JoinRoomRequest>({
             query: ({ roomId, userId }) => ({
                 url: `/room/${roomId}/join/${userId}`,
                 method: "POST",
             }),
             invalidatesTags: ["Rooms"],
         }),
-        leaveRoom: builder.mutation<
-            QueryReturnValue,
-            { roomId: number; userId: number }
-        >({
+        leaveRoom: builder.mutation<QueryReturnValue, LeaveRoomRequest>({
             query: ({ roomId, userId }) => ({
                 url: `/room/${roomId}/join/${userId}`,
                 method: "DELETE",

@@ -7,41 +7,21 @@ import {
     DialogContent,
     Box,
 } from "@mui/material";
-import { ChangeEvent, FormEvent, useState } from "react";
 
 import { Paper } from "components";
-import { useAuth } from "features/auth";
-import { AuthUser } from "features/auth/types";
 
-import { useCreateRoomMutation } from "./roomsManagerApi";
+import { useCreationDialog } from "../hooks";
 
-export type CreationDialogProps = {
+type CreationDialogProps = {
     open: boolean;
     onClose: () => void;
 };
 
+//TODO: Add i18n
+//TODO: Make a common component
 export const CreationDialog = ({ open, onClose }: CreationDialogProps) => {
-    const {
-        user: { id: userId },
-    } = useAuth() as { user: AuthUser };
-    const [createRoom] = useCreateRoomMutation();
-    const [name, setName] = useState("");
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setName(event.currentTarget.value);
-    };
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        createRoom({ name, userId, creationDate: new Date() });
-        setName("");
-        onClose();
-    };
-
-    const handleClose = () => {
-        setName("");
-        onClose();
-    };
+    const { name, handleChange, handleSubmit, handleClose } =
+        useCreationDialog(onClose);
 
     return (
         <Dialog onClose={handleClose} PaperComponent={Paper} {...{ open }}>
