@@ -16,7 +16,7 @@ export const memberApi = api.injectEndpoints({
                     url: `/room/${roomId}/members/${userId}`,
                     method: "DELETE",
                 }),
-                invalidatesTags: [{ type: "Members" }],
+                invalidatesTags: [{ type: "Members" }, { type: "Rooms" }],
             }
         ),
     }),
