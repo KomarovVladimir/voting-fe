@@ -1,6 +1,7 @@
 import { MenuItem, Button, Snackbar, Stack, Select } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import PersonIcon from "@mui/icons-material/Person";
 import { Link, useParams } from "react-router-dom";
 
 import { AppBar, Title, TitleLink } from "components";
@@ -72,8 +73,9 @@ export const RoomAppBar = () => {
                         <Button
                             sx={{ color: "#fff" }}
                             onClick={handleParticipantsOpen}
+                            startIcon={<PersonIcon />}
                         >
-                            {members.length} members
+                            {members.length}
                         </Button>
                         <Button
                             onClick={handleCopy(roomId)}
