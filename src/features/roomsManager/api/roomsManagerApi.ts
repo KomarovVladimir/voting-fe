@@ -1,6 +1,6 @@
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 
-import { api } from "services/api";
+import { api } from "app/services/api";
 import { RoomData } from "features";
 
 import { CreateRoomRequest, JoinRoomRequest, LeaveRoomRequest } from "../types";

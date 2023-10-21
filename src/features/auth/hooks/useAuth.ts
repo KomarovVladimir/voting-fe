@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import { useLocalStorage } from "hooks/useLocalStorage";
+import { useLocalStorage } from "common/hooks";
 
 import { useUser } from "./useUser";
 

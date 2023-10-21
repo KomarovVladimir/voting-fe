@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { useLocalStorage } from "hooks/useLocalStorage";
+import { useLocalStorage } from "common/hooks";
 
 import { AuthContext } from "../context/AuthContext";
 import { AuthUser } from "../types";

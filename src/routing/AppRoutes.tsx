@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router";
 
+import { RegistrationForm, LoginForm, RoomsManager, Room } from "features";
+
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
-import { RegistrationForm, LoginForm, RoomsManager, Room } from "features";
-import { navigation } from "./data/navigation";
+
+import { navigation } from "../common/constants";
 
 const { baseRoute, authorized, roomsManager, room, register } = navigation;
 
