@@ -15,6 +15,7 @@ const darkTheme = createTheme({
     },
 });
 
+//TODO: Migrate to vite
 export const App = () => {
     return (
         <StrictMode>

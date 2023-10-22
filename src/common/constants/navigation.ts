@@ -2,6 +2,6 @@ export const navigation = {
     baseRoute: "/",
     authorized: "authorized",
     roomsManager: "rooms",
-    room: "room/:roomId",
+    room: "rooms/:roomId",
     register: "register",
 };

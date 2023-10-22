@@ -25,7 +25,7 @@ export const useRoomCard = ({
     };
 
     const handleNavigate = () => {
-        navigate(`/authorized/Room/${id}`);
+        navigate(`/authorized/rooms/${id}`);
     };
 
     return { isOwner, handleDelete, handleLeave, handleNavigate };

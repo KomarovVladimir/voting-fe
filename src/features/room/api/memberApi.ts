@@ -7,13 +7,13 @@ import { MemberData, ExcludeMemberRequest } from "../types";
 export const memberApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getMembers: builder.query<MemberData[], string>({
-            query: (roomId) => ({ url: `/room/${roomId}/members` }),
+            query: (roomId) => ({ url: `/rooms/${roomId}/members` }),
             providesTags: () => [{ type: "Members" }],
         }),
         excludeMember: builder.mutation<QueryReturnValue, ExcludeMemberRequest>(
             {
                 query: ({ roomId, userId }) => ({
-                    url: `/room/${roomId}/members/${userId}`,
+                    url: `/rooms/${roomId}/members/${userId}/exclude`,
                     method: "DELETE",
                 }),
                 invalidatesTags: [{ type: "Members" }, { type: "Rooms" }],

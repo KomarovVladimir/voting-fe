@@ -8,7 +8,7 @@ export const itemApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getItems: builder.query<ItemData[], GetItemsRequest>({
             query: ({ roomId, userId }) => ({
-                url: `room/${roomId}/items/${userId}`,
+                url: `rooms/${roomId}/user/${userId}/items`,
             }),
             providesTags: () => [{ type: "Items" }],
         }),
@@ -18,7 +18,7 @@ export const itemApi = api.injectEndpoints({
             Pick<ItemData, "roomId" | "name">
         >({
             query: ({ roomId, ...body }) => ({
-                url: `/room/${roomId}/item`,
+                url: `/rooms/${roomId}/items`,
                 method: "POST",
                 body,
             }),
@@ -29,7 +29,7 @@ export const itemApi = api.injectEndpoints({
             Pick<ItemData, "roomId" | "id">
         >({
             query: ({ roomId, id }) => ({
-                url: `/room/${roomId}/item/${id}`,
+                url: `/rooms/${roomId}/items/${id}`,
                 method: "DELETE",
             }),
             invalidatesTags: [{ type: "Items" }],

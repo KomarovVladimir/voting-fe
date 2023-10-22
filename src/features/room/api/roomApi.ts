@@ -8,7 +8,7 @@ import { RoomData } from "../types";
 export const roomApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getRoomData: builder.query<RoomData, string>({
-            query: (roomId) => ({ url: `room/${roomId}` }),
+            query: (roomId) => ({ url: `rooms/${roomId}` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
         updateRoom: builder.mutation<
@@ -16,7 +16,7 @@ export const roomApi = api.injectEndpoints({
             Pick<RoomData, "id" | "name" | "status">
         >({
             query: (body) => ({
-                url: `/room/${body.id}`,
+                url: `/rooms/${body.id}`,
                 method: "PATCH",
                 body,
             }),

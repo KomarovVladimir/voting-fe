@@ -7,12 +7,12 @@ import { PostMessageRequest, MessageData } from "../types";
 export const chatApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getMessages: builder.query<MessageData[], string>({
-            query: (roomId) => ({ url: `room/${roomId}/messages` }),
+            query: (roomId) => ({ url: `rooms/${roomId}/messages` }),
             providesTags: () => [{ type: "Chat" }],
         }),
         sendMessage: builder.mutation<QueryReturnValue, PostMessageRequest>({
             query: ({ roomId, ...body }) => ({
-                url: `room/${roomId}/message`,
+                url: `rooms/${roomId}/messages`,
                 method: "POST",
                 body,
             }),
@@ -20,7 +20,7 @@ export const chatApi = api.injectEndpoints({
         }),
         deleteMessage: builder.mutation<QueryReturnValue, string>({
             query: (messageId) => ({
-                url: `/message/${messageId}`,
+                url: `/messages/${messageId}`,
                 method: "DELETE",
             }),
             invalidatesTags: [{ type: "Chat" }],

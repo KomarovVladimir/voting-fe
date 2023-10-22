@@ -9,14 +9,14 @@ export const voteApi = api.injectEndpoints({
     endpoints: (builder) => ({
         vote: builder.mutation<QueryReturnValue, VoteRequest>({
             query: ({ roomId, userId, itemId }) => ({
-                url: `/room/${roomId}/item/${itemId}/user/${userId}/vote`,
+                url: `rooms/${roomId}/users/${userId}/items/${itemId}/vote`,
                 method: "POST",
             }),
             invalidatesTags: [{ type: "Items" }],
         }),
         removeVote: builder.mutation<QueryReturnValue, VoteRequest>({
             query: ({ roomId, userId, itemId }) => ({
-                url: `/room/${roomId}/item/${itemId}/user/${userId}/vote`,
+                url: `rooms/${roomId}/users/${userId}/items/${itemId}/vote`,
                 method: "DELETE",
             }),
             invalidatesTags: [{ type: "Items" }],
