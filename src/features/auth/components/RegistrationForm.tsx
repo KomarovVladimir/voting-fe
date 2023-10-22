@@ -75,7 +75,7 @@ export const RegistrationForm = () => {
                             </FormControl>
                             <FormControl required>
                                 <Field
-                                    name="confirm"
+                                    name="confirmation"
                                     render={({
                                         input: { value, onChange },
                                         meta: { touched, error },
