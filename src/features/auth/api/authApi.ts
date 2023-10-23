@@ -8,7 +8,7 @@ export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         loginRequest: builder.mutation<AuthUser, UserSignInData>({
             query: (body) => ({
-                url: "users/login",
+                url: "login",
                 method: "POST",
                 body,
             }),
@@ -16,7 +16,7 @@ export const authApi = api.injectEndpoints({
         }),
         logoutRequest: builder.mutation<QueryReturnValue, string>({
             query: (email) => ({
-                url: "users/logout",
+                url: "logout",
                 method: "POST",
                 body: { email },
             }),
@@ -25,7 +25,7 @@ export const authApi = api.injectEndpoints({
         registrationRequest: builder.mutation<QueryReturnValue, UserSignUpData>(
             {
                 query: (body) => ({
-                    url: "users/register",
+                    url: "register",
                     method: "POST",
                     body,
                 }),
