@@ -1,27 +1,21 @@
 import { useNavigate } from "react-router";
 
-import { useAuth, AuthUser, RoomCardProps } from "features";
+import { RoomCardProps } from "features";
 
 import { useDeleteRoomMutation, useLeaveRoomMutation } from "../api";
 
-export const useRoomCard = ({
-    id,
-    ownerId,
-}: Pick<RoomCardProps, "id" | "ownerId">) => {
-    const {
-        user: { id: userId },
-    } = useAuth() as { user: AuthUser };
+export const useRoomCard = ({ id }: Pick<RoomCardProps, "id" | "ownerId">) => {
     const navigate = useNavigate();
     const [deleteRoom] = useDeleteRoomMutation();
     const [leaveRoom] = useLeaveRoomMutation();
-    const isOwner = userId === ownerId;
+    const isOwner = false;
 
     const handleDelete = () => {
         deleteRoom(id);
     };
 
     const handleLeave = () => {
-        leaveRoom({ roomId: id, userId });
+        leaveRoom(id);
     };
 
     const handleNavigate = () => {

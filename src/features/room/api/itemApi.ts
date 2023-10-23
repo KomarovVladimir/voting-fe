@@ -8,7 +8,7 @@ export const itemApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getItems: builder.query<ItemData[], GetItemsRequest>({
             query: ({ roomId, userId }) => ({
-                url: `rooms/${roomId}/user/${userId}/items`,
+                url: `rooms/${roomId}/items`,
             }),
             providesTags: () => [{ type: "Items" }],
         }),

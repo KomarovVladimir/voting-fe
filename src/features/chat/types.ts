@@ -4,12 +4,10 @@ export interface MessageData {
     text: string;
     created?: string;
     lastUpdated?: string;
-    userId: number;
 }
 
 export interface PostMessageRequest {
     roomId: string;
-    userId: number;
     text: string;
     postingDate: Date;
 }

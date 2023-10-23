@@ -3,17 +3,13 @@ import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { api } from "app/services/api";
 import { RoomData } from "features";
 
-import { CreateRoomRequest, JoinRoomRequest, LeaveRoomRequest } from "../types";
+import { CreateRoomRequest } from "../types";
 
 //TODO: Replace body with params
 export const roomsManagerApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getRooms: builder.query<RoomData[], void>({
             query: () => ({ url: `/rooms` }),
-            providesTags: () => [{ type: "Rooms" }],
-        }),
-        getUserRooms: builder.query<RoomData[], number>({
-            query: (userId) => ({ url: `/users/${userId}/rooms` }),
             providesTags: () => [{ type: "Rooms" }],
         }),
         createRoom: builder.mutation<QueryReturnValue, CreateRoomRequest>({
@@ -31,16 +27,16 @@ export const roomsManagerApi = api.injectEndpoints({
             }),
             invalidatesTags: ["Rooms"],
         }),
-        joinRoom: builder.mutation<QueryReturnValue, JoinRoomRequest>({
-            query: ({ roomId, userId }) => ({
-                url: `/rooms/${roomId}/join/${userId}`,
+        joinRoom: builder.mutation<QueryReturnValue, number>({
+            query: (roomId) => ({
+                url: `/rooms/${roomId}/join`,
                 method: "POST",
             }),
             invalidatesTags: ["Rooms"],
         }),
-        leaveRoom: builder.mutation<QueryReturnValue, LeaveRoomRequest>({
-            query: ({ roomId, userId }) => ({
-                url: `/rooms/${roomId}/join/${userId}`,
+        leaveRoom: builder.mutation<QueryReturnValue, number>({
+            query: (roomId) => ({
+                url: `/rooms/${roomId}/join`,
                 method: "DELETE",
             }),
             invalidatesTags: ["Rooms"],
@@ -49,7 +45,7 @@ export const roomsManagerApi = api.injectEndpoints({
 });
 
 export const {
-    useGetUserRoomsQuery,
+    useGetRoomsQuery,
     useJoinRoomMutation,
     useLeaveRoomMutation,
     useCreateRoomMutation,

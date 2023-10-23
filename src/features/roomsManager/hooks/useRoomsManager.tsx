@@ -1,14 +1,9 @@
 import { useState } from "react";
 
-import { useAuth, AuthUser } from "features";
-
-import { useGetUserRoomsQuery } from "../api";
+import { useGetRoomsQuery } from "../api";
 
 export const useRoomsManager = () => {
-    const {
-        user: { id: userId },
-    } = useAuth() as { user: AuthUser };
-    const { data: rooms = [] } = useGetUserRoomsQuery(userId);
+    const { data: rooms = [] } = useGetRoomsQuery();
     const [creationOpen, setCreationOpen] = useState(false);
     const [joiningOpen, setJoiningOpen] = useState(false);
 
