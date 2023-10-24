@@ -12,8 +12,8 @@ export type ItemData = {
 
 export type RoomData = {
     id: number;
-    ownerId: number;
     authorName?: string;
+    isOwner: boolean;
     name: string;
     status: Status;
 };

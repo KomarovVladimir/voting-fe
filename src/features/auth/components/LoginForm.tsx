@@ -28,7 +28,7 @@ export const LoginForm = () => {
                 onSubmit={onSubmit}
                 initialValues={{
                     email: "test@email.com",
-                    password: "testpassword123123",
+                    password: "test@email.com",
                 }}
                 render={({ handleSubmit }) => (
                     <Box component="form" onSubmit={handleSubmit}>

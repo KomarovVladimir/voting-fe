@@ -18,7 +18,7 @@ import { useRoomCard } from "../hooks";
 
 export type RoomCardProps = {
     id: number;
-    ownerId: number;
+    isOwner: boolean;
     authorName?: string;
     name: string;
     status: Status;
@@ -32,15 +32,12 @@ export type RoomCardProps = {
 export const RoomCard = ({
     id,
     name,
-    ownerId,
+    isOwner,
     authorName,
     status = statuses[0],
     members = 0,
 }: RoomCardProps) => {
-    const { isOwner, handleDelete, handleLeave, handleNavigate } = useRoomCard({
-        id,
-        ownerId,
-    });
+    const { handleDelete, handleLeave, handleNavigate } = useRoomCard(id);
 
     return (
         <>
