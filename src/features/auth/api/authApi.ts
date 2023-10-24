@@ -14,11 +14,10 @@ export const authApi = api.injectEndpoints({
             }),
             invalidatesTags: ["Auth"],
         }),
-        logoutRequest: builder.mutation<QueryReturnValue, string>({
-            query: (email) => ({
+        logoutRequest: builder.mutation<QueryReturnValue, void>({
+            query: () => ({
                 url: "logout",
                 method: "POST",
-                body: { email },
             }),
             invalidatesTags: ["Auth"],
         }),

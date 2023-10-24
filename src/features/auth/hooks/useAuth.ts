@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 
+import { api } from "app/services/api";
 import { useLocalStorage } from "common/hooks";
 
 import { useUser } from "./useUser";
@@ -14,6 +16,7 @@ import { AuthUser, UserSignInData, UserSignUpData } from "../types";
 
 //TODO: Use async
 export const useAuth = () => {
+    const dispatch = useDispatch();
     const { user, addUser, removeUser } = useUser();
     const { getItem } = useLocalStorage("user");
     const navigate = useNavigate();
@@ -39,14 +42,13 @@ export const useAuth = () => {
     };
 
     const handleLogout = () => {
-        if (user?.email) {
-            logoutRequest(user?.email)
-                .unwrap()
-                .then(() => {
-                    removeUser();
-                })
-                .catch((error) => console.error("An error occurred", error));
-        }
+        logoutRequest()
+            .unwrap()
+            .then(() => {
+                dispatch(api.util.resetApiState());
+                removeUser();
+            })
+            .catch((error) => console.error("An error occurred", error));
     };
 
     const handleRegister = (data: UserSignUpData) => {
