@@ -39,7 +39,8 @@ export const Message = styled(ListItem)({
 });
 
 export const MessageContent = styled("div")({
-    padding: ".6rem .75rem",
+    position: "relative",
+    padding: ".6rem 4.5rem .6rem .75rem",
     borderRadius: "0 8px 8px 8px",
     background: "rgba(203, 227, 255, 0.10)",
 });

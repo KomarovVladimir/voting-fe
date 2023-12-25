@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import moment from "moment";
 
 import {
     ChatBox,
@@ -42,8 +43,11 @@ export const Chat = () => {
                                     <Typography
                                         color="primary"
                                         fontSize=".75rem"
+                                        position={"absolute"}
+                                        right=".75rem"
+                                        bottom=".25rem"
                                     >
-                                        {date}
+                                        {moment(date).format("h:mm a")}
                                     </Typography>
                                 </MessageHeader>
                                 <Typography>{text}</Typography>
