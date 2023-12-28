@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { api } from "app/services/api";
 import { useLocalStorage } from "common/hooks";
-
-import { useUser } from "./useUser";
+import { RootState } from "app/store";
 
 import {
     useLoginRequestMutation,
@@ -13,30 +12,33 @@ import {
     useRegistrationRequestMutation,
 } from "../api/authApi";
 import { AuthUser, UserSignInData, UserSignUpData } from "../types";
+import { logout, setUser } from "../slice";
 
 //TODO: Use async
 export const useAuth = () => {
     const dispatch = useDispatch();
-    const { user, addUser, removeUser } = useUser();
-    const { getItem } = useLocalStorage("user");
+    const user = useSelector<RootState, AuthUser | undefined>(
+        (state) => state.auth.user
+    );
+    // const { getItem } = useLocalStorage("user");
     const navigate = useNavigate();
     const [loginRequest, loginResult] = useLoginRequestMutation();
     const [registrationRequest] = useRegistrationRequestMutation();
     const [logoutRequest] = useLogoutRequestMutation();
 
-    useEffect(() => {
-        const user = getItem();
+    // useEffect(() => {
+    //     const user = getItem();
 
-        if (user) {
-            addUser(user);
-        }
-    }, []);
+    //     if (user) {
+    //         addUser(user);
+    //     }
+    // }, []);
 
     const handleLogin = (data: UserSignInData) => {
         loginRequest(data)
             .unwrap()
             .then((data) => {
-                addUser(data as AuthUser);
+                dispatch(setUser(data));
             })
             .catch((error) => console.error("An error occurred", error));
     };
@@ -46,7 +48,7 @@ export const useAuth = () => {
             .unwrap()
             .then(() => {
                 dispatch(api.util.resetApiState());
-                removeUser();
+                dispatch(logout());
             })
             .catch((error) => console.error("An error occurred", error));
     };

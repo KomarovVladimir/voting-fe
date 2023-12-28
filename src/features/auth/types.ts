@@ -21,11 +21,6 @@ export type AuthUser = {
     avatar?: string;
 };
 
-export type UserResponse = {
-    jwt: string;
-    user: AuthUser;
-};
-
 export type AuthState = {
     user: AuthUser | null;
     setUser: Dispatch<SetStateAction<AuthUser | null>>;

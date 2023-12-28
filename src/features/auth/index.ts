@@ -1,5 +1,6 @@
 export * from "./api/authApi";
 export * from "./context";
-export * from "./components";
+export * from "./slice";
 export * from "./hooks";
+export * from "./components";
 export * from "./types";
