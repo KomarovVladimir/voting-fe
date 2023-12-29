@@ -17,7 +17,6 @@ const baseQuery = fetchBaseQuery({
 
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 
-//TODO: Replace localStorage.removeItem("user")
 const baseQueryWithLogout: BaseQueryFn<
     string | FetchArgs,
     unknown,
@@ -26,7 +25,6 @@ const baseQueryWithLogout: BaseQueryFn<
     let result = await baseQuery(args, api, extraOptions);
 
     if (result.error && result.error.status === 401) {
-        localStorage.removeItem("user");
         api.dispatch(logout());
     }
     return result;

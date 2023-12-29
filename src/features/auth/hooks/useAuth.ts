@@ -13,6 +13,7 @@ import {
 } from "../api/authApi";
 import { AuthUser, UserSignInData, UserSignUpData } from "../types";
 import { logout, setUser } from "../slice";
+import { USER_ITEM } from "../constants";
 
 //TODO: Use async
 //TODO: ADD A LISTENER FOR THE LOCAL STORAGE
@@ -21,7 +22,7 @@ export const useAuth = () => {
     const user = useSelector<RootState, AuthUser | undefined>(
         (state) => state.auth.user
     );
-    const { getItem, setItem, removeItem } = useLocalStorage("user");
+    const { getItem } = useLocalStorage(USER_ITEM);
     const navigate = useNavigate();
     const [loginRequest, loginResult] = useLoginRequestMutation();
     const [registrationRequest] = useRegistrationRequestMutation();
@@ -39,7 +40,6 @@ export const useAuth = () => {
         loginRequest(data)
             .unwrap()
             .then((data) => {
-                setItem(JSON.stringify(data));
                 dispatch(setUser(data));
             })
             .catch((error) => console.error("An error occurred", error));
@@ -50,7 +50,6 @@ export const useAuth = () => {
             .unwrap()
             .then(() => {
                 dispatch(api.util.resetApiState());
-                removeItem();
                 dispatch(logout());
             })
             .catch((error) => console.error("An error occurred", error));
