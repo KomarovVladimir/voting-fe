@@ -15,29 +15,31 @@ import { AuthUser, UserSignInData, UserSignUpData } from "../types";
 import { logout, setUser } from "../slice";
 
 //TODO: Use async
+//TODO: ADD A LISTENER FOR THE LOCAL STORAGE
 export const useAuth = () => {
     const dispatch = useDispatch();
     const user = useSelector<RootState, AuthUser | undefined>(
         (state) => state.auth.user
     );
-    // const { getItem } = useLocalStorage("user");
+    const { getItem, setItem, removeItem } = useLocalStorage("user");
     const navigate = useNavigate();
     const [loginRequest, loginResult] = useLoginRequestMutation();
     const [registrationRequest] = useRegistrationRequestMutation();
     const [logoutRequest] = useLogoutRequestMutation();
 
-    // useEffect(() => {
-    //     const user = getItem();
+    useEffect(() => {
+        const user = getItem();
 
-    //     if (user) {
-    //         addUser(user);
-    //     }
-    // }, []);
+        if (user) {
+            dispatch(setUser(user));
+        }
+    }, []);
 
     const handleLogin = (data: UserSignInData) => {
         loginRequest(data)
             .unwrap()
             .then((data) => {
+                setItem(JSON.stringify(data));
                 dispatch(setUser(data));
             })
             .catch((error) => console.error("An error occurred", error));
@@ -48,6 +50,7 @@ export const useAuth = () => {
             .unwrap()
             .then(() => {
                 dispatch(api.util.resetApiState());
+                removeItem();
                 dispatch(logout());
             })
             .catch((error) => console.error("An error occurred", error));

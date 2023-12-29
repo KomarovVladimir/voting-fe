@@ -17,7 +17,8 @@ const baseQuery = fetchBaseQuery({
 
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 
-const baseQueryWithReauth: BaseQueryFn<
+//TODO: Replace localStorage.removeItem("user")
+const baseQueryWithLogout: BaseQueryFn<
     string | FetchArgs,
     unknown,
     FetchBaseQueryError
@@ -25,24 +26,14 @@ const baseQueryWithReauth: BaseQueryFn<
     let result = await baseQuery(args, api, extraOptions);
 
     if (result.error && result.error.status === 401) {
-        // try to get a new token
-        const refreshResult = await baseQuery(
-            "/refreshToken",
-            api,
-            extraOptions
-        );
-        if (refreshResult.data) {
-            // retry the initial query
-            // result = await baseQuery(args, api, extraOptions);
-        } else {
-            api.dispatch(logout());
-        }
+        localStorage.removeItem("user");
+        api.dispatch(logout());
     }
     return result;
 };
 
 export const api = createApi({
-    baseQuery: baseQueryWithReauth,
+    baseQuery: baseQueryWithLogout,
     tagTypes: ["Auth", "Rooms", "Items", "Members", "Chat"],
     endpoints: () => ({}),
 });
