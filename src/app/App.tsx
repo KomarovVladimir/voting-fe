@@ -11,7 +11,7 @@ import { AppRoutes } from "routing";
 import { store } from "./store";
 
 //TODO: Move sockets io
-const socket = io("http://localhost:5000");
+// const socket = io("http://localhost:5000", { withCredentials: true });
 
 const darkTheme = createTheme({
     palette: {

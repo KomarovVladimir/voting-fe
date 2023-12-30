@@ -14,7 +14,7 @@ import { useChat } from "../hooks/useChat";
 
 //TODO: Add avatars
 export const Chat = () => {
-    const { messages } = useChat();
+    const { messages, endRef } = useChat();
 
     return (
         <ChatPaper>
@@ -54,6 +54,7 @@ export const Chat = () => {
                             </MessageContent>
                         </Message>
                     ))}
+                <div ref={endRef} />
             </ChatBox>
             <ChatInput />
         </ChatPaper>
