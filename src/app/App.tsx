@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { StrictMode } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 
 // import "services/server";
 import { AppRoutes } from "routing";

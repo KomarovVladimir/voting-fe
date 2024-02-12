@@ -25,7 +25,7 @@ export const useItems = () => {
     const { data: items } = useGetItemsQuery({ roomId, userId });
 
     const handleItemClick = (isChosen: boolean, id: number) => () => {
-        if (Boolean(isChosen)) {
+        if (isChosen) {
             removeVoteRequest({ itemId: id, roomId: +roomId, userId });
         } else {
             voteRequest({ itemId: id, roomId: +roomId, userId });
