@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import { io } from "socket.io-client";
 
 // import "services/server";
-import { AuthProvider } from "features";
 import { AppRoutes } from "routing";
 
 import { store } from "./store";
@@ -23,16 +22,14 @@ const darkTheme = createTheme({
 export const App = () => {
     return (
         <StrictMode>
-            <AuthProvider>
-                <Provider store={store}>
-                    <ThemeProvider theme={darkTheme}>
-                        <CssBaseline />
-                        <BrowserRouter>
-                            <AppRoutes />
-                        </BrowserRouter>
-                    </ThemeProvider>
-                </Provider>
-            </AuthProvider>
+            <Provider store={store}>
+                <ThemeProvider theme={darkTheme}>
+                    <CssBaseline />
+                    <BrowserRouter>
+                        <AppRoutes />
+                    </BrowserRouter>
+                </ThemeProvider>
+            </Provider>
         </StrictMode>
     );
 };
