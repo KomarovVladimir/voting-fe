@@ -4,8 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-    context: path.resolve(__dirname, "..", "src"),
-    entry: "./index.tsx",
+    entry: path.resolve(__dirname, "../src/index.tsx"),
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "dist"),
@@ -26,12 +25,12 @@ module.exports = {
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
         alias: {
-            app: path.resolve(__dirname, "..", "src", "app"),
-            assets: path.resolve(__dirname, "..", "src", "assets"),
-            common: path.resolve(__dirname, "..", "src", "common"),
-            components: path.resolve(__dirname, "..", "src", "components"),
-            features: path.resolve(__dirname, "..", "src", "features"),
-            routing: path.resolve(__dirname, "..", "src", "routing"),
+            app: path.resolve(__dirname, "../src/app"),
+            assets: path.resolve(__dirname, "../src/assets"),
+            common: path.resolve(__dirname, "../src/common"),
+            components: path.resolve(__dirname, "../src/components"),
+            features: path.resolve(__dirname, "../src/features"),
+            routing: path.resolve(__dirname, "../src/routing"),
         },
     },
     plugins: [
