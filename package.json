@@ -89,6 +89,8 @@
         "eslint-plugin": "^1.0.1",
         "eslint-plugin-react": "^7.33.2",
         "miragejs": "^0.1.47",
+        "prettier": "^3.2.5",
+        "prettier-webpack-plugin": "^1.2.0",
         "redux-devtools-extension": "^2.13.9",
         "ts-loader": "^9.5.1",
         "webpack-cli": "^5.1.4"
