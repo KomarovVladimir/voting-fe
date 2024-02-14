@@ -65,5 +65,18 @@ module.exports = (env, argv) => {
             }),
             new CleanWebpackPlugin(),
         ],
+        devServer: {
+            open: true,
+            static: {
+                directory: path.join(__dirname, "../public"),
+            },
+            compress: true,
+            port: 3000,
+            liveReload: false,
+            hot: true,
+            client: {
+                overlay: false,
+            },
+        },
     }
 }
