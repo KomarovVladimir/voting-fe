@@ -62,8 +62,8 @@
         "webpack-dev-server": "^4.6.0"
     },
     "scripts": {
-        "build": "npx webpack --config ./config/webpack.config.js --mode production",
-        "start": "npx webpack serve --config ./config/webpack.config.js --mode development"
+        "build": "npx webpack --config ./config/webpack.config.js --env production",
+        "start": "npx webpack serve --config ./config/webpack.config.js"
     },
     "browserslist": {
         "production": [
