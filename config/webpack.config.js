@@ -1,7 +1,7 @@
-const path = require("path");
-const ESLintPlugin = require("eslint-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require("path")
+const ESLintPlugin = require("eslint-webpack-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = (env, argv) => {
     return {
@@ -16,7 +16,15 @@ module.exports = (env, argv) => {
             rules: [
                 {
                     test: /\.(ts|tsx)$/,
-                    use: "ts-loader",
+                    use: {
+                        loader: "ts-loader",
+                        options: {
+                            configFile: path.resolve(
+                                __dirname,
+                                "tsconfig.json",
+                            ),
+                        },
+                    },
                     exclude: /node_modules/,
                 },
                 {
@@ -57,5 +65,5 @@ module.exports = (env, argv) => {
             }),
             new CleanWebpackPlugin(),
         ],
-    };
-};
+    }
+}
