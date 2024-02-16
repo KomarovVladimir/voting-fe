@@ -23,7 +23,7 @@
             "features/*": ["./features/*"],
             "routing/*": ["./routing/*"]
         },
-        "types": ["webpack-env", "jest"]
+        "types": ["webpack-env", "jest", "react"]
     },
     "include": ["../src/**/*.ts", "../src/**/*.tsx"],
     "exclude": ["node_modules"]
