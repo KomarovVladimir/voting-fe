@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Card, styled } from "@mui/material";
 
 export const StyledCard = styled(Card)({
