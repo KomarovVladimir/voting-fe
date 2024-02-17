@@ -3,6 +3,7 @@ const ESLintPlugin = require("eslint-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin")
 
 module.exports = (env, argv) => {
     return {
@@ -36,14 +37,11 @@ module.exports = (env, argv) => {
         },
         resolve: {
             extensions: [".js", ".jsx", ".ts", ".tsx"],
-            alias: {
-                app: path.resolve(__dirname, "../src/app"),
-                assets: path.resolve(__dirname, "../src/assets"),
-                common: path.resolve(__dirname, "../src/common"),
-                components: path.resolve(__dirname, "../src/components"),
-                features: path.resolve(__dirname, "../src/features"),
-                routing: path.resolve(__dirname, "../src/routing"),
-            },
+            plugins: [
+                new TsconfigPathsPlugin({
+                    configFile: path.resolve(__dirname, "./tsconfig.json"),
+                }),
+            ],
         },
         plugins: [
             new ESLintPlugin({
@@ -78,7 +76,7 @@ module.exports = (env, argv) => {
             new CleanWebpackPlugin(),
         ],
         devServer: {
-            open: true,
+            // open: true,
             static: {
                 directory: path.join(__dirname, "../public"),
             },
