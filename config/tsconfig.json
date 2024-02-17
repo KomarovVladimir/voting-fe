@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "baseUrl": "../src",
-        "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],
+        "target": "ES5",
         "allowJs": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
@@ -11,20 +11,20 @@
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
         "module": "esnext",
-        "moduleResolution": "node",
+        "moduleResolution": "Node",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "react-jsx",
         "paths": {
-            "app/*": ["./app/*"],
-            "assets/*": ["./assets/*"],
-            "common/*": ["./common/*"],
-            "components/*": ["./components/*"],
-            "features/*": ["./features/*"],
-            "routing/*": ["./routing/*"]
+            "app/*": ["app/*"],
+            "assets/*": ["assets/*"],
+            "common/*": ["common/*"],
+            "components/*": ["components/*"],
+            "features/*": ["features/*"],
+            "routing/*": ["routing/*"]
         },
-        "types": ["webpack-env", "jest", "react"]
+        "types": ["webpack-env", "react"]
     },
     "include": ["../src/**/*.ts", "../src/**/*.tsx"],
-    "exclude": ["node_modules"]
+    "exclude": ["../node_modules"]
 }

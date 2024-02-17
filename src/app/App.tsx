@@ -1,5 +1,5 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { StrictMode } from "react";
+import React, { StrictMode } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 // import { io } from "socket.io-client";

@@ -2121,7 +2121,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-redux@^7.1.25":
+"@types/react-redux@^7.1.33":
   version "7.1.33"
   resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-7.1.33.tgz#53c5564f03f1ded90904e3c90f77e4bd4dc20b15"
   integrity sha512-NF8m5AjWCkert+fosDsN3hAlHzpjSiXlVy9EgQEmLoBhaNXbmyeGs/aj5dQzKuF+/q+S7JQagorGDW8pJ28Hmg==
@@ -2813,11 +2813,6 @@ babel-plugin-polyfill-regenerator@^0.5.5:
   integrity sha512-OJGYZlhLqBh2DDHeqAxWB1XIvr49CxiJ2gIt61/PU55CQK4Z58OzMqjDe1zwQdQk+rBYsRc+1rJmdajM3gimHg==
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.5.0"
-
-babel-plugin-react-require@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-react-require/-/babel-plugin-react-require-4.0.2.tgz#cc387627efd90dd67e19628f0867887d26e3f497"
-  integrity sha512-gIq6yj9TkPeEfhzhi5kHXuE4q6Z2lvizktnES+G0AP2aPDmrPLcPkjK2cSM89UPnxfJHubEZv12evOKjocD10w==
 
 babel-preset-current-node-syntax@^1.0.0:
   version "1.0.1"

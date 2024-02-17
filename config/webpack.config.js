@@ -19,9 +19,9 @@ module.exports = (env, argv) => {
                 {
                     test: /\.(js|jsx|tsx|ts)$/,
                     exclude: /node_modules/,
-                    loader: "babel-loader",
+                    loader: "ts-loader",
                     options: {
-                        configFile: path.resolve(__dirname, ".babelrc"),
+                        configFile: path.resolve(__dirname, "./tsconfig.json"),
                     },
                 },
                 {
@@ -39,21 +39,21 @@ module.exports = (env, argv) => {
             ],
         },
         plugins: [
-            new ESLintPlugin({
-                extensions: ["js", "jsx", "ts", "tsx"],
-                overrideConfig: {
-                    extends: [
-                        "eslint:recommended",
-                        "plugin:@typescript-eslint/recommended",
-                    ],
-                    parser: "@typescript-eslint/parser",
-                    plugins: ["@typescript-eslint"],
-                    root: true,
-                    rules: {
-                        "@typescript-eslint/no-unused-vars": "warn",
-                    },
-                },
-            }),
+            // new ESLintPlugin({
+            //     extensions: ["js", "jsx", "ts", "tsx"],
+            //     overrideConfig: {
+            //         extends: [
+            //             "eslint:recommended",
+            //             "plugin:@typescript-eslint/recommended",
+            //         ],
+            //         parser: "@typescript-eslint/parser",
+            //         plugins: ["@typescript-eslint"],
+            //         root: true,
+            //         rules: {
+            //             "@typescript-eslint/no-unused-vars": "warn",
+            //         },
+            //     },
+            // }),
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, "../public/index.html"),
             }),
