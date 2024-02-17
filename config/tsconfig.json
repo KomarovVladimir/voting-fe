@@ -14,14 +14,14 @@
         "moduleResolution": "Node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "jsx": "react-jsx",
+        "jsx": "react",
         "paths": {
-            "app/*": ["app/*"],
-            "assets/*": ["assets/*"],
-            "common/*": ["common/*"],
-            "components/*": ["components/*"],
-            "features/*": ["features/*"],
-            "routing/*": ["routing/*"]
+            "app/*": ["./app/*"],
+            "assets/*": ["./assets/*"],
+            "common/*": ["./common/*"],
+            "components/*": ["./components/*"],
+            "features/*": ["./features/*"],
+            "routing/*": ["./routing/*"]
         },
         "types": ["webpack-env", "react"]
     },

@@ -1,4 +1,4 @@
-import { KeyboardEvent, ChangeEvent, useState } from "react";
+import React, { KeyboardEvent, ChangeEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useSendMessageMutation } from "../api";

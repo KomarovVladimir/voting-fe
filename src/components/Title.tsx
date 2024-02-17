@@ -1,5 +1,5 @@
 import { Typography, TypographyProps, styled } from "@mui/material";
-import { ElementType } from "react";
+import React, { ElementType } from "react";
 import { LinkProps } from "react-router-dom";
 
 export const Title = styled(Typography)({

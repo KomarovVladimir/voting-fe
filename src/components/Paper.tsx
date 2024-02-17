@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Paper as MuiPaper, styled } from "@mui/material";
 
 export const Paper = styled(MuiPaper)({
