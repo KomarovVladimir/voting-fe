@@ -17,17 +17,12 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 {
-                    test: /\.(ts|tsx)$/,
-                    use: {
-                        loader: "ts-loader",
-                        options: {
-                            configFile: path.resolve(
-                                __dirname,
-                                "tsconfig.json",
-                            ),
-                        },
-                    },
+                    test: /\.(js|jsx|tsx|ts)$/,
                     exclude: /node_modules/,
+                    loader: "babel-loader",
+                    options: {
+                        configFile: path.resolve(__dirname, ".babelrc"),
+                    },
                 },
                 {
                     test: /\.css$/,

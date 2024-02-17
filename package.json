@@ -58,7 +58,7 @@
         "style-loader": "^3.3.1",
         "typescript": "^5.3.3",
         "web-vitals": "^3.5.2",
-        "webpack": "^5.64.4",
+        "webpack": "^5.90.2",
         "webpack-dev-server": "^5.0.2"
     },
     "scripts": {
@@ -80,6 +80,8 @@
     "devDependencies": {
         "@babel/plugin-proposal-private-property-in-object": "^7.21.0-placeholder-for-preset-env.2",
         "@babel/preset-env": "^7.23.9",
+        "@babel/preset-react": "^7.23.3",
+        "@babel/preset-typescript": "^7.23.3",
         "@faker-js/faker": "^8.0.2",
         "@types/webpack-env": "^1.18.4",
         "@typescript-eslint/eslint-plugin": "^7.0.1",
