@@ -1,11 +1,12 @@
-import { useAuth, AuthUser } from "features";
 import React, { useState, ChangeEvent, FormEvent } from "react";
+
+import { useAuth, AuthUser } from "features";
 
 import { useCreateRoomMutation } from "../api";
 
 export const useCreationDialog = (onClose: () => void) => {
     const {
-        user: { id: userId },
+        user: { id: userId }
     } = useAuth() as { user: AuthUser };
     const [createRoom] = useCreateRoomMutation();
     const [name, setName] = useState("");
@@ -30,6 +31,6 @@ export const useCreationDialog = (onClose: () => void) => {
         name,
         handleChange,
         handleSubmit,
-        handleClose,
+        handleClose
     };
 };

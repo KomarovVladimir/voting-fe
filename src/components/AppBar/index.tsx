@@ -6,7 +6,7 @@ import {
     Menu,
     MenuItem,
     Avatar,
-    Box,
+    Box
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 
@@ -34,7 +34,7 @@ export const AppBar = ({ leftBlock, menu }: AppBarProps) => {
             sx={{
                 mb: 3,
                 background: "transparent",
-                boxShadow: "none",
+                boxShadow: "none"
             }}
         >
             <Toolbar disableGutters>
@@ -55,7 +55,7 @@ export const AppBar = ({ leftBlock, menu }: AppBarProps) => {
                                 src={user?.avatar}
                                 sx={{
                                     width: "2.5rem",
-                                    height: "2.5rem",
+                                    height: "2.5rem"
                                 }}
                             />
                         </IconButton>
@@ -64,12 +64,12 @@ export const AppBar = ({ leftBlock, menu }: AppBarProps) => {
                             anchorEl={anchorEl}
                             anchorOrigin={{
                                 vertical: "top",
-                                horizontal: "right",
+                                horizontal: "right"
                             }}
                             keepMounted
                             transformOrigin={{
                                 vertical: "top",
-                                horizontal: "right",
+                                horizontal: "right"
                             }}
                             open={Boolean(anchorEl)}
                             onClose={handleClose}

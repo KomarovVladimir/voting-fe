@@ -7,7 +7,7 @@ import {
     DialogActions,
     DialogTitle,
     DialogContent,
-    Box,
+    Box
 } from "@mui/material";
 
 import { Paper } from "components";
