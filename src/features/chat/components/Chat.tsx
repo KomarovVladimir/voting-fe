@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Typography } from "@mui/material";
 import moment from "moment";
 
@@ -8,7 +6,7 @@ import {
     ChatPaper,
     Message,
     MessageContent,
-    MessageHeader,
+    MessageHeader
 } from "./styled";
 import { ChatInput } from "./ChatInput";
 

@@ -1,12 +1,10 @@
-import React from "react";
-
 import {
     Box,
     Button,
     FormControl,
     Stack,
     TextField,
-    Link as MuiLink,
+    Link as MuiLink
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Field, Form } from "react-final-form";
@@ -36,7 +34,7 @@ export const RegistrationForm = () => {
                                     name="email"
                                     render={({
                                         input: { value, onChange },
-                                        meta: { touched, error },
+                                        meta: { touched, error }
                                     }) => (
                                         <TextField
                                             label="Email"
@@ -46,7 +44,7 @@ export const RegistrationForm = () => {
                                                     touched && error
                                                 ),
                                                 value,
-                                                onChange,
+                                                onChange
                                             }}
                                             helperText={touched && error}
                                         />
@@ -58,7 +56,7 @@ export const RegistrationForm = () => {
                                     name="password"
                                     render={({
                                         input: { value, onChange },
-                                        meta: { touched, error },
+                                        meta: { touched, error }
                                     }) => (
                                         <TextField
                                             label="Password*"
@@ -68,7 +66,7 @@ export const RegistrationForm = () => {
                                                     touched && error
                                                 ),
                                                 value,
-                                                onChange,
+                                                onChange
                                             }}
                                             helperText={touched && error}
                                         />
@@ -80,7 +78,7 @@ export const RegistrationForm = () => {
                                     name="confirmation"
                                     render={({
                                         input: { value, onChange },
-                                        meta: { touched, error },
+                                        meta: { touched, error }
                                     }) => (
                                         <TextField
                                             label="Confirm password*"
@@ -90,7 +88,7 @@ export const RegistrationForm = () => {
                                                     touched && error
                                                 ),
                                                 value,
-                                                onChange,
+                                                onChange
                                             }}
                                             helperText={touched && error}
                                         />
@@ -102,7 +100,7 @@ export const RegistrationForm = () => {
                                     name="firstName"
                                     render={({
                                         input: { value, onChange },
-                                        meta: { touched, error },
+                                        meta: { touched, error }
                                     }) => (
                                         <TextField
                                             label="First name"
@@ -112,7 +110,7 @@ export const RegistrationForm = () => {
                                                     touched && error
                                                 ),
                                                 value,
-                                                onChange,
+                                                onChange
                                             }}
                                             helperText={touched && error}
                                         />
@@ -124,7 +122,7 @@ export const RegistrationForm = () => {
                                     name="lastName"
                                     render={({
                                         input: { value, onChange },
-                                        meta: { touched, error },
+                                        meta: { touched, error }
                                     }) => (
                                         <TextField
                                             label="Last name"
@@ -134,7 +132,7 @@ export const RegistrationForm = () => {
                                                     touched && error
                                                 ),
                                                 value,
-                                                onChange,
+                                                onChange
                                             }}
                                             helperText={touched && error}
                                         />

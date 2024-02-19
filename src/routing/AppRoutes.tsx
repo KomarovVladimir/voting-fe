@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Route, Routes } from "react-router";
 
 import { RegistrationForm, LoginForm, Room, RoomsManager } from "features";

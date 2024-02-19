@@ -1,12 +1,10 @@
-import React from "react";
-
 import {
     CardContent,
     Typography,
     CardActionArea,
     Stack,
     IconButton,
-    CardHeader,
+    CardHeader
 } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -37,7 +35,7 @@ export const RoomCard = ({
     isOwner,
     authorName,
     status = statuses[0],
-    members = 0,
+    members = 0
 }: RoomCardProps) => {
     const { handleDelete, handleLeave, handleNavigate } = useRoomCard(id);
 

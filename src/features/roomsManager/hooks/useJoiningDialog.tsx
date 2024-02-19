@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 
 import { useJoinRoomMutation } from "../api";
 
@@ -28,6 +28,6 @@ export const useJoiningDialog = (onClose: () => void) => {
         roomId,
         handleChange,
         handleSubmit,
-        handleClose,
+        handleClose
     };
 };

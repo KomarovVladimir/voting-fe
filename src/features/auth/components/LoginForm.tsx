@@ -1,12 +1,10 @@
-import React from "react";
-
 import {
     Box,
     Button,
     FormControl,
     Stack,
     TextField,
-    Link as MuiLink,
+    Link as MuiLink
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Form, Field } from "react-final-form";
@@ -30,7 +28,7 @@ export const LoginForm = () => {
                 onSubmit={onSubmit}
                 initialValues={{
                     email: "test@email.com",
-                    password: "test@email.com",
+                    password: "test@email.com"
                 }}
                 render={({ handleSubmit }) => (
                     <Box component="form" onSubmit={handleSubmit}>
@@ -40,7 +38,7 @@ export const LoginForm = () => {
                                     name="email"
                                     render={({
                                         input: { value, onChange },
-                                        meta: { touched, error },
+                                        meta: { touched, error }
                                     }) => (
                                         <TextField
                                             label="Email"
@@ -50,7 +48,7 @@ export const LoginForm = () => {
                                                     touched && error
                                                 ),
                                                 value,
-                                                onChange,
+                                                onChange
                                             }}
                                             helperText={touched && error}
                                         />
@@ -62,7 +60,7 @@ export const LoginForm = () => {
                                     name="password"
                                     render={({
                                         input: { value, onChange },
-                                        meta: { touched, error },
+                                        meta: { touched, error }
                                     }) => (
                                         <TextField
                                             label="Password"
@@ -72,7 +70,7 @@ export const LoginForm = () => {
                                                     touched && error
                                                 ),
                                                 value,
-                                                onChange,
+                                                onChange
                                             }}
                                             helperText={touched && error}
                                         />

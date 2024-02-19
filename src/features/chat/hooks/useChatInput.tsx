@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, ChangeEvent, useState } from "react";
+import { KeyboardEvent, ChangeEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useSendMessageMutation } from "../api";
@@ -27,6 +27,6 @@ export const useChatInput = () => {
         text,
         handleSend,
         handleSendMessage,
-        handleChange,
+        handleChange
     };
 };

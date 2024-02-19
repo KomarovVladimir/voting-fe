@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
     Button,
     DialogActions,
@@ -9,7 +7,7 @@ import {
     DialogTitle,
     IconButton,
     ListItem,
-    ListItemText,
+    ListItemText
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -26,7 +24,7 @@ type MembersDialogProps = {
 export const MembersDialog = ({
     open,
     roomId,
-    onClose,
+    onClose
 }: MembersDialogProps) => {
     const { members } = useMembers(roomId);
     const [excludeUser] = useExcludeMemberMutation();

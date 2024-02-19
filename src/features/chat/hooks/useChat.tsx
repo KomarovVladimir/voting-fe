@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useParams } from "react-router-dom";
 import { createRef, useEffect } from "react";
 
@@ -18,6 +16,6 @@ export const useChat = () => {
 
     return {
         messages,
-        endRef,
+        endRef
     };
 };

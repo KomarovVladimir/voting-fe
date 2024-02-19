@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { useGetRoomsQuery } from "../api";
 
@@ -30,6 +30,6 @@ export const useRoomsManager = () => {
         handleOpen,
         handleClose,
         handleJoiningOpen,
-        handleJoiningClose,
+        handleJoiningClose
     };
 };

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { MenuItem, Button, Snackbar, Stack, Select } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -28,13 +26,13 @@ export const RoomAppBar = ({ roomId }: RoomAppBarProps) => {
         snackbarOpen,
         handleCopy,
         handleStatusChange,
-        handleSnackbarClose,
+        handleSnackbarClose
     } = useRoom(roomId);
     const {
         members,
         membersDialogOpen,
         handleMembersOpen,
-        handleMembersClose,
+        handleMembersClose
     } = useMembers(roomId);
 
     return (
@@ -43,7 +41,7 @@ export const RoomAppBar = ({ roomId }: RoomAppBarProps) => {
                 message="Copied to clipboard"
                 anchorOrigin={{
                     vertical: "top",
-                    horizontal: "center",
+                    horizontal: "center"
                 }}
                 autoHideDuration={2000}
                 onClose={handleSnackbarClose}
@@ -101,7 +99,7 @@ export const RoomAppBar = ({ roomId }: RoomAppBarProps) => {
                                 background: " rgba(203, 227, 255, 0.10)",
                                 boxShadow:
                                     "8px 16px 24px 0px rgba(0, 0, 0, 0.16)",
-                                backdropFilter: "blur(8px)",
+                                backdropFilter: "blur(8px)"
                             }}
                         >
                             Room id: {roomId}

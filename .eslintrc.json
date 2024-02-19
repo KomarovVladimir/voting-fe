@@ -5,14 +5,19 @@
         "jest": true
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
-        "plugin:prettier/recommended",
-        "plugin:storybook/recommended"
+        "plugin:react/jsx-runtime",
+        "plugin:storybook/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
     ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
+    "plugins": ["@typescript-eslint/eslint-plugin"],
     "parserOptions": {
         "ecmaVersion": 2017,
         "sourceType": "module"
@@ -35,16 +40,9 @@
         "@typescript-eslint/no-unused-vars": [
             "error",
             {
-                "vars": "all",
-                "args": "after-used",
-                "ignoreRestSiblings": false
+                "args": "none"
             }
         ],
         "no-empty": "warn"
-    },
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
     }
 }

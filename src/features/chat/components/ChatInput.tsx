@@ -1,5 +1,3 @@
-import React from "react";
-
 import { IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
@@ -30,7 +28,7 @@ export const ChatInput = () => {
                             </IconButton>
                         )}
                     </>
-                ),
+                )
             }}
             placeholder="Write a message..."
         />

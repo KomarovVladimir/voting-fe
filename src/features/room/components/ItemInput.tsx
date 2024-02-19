@@ -1,5 +1,3 @@
-import React from "react";
-
 import { IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -24,7 +22,7 @@ export const ItemInput = () => {
                 sx: {
                     p: ".2rem 1rem",
                     width: "100%",
-                    height: "100%",
+                    height: "100%"
                 },
                 endAdornment: (
                     <>
@@ -34,7 +32,7 @@ export const ItemInput = () => {
                             </IconButton>
                         )}
                     </>
-                ),
+                )
             }}
             placeholder="Add an item..."
         />

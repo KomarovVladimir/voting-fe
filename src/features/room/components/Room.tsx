@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Grid, List } from "@mui/material";
 import { useParams } from "react-router";
 
