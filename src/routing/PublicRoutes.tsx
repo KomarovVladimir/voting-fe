@@ -7,7 +7,7 @@ export const PublicRoutes = () => {
     const { user } = useAuth();
 
     if (user) {
-        return <Navigate to="authorized/rooms" />;
+        return <Navigate to="authorized" />;
     }
 
     return (
