@@ -103,7 +103,9 @@
     "miragejs": "^0.1.48",
     "prettier": "^3.2.5",
     "storybook": "^7.6.16",
+    "ts-jest": "^29.1.2",
     "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "webpack-cli": "^5.1.4",
     "yarn-upgrade-all": "^0.7.2"
