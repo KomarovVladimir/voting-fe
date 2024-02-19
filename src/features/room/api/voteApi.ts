@@ -8,20 +8,20 @@ import { VoteRequest } from "../types";
 export const voteApi = api.injectEndpoints({
     endpoints: (builder) => ({
         vote: builder.mutation<QueryReturnValue, VoteRequest>({
-            query: ({ roomId, userId, itemId }) => ({
+            query: ({ roomId, itemId }) => ({
                 url: `rooms/${roomId}/items/${itemId}/vote`,
-                method: "POST",
+                method: "POST"
             }),
-            invalidatesTags: [{ type: "Items" }],
+            invalidatesTags: [{ type: "Items" }]
         }),
         removeVote: builder.mutation<QueryReturnValue, VoteRequest>({
-            query: ({ roomId, userId, itemId }) => ({
+            query: ({ roomId, itemId }) => ({
                 url: `rooms/${roomId}/items/${itemId}/vote`,
-                method: "DELETE",
+                method: "DELETE"
             }),
-            invalidatesTags: [{ type: "Items" }],
-        }),
-    }),
+            invalidatesTags: [{ type: "Items" }]
+        })
+    })
 });
 
 export const { useVoteMutation, useRemoveVoteMutation } = voteApi;

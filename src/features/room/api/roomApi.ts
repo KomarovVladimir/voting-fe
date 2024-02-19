@@ -9,7 +9,7 @@ export const roomApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getRoomData: builder.query<RoomData, string>({
             query: (roomId) => ({ url: `rooms/${roomId}` }),
-            providesTags: () => [{ type: "Rooms" }],
+            providesTags: () => [{ type: "Rooms" }]
         }),
         updateRoom: builder.mutation<
             QueryReturnValue,
@@ -18,11 +18,11 @@ export const roomApi = api.injectEndpoints({
             query: (body) => ({
                 url: `/rooms/${body.id}`,
                 method: "PATCH",
-                body,
+                body
             }),
-            invalidatesTags: [{ type: "Rooms" }],
-        }),
-    }),
+            invalidatesTags: [{ type: "Rooms" }]
+        })
+    })
 });
 
 export const { useGetRoomDataQuery, useUpdateRoomMutation } = roomApi;

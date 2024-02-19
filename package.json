@@ -56,8 +56,8 @@
         "webpack-dev-server": "^5.0.2"
     },
     "scripts": {
-        "build": "npx webpack --config ./config/webpack.config.js --env production",
-        "start": "npx webpack serve --config ./config/webpack.config.js",
+        "build": "npx webpack --env production",
+        "start": "npx webpack serve",
         "lint": "eslint 'src/**/*.ts'"
     },
     "browserslist": {

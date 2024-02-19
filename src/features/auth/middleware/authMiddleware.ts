@@ -9,12 +9,12 @@ authMiddleware.startListening({
     actionCreator: logout,
     effect: async () => {
         localStorage.removeItem(USER_ITEM);
-    },
+    }
 });
 
 authMiddleware.startListening({
     actionCreator: setUser,
     effect: async (action) => {
         localStorage.setItem(USER_ITEM, JSON.stringify(action.payload));
-    },
+    }
 });

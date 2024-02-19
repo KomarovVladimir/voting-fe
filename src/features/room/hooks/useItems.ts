@@ -8,7 +8,7 @@ import {
     useAddItemMutation,
     useVoteMutation,
     useRemoveVoteMutation,
-    useGetItemsQuery,
+    useGetItemsQuery
 } from "../api";
 
 //TODO: Move the hooks
@@ -20,15 +20,15 @@ export const useItems = () => {
     const [voteRequest] = useVoteMutation();
     const [removeVoteRequest] = useRemoveVoteMutation();
     const {
-        user: { id: userId },
+        user: { id: userId }
     } = useAuth() as { user: AuthUser };
     const { data: items } = useGetItemsQuery({ roomId, userId });
 
     const handleItemClick = (isChosen: boolean, id: number) => () => {
         if (isChosen) {
-            removeVoteRequest({ itemId: id, roomId: +roomId, userId });
+            removeVoteRequest({ itemId: id, roomId: +roomId });
         } else {
-            voteRequest({ itemId: id, roomId: +roomId, userId });
+            voteRequest({ itemId: id, roomId: +roomId });
         }
     };
 
@@ -60,6 +60,6 @@ export const useItems = () => {
         handleItemClick,
         handleKeyUp,
         handleItemChange,
-        handleRemoveItem,
+        handleRemoveItem
     };
 };

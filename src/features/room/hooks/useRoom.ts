@@ -20,7 +20,7 @@ export const useRoom = (roomId: string) => {
         updateRoom({
             id: +roomId,
             name: room?.name as string,
-            status: e.target.value as Status,
+            status: e.target.value as Status
         });
     };
 
@@ -40,6 +40,6 @@ export const useRoom = (roomId: string) => {
         snackbarOpen,
         handleCopy,
         handleSnackbarClose,
-        handleStatusChange,
+        handleStatusChange
     };
 };

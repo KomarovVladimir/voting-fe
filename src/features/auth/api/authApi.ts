@@ -10,32 +10,32 @@ export const authApi = api.injectEndpoints({
             query: (body) => ({
                 url: "login",
                 method: "POST",
-                body,
+                body
             }),
-            invalidatesTags: ["Auth"],
+            invalidatesTags: ["Auth"]
         }),
         logoutRequest: builder.mutation<QueryReturnValue, void>({
             query: () => ({
                 url: "logout",
-                method: "POST",
+                method: "POST"
             }),
-            invalidatesTags: ["Auth"],
+            invalidatesTags: ["Auth"]
         }),
         registrationRequest: builder.mutation<QueryReturnValue, UserSignUpData>(
             {
                 query: (body) => ({
                     url: "register",
                     method: "POST",
-                    body,
+                    body
                 }),
-                invalidatesTags: ["Auth"],
+                invalidatesTags: ["Auth"]
             }
-        ),
-    }),
+        )
+    })
 });
 
 export const {
     useLoginRequestMutation,
     useLogoutRequestMutation,
-    useRegistrationRequestMutation,
+    useRegistrationRequestMutation
 } = authApi;

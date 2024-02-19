@@ -31,6 +31,6 @@ export const useMembers = (roomId: string) => {
         members,
         membersDialogOpen,
         handleMembersOpen,
-        handleMembersClose,
+        handleMembersClose
     };
 };

@@ -9,7 +9,7 @@ import { RootState } from "app/store";
 import {
     useLoginRequestMutation,
     useLogoutRequestMutation,
-    useRegistrationRequestMutation,
+    useRegistrationRequestMutation
 } from "../api/authApi";
 import { AuthUser, UserSignInData, UserSignUpData } from "../types";
 import { logout, setUser } from "../slice";
@@ -58,7 +58,7 @@ export const useAuth = () => {
     const handleRegister = (data: UserSignUpData) => {
         registrationRequest(data)
             .then(() => {
-                navigate(`/`);
+                navigate("/");
             })
             .catch((error) => console.error("An error occurred", error));
     };

@@ -29,4 +29,4 @@ export type GetItemsRequest = { roomId: string; userId: number };
 
 export type ExcludeMemberRequest = { roomId: string; userId: number };
 
-export type VoteRequest = { roomId: number; userId: number; itemId: number };
+export type VoteRequest = { roomId: number; itemId: number };

@@ -2,7 +2,7 @@ import {
     ListItemProps,
     ListItem as MuiListItem,
     TextField,
-    styled,
+    styled
 } from "@mui/material";
 
 //TODO: Create common components
@@ -21,9 +21,9 @@ export const ListItem = styled(MuiListItem)<
         textDecoration: "none",
         backgroundColor: theme.palette.action.hover,
         "@media (hover: none)": {
-            backgroundColor: "transparent",
-        },
-    },
+            backgroundColor: "transparent"
+        }
+    }
 }));
 
 export const Input = styled(TextField)(({ theme }) => ({
@@ -40,14 +40,14 @@ export const Input = styled(TextField)(({ theme }) => ({
         transition: theme.transitions.create(
             ["background-color", "transform"],
             {
-                duration: theme.transitions.duration.short,
+                duration: theme.transitions.duration.short
             }
-        ),
+        )
     },
 
     "& .Mui-focused": {
         background: "rgba(203, 227, 255, 0.10)",
         boxShadow: "8px 16px 24px 0px rgba(0, 0, 0, 0.16)",
-        backdropFilter: "blur(8px)",
-    },
+        backdropFilter: "blur(8px)"
+    }
 }));

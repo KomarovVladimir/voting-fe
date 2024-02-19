@@ -9,39 +9,39 @@ import { CreateRoomRequest } from "../types";
 export const roomsManagerApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getRooms: builder.query<RoomData[], void>({
-            query: () => ({ url: `/rooms` }),
-            providesTags: () => [{ type: "Rooms" }],
+            query: () => ({ url: "/rooms" }),
+            providesTags: () => [{ type: "Rooms" }]
         }),
         createRoom: builder.mutation<QueryReturnValue, CreateRoomRequest>({
             query: (body) => ({
                 url: "/rooms",
                 method: "POST",
-                body,
+                body
             }),
-            invalidatesTags: ["Rooms"],
+            invalidatesTags: ["Rooms"]
         }),
         deleteRoom: builder.mutation<QueryReturnValue, number>({
             query: (id) => ({
                 url: `/rooms/${id}`,
-                method: "DELETE",
+                method: "DELETE"
             }),
-            invalidatesTags: ["Rooms"],
+            invalidatesTags: ["Rooms"]
         }),
         joinRoom: builder.mutation<QueryReturnValue, number>({
             query: (roomId) => ({
                 url: `/rooms/${roomId}/join`,
-                method: "POST",
+                method: "POST"
             }),
-            invalidatesTags: ["Rooms"],
+            invalidatesTags: ["Rooms"]
         }),
         leaveRoom: builder.mutation<QueryReturnValue, number>({
             query: (roomId) => ({
                 url: `/rooms/${roomId}/join`,
-                method: "DELETE",
+                method: "DELETE"
             }),
-            invalidatesTags: ["Rooms"],
-        }),
-    }),
+            invalidatesTags: ["Rooms"]
+        })
+    })
 });
 
 export const {
@@ -49,5 +49,5 @@ export const {
     useJoinRoomMutation,
     useLeaveRoomMutation,
     useCreateRoomMutation,
-    useDeleteRoomMutation,
+    useDeleteRoomMutation
 } = roomsManagerApi;

@@ -19,7 +19,7 @@ export const validateRegistration = ({
     lastName,
     email,
     password,
-    confirmation,
+    confirmation
 }: UserSignUpData) => {
     const errors = {} as Record<string, string>;
 

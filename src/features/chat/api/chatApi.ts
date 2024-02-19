@@ -8,28 +8,28 @@ export const chatApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getMessages: builder.query<MessageData[], string>({
             query: (roomId) => ({ url: `rooms/${roomId}/messages` }),
-            providesTags: () => [{ type: "Chat" }],
+            providesTags: () => [{ type: "Chat" }]
         }),
         sendMessage: builder.mutation<QueryReturnValue, PostMessageRequest>({
             query: ({ roomId, ...body }) => ({
                 url: `rooms/${roomId}/messages`,
                 method: "POST",
-                body,
+                body
             }),
-            invalidatesTags: [{ type: "Chat" }],
+            invalidatesTags: [{ type: "Chat" }]
         }),
         deleteMessage: builder.mutation<QueryReturnValue, string>({
             query: (messageId) => ({
                 url: `/messages/${messageId}`,
-                method: "DELETE",
+                method: "DELETE"
             }),
-            invalidatesTags: [{ type: "Chat" }],
-        }),
-    }),
+            invalidatesTags: [{ type: "Chat" }]
+        })
+    })
 });
 
 export const {
     useGetMessagesQuery,
     useDeleteMessageMutation,
-    useSendMessageMutation,
+    useSendMessageMutation
 } = chatApi;

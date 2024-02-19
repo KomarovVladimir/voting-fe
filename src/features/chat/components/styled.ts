@@ -13,8 +13,8 @@ export const Input = styled(TextField)({
     "& .MuiInput-root": {
         padding: ".2rem 1rem",
         width: "100%",
-        height: "100%",
-    },
+        height: "100%"
+    }
 });
 
 export const ChatPaper = styled(Paper)({
@@ -29,13 +29,13 @@ export const ChatPaper = styled(Paper)({
     border: " 1px solid #383c47",
     background: "rgba(203, 227, 255, 0.10)",
     boxShadow: "8px 16px 24px 0px rgba(0, 0, 0, 0.16)",
-    backdropFilter: "blur(8px)",
+    backdropFilter: "blur(8px)"
 });
 
 export const Message = styled(ListItem)({
     alignItems: "start",
     justifyContent: "start",
-    maxWidth: "80%",
+    maxWidth: "80%"
 });
 
 export const MessageContent = styled("div")({
@@ -44,14 +44,14 @@ export const MessageContent = styled("div")({
     padding: ".5rem 1.5rem 1.25rem .75rem",
     borderRadius: "0 8px 8px 8px",
     background: "rgba(203, 227, 255, 0.10)",
-    overflowWrap: "anywhere",
+    overflowWrap: "anywhere"
 });
 
 export const MessageHeader = styled("div")({
     display: "flex",
     flexWrap: "nowrap",
     alignItems: "center",
-    gap: "4px",
+    gap: "4px"
 });
 
 export const ChatBox = styled(List)({
@@ -61,10 +61,10 @@ export const ChatBox = styled(List)({
     overflowY: "auto",
 
     "&::-webkit-scrollbar": {
-        width: "0.4em",
+        width: "0.4em"
     },
     "&::-webkit-scrollbar-thumb": {
         backgroundColor: "rgba(0, 0, 0, 0.20)",
-        borderRadius: "0.2em",
-    },
+        borderRadius: "0.2em"
+    }
 });

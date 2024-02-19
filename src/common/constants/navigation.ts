@@ -3,5 +3,5 @@ export const navigation = {
     authorized: "authorized",
     roomsManager: "rooms",
     room: "rooms/:roomId",
-    register: "register",
+    register: "register"
 };
