@@ -56,7 +56,7 @@
         "webpack-dev-server": "^5.0.2"
     },
     "scripts": {
-        "build": "npx webpack --env production",
+        "build": "yarn test && npx webpack --env production",
         "start": "npx webpack serve",
         "lint": "eslint 'src/**/*.ts'",
         "storybook": "storybook dev -p 6006",
