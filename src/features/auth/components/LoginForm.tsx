@@ -83,7 +83,7 @@ export const LoginForm = () => {
                                 Sign In
                             </Button>
                             <MuiLink component={Link} to="../register">
-                                Don't have an account?
+                                Don&apos;t have an account?
                             </MuiLink>
                         </Stack>
                     </Box>

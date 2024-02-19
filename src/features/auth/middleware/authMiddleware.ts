@@ -14,7 +14,7 @@ authMiddleware.startListening({
 
 authMiddleware.startListening({
     actionCreator: setUser,
-    effect: async (action, listenerApi) => {
+    effect: async (action) => {
         localStorage.setItem(USER_ITEM, JSON.stringify(action.payload));
     },
 });

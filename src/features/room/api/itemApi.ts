@@ -7,7 +7,7 @@ import { GetItemsRequest, ItemData } from "../types";
 export const itemApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getItems: builder.query<ItemData[], GetItemsRequest>({
-            query: ({ roomId, userId }) => ({
+            query: ({ roomId }) => ({
                 url: `rooms/${roomId}/items`,
             }),
             providesTags: () => [{ type: "Items" }],
