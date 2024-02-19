@@ -8,10 +8,13 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:storybook/recommended"
     ],
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "parserOptions": {
         "ecmaVersion": 2017,
         "sourceType": "module"
@@ -27,11 +30,18 @@
                 "printWidth": 80
             }
         ],
-        "quotes": ["error", "double"],
+        "quotes": [
+            "error",
+            "double"
+        ],
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": [
             "error",
-            { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": false
+            }
         ],
         "no-empty": "warn"
     }
