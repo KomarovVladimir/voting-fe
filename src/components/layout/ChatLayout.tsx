@@ -8,7 +8,7 @@ const Item = styled(Paper)(() => ({
     height: "100%"
 }));
 
-export const MainLayout = () => (
+export const ChatLayout = () => (
     <Grid container spacing={2} marginX={1} height="100%">
         <Grid xs={2} height="100%">
             <Item>xs=8</Item>
