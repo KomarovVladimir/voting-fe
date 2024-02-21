@@ -1,5 +1,4 @@
-export * from "./layout";
-export * from "./PageWrapper";
+export * from "./layouts";
 export * from "./AppBar";
 export * from "./Paper";
 export * from "./Title";
