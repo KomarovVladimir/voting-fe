@@ -1,11 +1,11 @@
 import { ChatLayout } from "components/layouts";
 
-import { Chat } from "features";
+import { Chat, RoomsManager } from "features";
 
 export const ChatPage = () => {
     return (
         <ChatLayout
-            left={<div>Left</div>}
+            left={<RoomsManager />}
             center={<Chat />}
             right={<div>Right</div>}
         />

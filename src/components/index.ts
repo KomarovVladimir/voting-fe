@@ -3,4 +3,4 @@ export * from "./AppBar";
 export * from "./Paper";
 export * from "./Title";
 export * from "./Avatar";
-export * from "./List";
+export * from "./ListItem";
