@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 
 import { RegistrationForm, LoginForm, Room } from "features";
-import { ChatLayout } from "components";
+import { ChatPage } from "pages";
 
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
@@ -17,7 +17,7 @@ export const AppRoutes = () => (
             <Route path={register} element={<RegistrationForm />} />
         </Route>
         <Route path={authorized} element={<PrivateRoutes />}>
-            <Route index element={<ChatLayout />} />
+            <Route index element={<ChatPage />} />
             <Route path={room} element={<Room />} />
         </Route>
     </Routes>
