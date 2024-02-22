@@ -3,17 +3,21 @@ import { Route, Routes } from "react-router";
 import { RegistrationForm, LoginForm } from "features";
 import { ChatPage } from "pages";
 
+import { routes } from "./routes";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
 
-import { navigation } from "../common/constants";
+const { auth, baseRoute, login, authorized, register } = routes;
 
-const { baseRoute, authorized, register } = navigation;
-
+//TODO: Add the auth version back
+//TODO: Join the login and register pages
 export const AppRoutes = () => (
     <Routes>
-        <Route path={baseRoute} element={<PublicRoutes />}>
-            <Route index element={<LoginForm />} />
+        <Route path={baseRoute}>
+            <Route index element={<ChatPage />} />
+        </Route>
+        <Route path={auth} element={<PublicRoutes />}>
+            <Route path={login} element={<LoginForm />} />
             <Route path={register} element={<RegistrationForm />} />
         </Route>
         <Route path={authorized} element={<PrivateRoutes />}>

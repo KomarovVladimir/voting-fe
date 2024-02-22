@@ -2,11 +2,12 @@ import { Avatar } from "@mui/material";
 
 import { ListItem } from "components";
 import { stringAvatar } from "lib";
+import { Id } from "types";
 
 import { useRoomCard } from "../hooks";
 
 export type RoomProps = {
-    id: number;
+    id: Id;
     imgSrc?: string;
     name: string;
 };

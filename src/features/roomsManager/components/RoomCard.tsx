@@ -9,12 +9,14 @@ import {
 import LogoutIcon from "@mui/icons-material/Logout";
 import ClearIcon from "@mui/icons-material/Clear";
 
+import { Id } from "types";
+
 import { StyledCard } from "./styled";
 
 import { useRoomCard } from "../hooks";
 
 export type RoomCardProps = {
-    id: number;
+    id: Id;
     isOwner: boolean;
     authorName?: string;
     name: string;

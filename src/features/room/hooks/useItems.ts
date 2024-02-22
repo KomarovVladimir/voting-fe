@@ -2,6 +2,7 @@ import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useParams } from "react-router";
 
 import { useAuth, AuthUser } from "features";
+import { Id } from "types";
 
 import {
     useDeleteItemMutation,
@@ -24,7 +25,7 @@ export const useItems = () => {
     } = useAuth() as { user: AuthUser };
     const { data: items } = useGetItemsQuery({ roomId, userId });
 
-    const handleItemClick = (isChosen: boolean, id: number) => () => {
+    const handleItemClick = (isChosen: boolean, id: Id) => () => {
         if (isChosen) {
             removeVoteRequest({ itemId: id, roomId: +roomId });
         } else {
@@ -49,7 +50,7 @@ export const useItems = () => {
         setItem(e.target.value);
     };
 
-    const handleRemoveItem = (id: number) => () => {
+    const handleRemoveItem = (id: Id) => () => {
         deleteItem({ roomId, id });
     };
 

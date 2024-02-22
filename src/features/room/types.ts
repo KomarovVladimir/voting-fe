@@ -1,32 +1,36 @@
 import { statuses } from "common/constants";
+import { Id } from "types";
 
 export type Status = (typeof statuses)[number];
 
+//TODO: Refactor polls?
 export type ItemData = {
-    id: number;
+    id: Id;
     name: string;
     votes: number;
     voted: boolean;
-    roomId: string | number;
+    roomId: Id;
 };
 
 export type RoomData = {
-    id: number;
+    id: Id;
     authorName?: string;
     isOwner: boolean;
     name: string;
     status: Status;
 };
 
+export type anonRoomData = Pick<RoomData, "id" | "name">;
+
 //TODO: Add a status field
 export type MemberData = {
-    id: number;
+    id: Id;
     username?: string;
     email?: string;
 };
 
-export type GetItemsRequest = { roomId: string; userId: number };
+export type GetItemsRequest = { roomId: Id; userId: Id };
 
-export type ExcludeMemberRequest = { roomId: string; userId: number };
+export type ExcludeMemberRequest = { roomId: Id; userId: Id };
 
-export type VoteRequest = { roomId: number; itemId: number };
+export type VoteRequest = { roomId: Id; itemId: Id };

@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { Id } from "types";
 
 export type UserSignInData = {
     email: string;
@@ -14,7 +15,7 @@ export type UserSignUpData = {
 };
 
 export type AuthUser = {
-    id: number;
+    id: Id;
     email: string;
     firstName: string;
     lastName: string;

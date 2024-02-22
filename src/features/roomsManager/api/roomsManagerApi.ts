@@ -2,6 +2,7 @@ import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 
 import { api } from "app/services/api";
 import { RoomData } from "features";
+import { Id } from "types";
 
 import { CreateRoomRequest } from "../types";
 
@@ -20,21 +21,21 @@ export const roomsManagerApi = api.injectEndpoints({
             }),
             invalidatesTags: ["Rooms"]
         }),
-        deleteRoom: builder.mutation<QueryReturnValue, number>({
+        deleteRoom: builder.mutation<QueryReturnValue, Id>({
             query: (id) => ({
                 url: `/rooms/${id}`,
                 method: "DELETE"
             }),
             invalidatesTags: ["Rooms"]
         }),
-        joinRoom: builder.mutation<QueryReturnValue, number>({
+        joinRoom: builder.mutation<QueryReturnValue, Id>({
             query: (roomId) => ({
                 url: `/rooms/${roomId}/join`,
                 method: "POST"
             }),
             invalidatesTags: ["Rooms"]
         }),
-        leaveRoom: builder.mutation<QueryReturnValue, number>({
+        leaveRoom: builder.mutation<QueryReturnValue, Id>({
             query: (roomId) => ({
                 url: `/rooms/${roomId}/join`,
                 method: "DELETE"

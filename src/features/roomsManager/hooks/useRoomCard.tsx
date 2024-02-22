@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router";
+import { Id } from "types";
 
 import { useDeleteRoomMutation, useLeaveRoomMutation } from "../api";
 
-export const useRoomCard = (id: number) => {
+export const useRoomCard = (id: Id) => {
     const navigate = useNavigate();
     const [deleteRoom] = useDeleteRoomMutation();
     const [leaveRoom] = useLeaveRoomMutation();

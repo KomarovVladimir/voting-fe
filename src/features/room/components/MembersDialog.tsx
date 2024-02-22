@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
+import { Id } from "types";
+
 import { useExcludeMemberMutation } from "../api";
 import { useMembers } from "../hooks";
 
@@ -29,7 +31,7 @@ export const MembersDialog = ({
     const { members } = useMembers(roomId);
     const [excludeUser] = useExcludeMemberMutation();
 
-    const handleExclude = (userId: number) => () => {
+    const handleExclude = (userId: Id) => () => {
         excludeUser({ roomId, userId });
     };
 

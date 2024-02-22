@@ -14,13 +14,14 @@ export const RoomsManager = () => {
         <List>
             <CreationDialog onClose={handleClose} open={creationOpen} />
             <Grid container spacing={2}>
-                {rooms?.map((props, index) => (
+                {/* {rooms?.map((props, index) => (
                     <Room
                         key={index}
                         {...props}
-                        // icon={<Avatar>{index.toString()}</Avatar>}
+                        icon={<Avatar>{index.toString()}</Avatar>}
                     />
-                ))}
+                ))
+                } */}
                 <ListItem icon={<Avatar>+</Avatar>} onClick={handleOpen} />
             </Grid>
         </List>

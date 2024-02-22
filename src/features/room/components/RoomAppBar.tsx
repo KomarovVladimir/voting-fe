@@ -55,7 +55,7 @@ export const RoomAppBar = ({ roomId }: RoomAppBarProps) => {
             <AppBar
                 leftBlock={
                     <Stack direction="row" gap={0.5} alignItems="center">
-                        <TitleLink component={Link} to="/authorized/rooms">
+                        <TitleLink component={Link} to="/rooms">
                             Rooms
                         </TitleLink>
                         <ArrowBackIosNewIcon fontSize="small" />

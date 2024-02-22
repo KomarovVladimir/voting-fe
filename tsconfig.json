@@ -16,6 +16,7 @@
         "isolatedModules": true,
         "paths": {
             "constants": ["./common/constants"],
+            "types": ["./common/types"],
             "hooks": ["./common/hooks"],
             "lib": ["./common/lib"]
         },

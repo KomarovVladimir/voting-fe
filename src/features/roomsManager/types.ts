@@ -1,5 +1,7 @@
+import { Id } from "types";
+
 export type CreateRoomRequest = {
     name: string;
-    userId: number;
+    userId: Id;
     creationDate: Date;
 };
