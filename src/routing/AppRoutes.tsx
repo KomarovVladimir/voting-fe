@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 
-import { RegistrationForm, LoginForm, Room } from "features";
+import { RegistrationForm, LoginForm } from "features";
 import { ChatPage } from "pages";
 
 import { PrivateRoutes } from "./PrivateRoutes";
@@ -8,7 +8,7 @@ import { PublicRoutes } from "./PublicRoutes";
 
 import { navigation } from "../common/constants";
 
-const { baseRoute, authorized, room, register } = navigation;
+const { baseRoute, authorized, register } = navigation;
 
 export const AppRoutes = () => (
     <Routes>
@@ -18,7 +18,6 @@ export const AppRoutes = () => (
         </Route>
         <Route path={authorized} element={<PrivateRoutes />}>
             <Route index element={<ChatPage />} />
-            <Route path={room} element={<Room />} />
         </Route>
     </Routes>
 );

@@ -4,11 +4,10 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    ListItemProps
+    ListItemProps,
+    AvatarProps
 } from "@mui/material";
 import { ReactElement } from "react";
-
-import { AvatarProps } from "components";
 
 type IconTypes = ReactElement<AvatarProps> | ReactElement<SvgIconComponent>;
 

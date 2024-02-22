@@ -4,20 +4,12 @@ import { AppBar, PageWrapper, Title } from "components";
 
 import { CreationDialog } from "./CreationDialog";
 import { RoomCard } from "./RoomCard";
-import { JoiningDialog } from "./JoiningDialog";
 
 import { useRoomsManager } from "../hooks";
 
 export const RoomsManagerLegacy = () => {
-    const {
-        rooms,
-        creationOpen,
-        joiningOpen,
-        handleOpen,
-        handleClose,
-        handleJoiningOpen,
-        handleJoiningClose
-    } = useRoomsManager();
+    const { rooms, creationOpen, handleOpen, handleClose, handleJoiningOpen } =
+        useRoomsManager();
 
     return (
         <PageWrapper>
@@ -37,7 +29,6 @@ export const RoomsManagerLegacy = () => {
                     </Stack>
                 }
             />
-            <JoiningDialog onClose={handleJoiningClose} open={joiningOpen} />
             <CreationDialog onClose={handleClose} open={creationOpen} />
             <Grid container spacing={2}>
                 {rooms?.map((props, index) => (

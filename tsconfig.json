@@ -14,6 +14,11 @@
         "moduleResolution": "Node",
         "resolveJsonModule": true,
         "isolatedModules": true,
+        "paths": {
+            "constants": ["./common/constants"],
+            "hooks": ["./common/hooks"],
+            "lib": ["./common/lib"]
+        },
         "jsx": "react-jsx",
         "types": ["webpack-env", "react"]
     },
