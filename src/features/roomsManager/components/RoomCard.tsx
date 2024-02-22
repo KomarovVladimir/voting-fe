@@ -9,9 +9,6 @@ import {
 import LogoutIcon from "@mui/icons-material/Logout";
 import ClearIcon from "@mui/icons-material/Clear";
 
-import { statuses } from "common/constants";
-import { Status } from "features";
-
 import { StyledCard } from "./styled";
 
 import { useRoomCard } from "../hooks";
@@ -21,7 +18,6 @@ export type RoomCardProps = {
     isOwner: boolean;
     authorName?: string;
     name: string;
-    status: Status;
     members?: number;
 };
 
@@ -34,7 +30,6 @@ export const RoomCard = ({
     name,
     isOwner,
     authorName,
-    status = statuses[0],
     members = 0
 }: RoomCardProps) => {
     const { handleDelete, handleLeave, handleNavigate } = useRoomCard(id);

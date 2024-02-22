@@ -14,7 +14,7 @@ type RoomProps = {
     id: string;
 };
 
-export const Room = () => {
+export const RoomLegacy = () => {
     const { roomId } = useParams() as { roomId: string };
 
     return <RoomContent id={roomId} />;

@@ -1,22 +1,15 @@
-import Grid from "@mui/material/Unstable_Grid2";
+import { Stack } from "@mui/material";
 import { ReactNode } from "react";
 
+//TODO: Add specific components checking
 type ChatLayoutProps = {
-    left?: ReactNode;
-    center?: ReactNode;
-    right?: ReactNode;
+    rooms?: ReactNode;
+    chat?: ReactNode;
 };
 
-export const ChatLayout = ({ left, center, right }: ChatLayoutProps) => (
-    <Grid container spacing={2} marginX={1} height="100%">
-        <Grid xs={1} height="100%">
-            {left}
-        </Grid>
-        <Grid xs={9} height="100%">
-            {center}
-        </Grid>
-        <Grid xs={2} height="100%">
-            {right}
-        </Grid>
-    </Grid>
+export const ChatLayout = ({ rooms, chat }: ChatLayoutProps) => (
+    <Stack direction="row" spacing={2} height="100%" useFlexGap padding={2}>
+        {rooms}
+        {chat}
+    </Stack>
 );
