@@ -18,10 +18,10 @@ export const startFakeServer = () => {
             }),
             message: Factory.extend({
                 text() {
-                    return faker.lorem.lines({ min: 1, max: 3 });
+                    return faker.lorem.sentence();
                 },
                 date() {
-                    return faker.date.recent();
+                    return faker.date.recent().toISOString();
                 }
             })
         },
@@ -30,7 +30,7 @@ export const startFakeServer = () => {
             this.namespace = "/api";
 
             this.get("/rooms");
-            this.post("/rooms", () => {
+            this.post("/rooms", (schema) => {
                 const room = schema.rooms.create();
 
                 for (let i = 0; i < 3; i++) {

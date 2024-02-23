@@ -1,6 +1,6 @@
 import { ChatLayout } from "components/layouts";
 
-import { Chat, RoomsManager } from "features";
+import { Chat } from "features";
 
 export const ChatPage = () => {
     return (
