@@ -59,6 +59,7 @@
     "scripts": {
         "build": "yarn test && npx webpack --env production",
         "start": "npx webpack serve",
+        "start-open": "npx webpack serve --open",
         "lint": "eslint 'src/**/*.ts'",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
